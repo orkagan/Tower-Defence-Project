@@ -32,7 +32,6 @@ public class ED_GenerateStartupFolders : MonoBehaviour
             "Documentation",
             "Editor",
             "Fonts",
-            "Geomat",
             "Materials",
             "PhysicsMaterials",
             "Plugins",
