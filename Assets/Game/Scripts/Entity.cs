@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour
 {
-    private float health;
 
-    //CURRENTLY A TEST SCRIPT, IGNORE
+    #region Fields
+    private float health;
+    private float maximumHealth;
+    #endregion
+
+    #region Methods
+    public abstract void Die();
+    #endregion
 }
