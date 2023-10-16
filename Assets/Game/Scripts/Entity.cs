@@ -11,6 +11,9 @@ public abstract class Entity : MonoBehaviour
     #endregion
 
     #region Methods
-    public abstract void Die();
+    public static void Die()
+    { 
+    
+    }
     #endregion
 }

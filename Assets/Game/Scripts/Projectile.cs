@@ -19,8 +19,17 @@ public abstract class Projectile : MonoBehaviour
     #endregion
 
     #region Methods
-    public abstract void Hit(); //we might want these to be virtual, not abstract
-    public abstract void Spawn();
-    public abstract void Die();
+    public virtual void Hit() 
+    {
+    
+    }
+    public virtual void Spawn()
+    { 
+    
+    }
+    public virtual void Die()
+    { 
+    
+    }
     #endregion
 }

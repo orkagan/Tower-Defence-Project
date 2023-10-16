@@ -14,8 +14,11 @@ public abstract class Weapon : MonoBehaviour
     #endregion
 
     #region methods
-    public abstract void Attack(); //TODO: make this virtual, to handle projectile firing
-    //i.e if this Weapon has a projectile, do (that projectile).spawn in attack()
+    public virtual void Attack()
+    { 
+    
+    }
+    //TODO: if this Weapon has a projectile, do (that projectile).spawn in attack()
     
     #endregion
 }
