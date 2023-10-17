@@ -14,7 +14,14 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 playerVelocity;
 
     public float accelRate;
+    public float acceleration;
+    public float deceleration;
+    private float accelAmount;
+    private float decelAmount;
+    
     public float maxSpeed;
+    
+
 
     public Transform orientation;
     public float horizontalInput;
@@ -44,6 +51,12 @@ public class PlayerMovement : MonoBehaviour
     #region Unity Methods
 
 
+    private void Awake()
+    {
+        accelAmount = (50 * acceleration) / maxSpeed;
+        decelAmount = (50 * deceleration) / maxSpeed;
+
+    }
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -102,10 +115,14 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(rb.position, rb.velocity, Color.black);
 
 
-        //if (skewedMoveDirection.magnitude > 0.1f)
-        //{
-        //    accelRate = 15;
-        //}
+        if (wantedDir.magnitude > 0.1f)
+        {
+            accelRate = accelAmount;
+        }
+        else if (wantedDir.magnitude < 0.1f)
+        { 
+        accelRate = decelAmount;
+        }
 
 
         rb.AddForce(velocityDifference * 10f * accelRate, ForceMode.Acceleration);
