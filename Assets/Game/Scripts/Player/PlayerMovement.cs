@@ -1,50 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-
 
 public class PlayerMovement : MonoBehaviour
 {
-
-
     #region Variables
 
-    public Vector3 playerVelocity;
 
-    public float accelRate;
+    [Header("Acceleration")]
+    private float accelRate; //The multiplier used on the final vector
+
+    [Tooltip("DO NOT SET HIGHER THAN MAXSPEED OR LOWER THAN 1, GAME WILL BREAK")]
     public float acceleration;
+    [Tooltip("DO NOT SET HIGHER THAN MAXSPEED OR LOWER THAN 1, GAME WILL BREAK")]
     public float deceleration;
+    
     private float accelAmount;
     private float decelAmount;
     
-    public float maxSpeed;
+    public float maxSpeed; //maximum speed
     
 
 
-    public Transform orientation;
-    public float horizontalInput;
-    public float verticalInput;
+    public Transform orientation; //tbh i don't even remember what this does but it's set to the capsule and it works so
+    public float horizontalInput; //input system for A and D keys
+    public float verticalInput; //INput system for W and S keys
+    
     public Vector3 moveDirection;
     public Vector3 wantedDir;
 
     public Rigidbody rb;
     public CapsuleCollider col;
-
-
-    public enum MovementState
-    {
-        freeze,
-        walking
-
-    }
-
-    public MovementState movementState;
-
-
-
-
 
     #endregion
 
@@ -60,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        orientation = GetComponent<Transform>();
         rb.freezeRotation = true;
     }
 
@@ -68,19 +53,18 @@ public class PlayerMovement : MonoBehaviour
 
         MyInput();
         SpeedControl();
-        StateHandler();
-
 
     }
 
     private void FixedUpdate()
     {
         MovePlayer();
+
     }
 
     #endregion
 
-
+    #region Methods
     /// <summary>
     /// checks horizontal and vertical input    
     /// </summary>
@@ -93,31 +77,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; //this is magic to me
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; 
 
-        //moveDirection is the desired input
-
-
-        //Debug.DrawRay(rb.position, moveDirection);
-        //Debug.DrawRay(rb.position, orientation.forward * verticalInput, Color.blue);
-        //Debug.DrawRay(rb.position, orientation.right * horizontalInput, Color.red);
-
-        var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
+        var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0)); //offsets the input vector by 45degrees, for iso 
         var skewedMoveDirection = matrix.MultiplyPoint3x4(moveDirection.normalized);
-        //var skewedMoveDirection = moveDirection;
 
         wantedDir = skewedMoveDirection * maxSpeed;
 
         Vector3 velocityDifference = wantedDir - rb.velocity;
-        Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 1, rb.position.z), skewedMoveDirection.normalized, Color.white, 0.1f);
-        Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 2, rb.position.z), wantedDir, Color.red, 0.1f);
-        Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 3, rb.position.z), velocityDifference, Color.blue, 0.1f);
-        Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 4, rb.position.z), rb.velocity, Color.black, 0.1f);
-
-        if (velocityDifference.magnitude > rb.velocity.magnitude + 10)
-        {
-            Debug.Log("Difference Check. Not sure if this is useful.");
-        }
+        
+        #region debug rays
+        //Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 1, rb.position.z), skewedMoveDirection.normalized, Color.white, 0.1f);
+        //Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 2, rb.position.z), wantedDir, Color.red, 0.1f);
+        //Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 3, rb.position.z), velocityDifference, Color.blue, 0.1f);
+        //Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 4, rb.position.z), rb.velocity, Color.black, 0.1f);
+        #endregion
+        
+        
 
         if (wantedDir.magnitude > 0.1f)
         {
@@ -128,31 +104,24 @@ public class PlayerMovement : MonoBehaviour
         accelRate = decelAmount;
         }
 
-       // Debug.Log("veldif: " + velocityDifference * accelRate);
+     
         rb.AddForce(velocityDifference * accelRate, ForceMode.Acceleration);
 
-        Vector3 grungus = new Vector3 (rb.velocity.x + (Time.fixedDeltaTime * velocityDifference.x * accelRate), rb.velocity.y, rb.velocity.z + (Time.fixedDeltaTime * velocityDifference.z * accelRate));
+        Vector3 singleAddVelocity = new Vector3 (rb.velocity.x + (Time.fixedDeltaTime * velocityDifference.x * accelRate), rb.velocity.y, rb.velocity.z + (Time.fixedDeltaTime * velocityDifference.z * accelRate));
 
-        Debug.Log("Speed added from accel in one tick " + grungus.magnitude);
-        if (grungus.magnitude > maxSpeed)
+        //Debug.Log("Speed added from accel in one tick " + singleAddVelocity.magnitude);
+        if (singleAddVelocity.magnitude > maxSpeed)
         {
             Debug.LogWarning("Speed added from accel is higher than max speed, CATASTROPHIC, CALL JAME");
         }
         
         
-        //if (velocityDifference.magnitude * accelRate > maxSpeed)
-        //{
-        //    Debug.Log("CATASTROPHIC?::: ADDED FORCE GREATER THAN MAXSPEED, SHIT YOUR PANTS?");
-        //}
-
-        //Debug.Log("veldif: " + velocityDifference * 10f * accelRate);
-        //rb.AddForce(velocityDifference * 10f * accelRate, ForceMode.Acceleration);
-        //rb.AddForce(skewedMoveDirection.normalized * 10f * accelRate, ForceMode.Acceleration);
-        //rb.AddForce(skewedMoveDirection.normalized * 10f, ForceMode.Acceleration);
-
-        //Debug.Log("total magnitude of added force is: " + )
+       
     }
 
+    /// <summary>
+    /// Handles max and min speed
+    /// </summary>
     private void SpeedControl()
     {
 
@@ -169,11 +138,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-
-    private void StateHandler()
-    {
-        //empty for now
-
-    }
+    #endregion 
 
 }
