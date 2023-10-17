@@ -255,7 +255,7 @@ MonoBehaviour:
   playerVelocity: {x: 0, y: 0, z: 0}
   accelRate: 1
   acceleration: 30
-  deceleration: 5
+  deceleration: 30
   maxSpeed: 30
   orientation: {fileID: 190850433}
   horizontalInput: 0
