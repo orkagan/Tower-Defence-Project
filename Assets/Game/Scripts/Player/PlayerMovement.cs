@@ -12,13 +12,16 @@ public class PlayerMovement : MonoBehaviour
     #region Variables
 
     public Vector3 playerVelocity;
-    public float walkSpeed;
+
+    public float accelRate;
+    public float maxSpeed;
     public float moveSpeed;
     public float groundDrag;
     public Transform orientation;
     public float horizontalInput;
     public float verticalInput;
     public Vector3 moveDirection;
+ 
     public Rigidbody rb;
     public CapsuleCollider col;
 
@@ -78,24 +81,30 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; //this is magic to me
-        Debug.DrawRay(rb.position, moveDirection);
-        Debug.DrawRay(rb.position, orientation.forward * verticalInput, Color.blue);
-        Debug.DrawRay(rb.position, orientation.right * horizontalInput, Color.red);
+        //moveDirection is the desired input
+       
+
+        //Debug.DrawRay(rb.position, moveDirection);
+        //Debug.DrawRay(rb.position, orientation.forward * verticalInput, Color.blue);
+        //Debug.DrawRay(rb.position, orientation.right * horizontalInput, Color.red);
 
         var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
         var skewedMoveDirection = matrix.MultiplyPoint3x4(moveDirection);
 
-        rb.AddForce(skewedMoveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+      
+        rb.AddForce(skewedMoveDirection.normalized * moveSpeed * 10f * accelRate, ForceMode.Acceleration);
+        
+        //Debug.Log("total magnitude of added force is: " + )
     }
 
     private void SpeedControl()
     {
 
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z); //horizontal velocity
-        if (flatVel.magnitude > moveSpeed)
+        if (flatVel.magnitude > maxSpeed)
         {
             Debug.Log("Speedcheck: limited velocity");
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            Vector3 limitedVel = flatVel.normalized * maxSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
 
