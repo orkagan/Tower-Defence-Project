@@ -15,13 +15,13 @@ public class PlayerMovement : MonoBehaviour
 
     public float accelRate;
     public float maxSpeed;
-    public float moveSpeed;
-    public float groundDrag;
+
     public Transform orientation;
     public float horizontalInput;
     public float verticalInput;
     public Vector3 moveDirection;
- 
+    public Vector3 wantedDir;
+
     public Rigidbody rb;
     public CapsuleCollider col;
 
@@ -37,8 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
 
 
- 
-    
+
+
     #endregion
 
     #region Unity Methods
@@ -81,8 +81,9 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; //this is magic to me
+
         //moveDirection is the desired input
-       
+
 
         //Debug.DrawRay(rb.position, moveDirection);
         //Debug.DrawRay(rb.position, orientation.forward * verticalInput, Color.blue);
@@ -91,9 +92,26 @@ public class PlayerMovement : MonoBehaviour
         var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
         var skewedMoveDirection = matrix.MultiplyPoint3x4(moveDirection);
 
-      
-        rb.AddForce(skewedMoveDirection.normalized * moveSpeed * 10f * accelRate, ForceMode.Acceleration);
-        
+
+        wantedDir = skewedMoveDirection * maxSpeed;
+
+        Vector3 velocityDifference = wantedDir - rb.velocity;
+        Debug.DrawRay(rb.position, skewedMoveDirection.normalized);
+        Debug.DrawRay(rb.position, wantedDir, Color.red);
+        Debug.DrawRay(rb.position, velocityDifference, Color.blue);
+        Debug.DrawRay(rb.position, rb.velocity, Color.black);
+
+
+        //if (skewedMoveDirection.magnitude > 0.1f)
+        //{
+        //    accelRate = 15;
+        //}
+
+
+        rb.AddForce(velocityDifference * 10f * accelRate, ForceMode.Acceleration);
+        //rb.AddForce(skewedMoveDirection.normalized * 10f * accelRate, ForceMode.Acceleration);
+        //rb.AddForce(skewedMoveDirection.normalized * 10f, ForceMode.Acceleration);
+
         //Debug.Log("total magnitude of added force is: " + )
     }
 

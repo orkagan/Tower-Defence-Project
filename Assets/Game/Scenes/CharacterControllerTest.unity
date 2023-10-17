@@ -235,7 +235,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -253,14 +253,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerVelocity: {x: 0, y: 0, z: 0}
-  accelRate: 0.5
+  accelRate: 1
   maxSpeed: 30
-  moveSpeed: 2
-  groundDrag: 5
   orientation: {fileID: 190850433}
   horizontalInput: 0
   verticalInput: 0
   moveDirection: {x: 0, y: 0, z: 0}
+  wantedDir: {x: 0, y: 0, z: 0}
   rb: {fileID: 190850434}
   col: {fileID: 190850430}
   movementState: 1
