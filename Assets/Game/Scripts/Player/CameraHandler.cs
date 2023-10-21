@@ -50,7 +50,7 @@ public class CameraHandler : MonoBehaviour
         Debug.DrawRay(cam.position, toMove, Color.white, 5f);
 
 
-        cam.transform.position = Vector3.Lerp(cam.transform.position,  newMove, lerpVal);
+        cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, newMove, lerpVal);
 
        
     }
