@@ -17,15 +17,18 @@ public class CameraHandler : MonoBehaviour
     #endregion
 
     #region Variables
-    public float horizontalInput;
-    public float verticalInput;
+    private float horizontalInput;
+    public float horizontalMultiplier;
+
+    private float verticalInput;
+    public float verticalMultiplier;
 
     public float smoothTime = 0.3f;
     private Vector3 velocity = Vector3.zero;
     
     public Transform cam;
 
-    public Vector3 toMove;
+    private Vector3 toMove;
     public float multiplier;
     #endregion
 
@@ -42,7 +45,7 @@ public class CameraHandler : MonoBehaviour
 
 
 
-        toMove = cam.forward * verticalInput + cam.right * horizontalInput;
+        toMove = cam.forward * verticalInput * verticalMultiplier + cam.right * horizontalInput * horizontalMultiplier;
 
         Vector3 newMove = Quaternion.AngleAxis(-30, cam.right) * toMove;           //TODO: this might be performance destroying, optimize by creating one vector3/ angle set on start
         Debug.DrawRay(cam.position, newMove, Color.magenta, 5f);
