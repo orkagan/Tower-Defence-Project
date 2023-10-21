@@ -733,7 +733,7 @@ MonoBehaviour:
   horizontalMultiplier: 1
   verticalMultiplier: 2
   leavingTime: 1
-  returningTime: 0.1
+  returningTime: 0.2
   returningInputThreshold: 0
   cam: {fileID: 1906172168}
   strength: 1
