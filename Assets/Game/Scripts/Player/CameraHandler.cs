@@ -23,13 +23,17 @@ public class CameraHandler : MonoBehaviour
     private float verticalInput;
     public float verticalMultiplier;
 
-    public float smoothTime = 0.3f;
+    public float leavingTime;
+    public float returningTime;
+    public float returningInputThreshold; //doesnt matter for PC
+
+    private float smoothTime;
     private Vector3 velocity = Vector3.zero;
     
     public Transform cam;
 
     private Vector3 toMove;
-    public float multiplier;
+    public float strength;
     #endregion
 
     #region Methods
@@ -42,7 +46,7 @@ public class CameraHandler : MonoBehaviour
         //Debug.DrawRay(cam.position, cam.right, Color.red);
         #endregion
 
-
+        //how do i figure out if it's returning or leaving???
 
 
         toMove = cam.forward * verticalInput * verticalMultiplier + cam.right * horizontalInput * horizontalMultiplier;
@@ -52,8 +56,17 @@ public class CameraHandler : MonoBehaviour
         Debug.DrawRay(cam.position, toMove, Color.white, 5f);
 
 
+        if (Mathf.Abs(verticalInput) <= returningInputThreshold && Mathf.Abs(horizontalInput) <= returningInputThreshold)
+        {
+            smoothTime = returningTime;
+        }
+        else
+        {
+            smoothTime = leavingTime;
+        }
+
         //cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, newMove, lerpRate);
-        cam.transform.localPosition = Vector3.SmoothDamp(cam.transform.localPosition, newMove * multiplier, ref velocity, smoothTime);
+        cam.transform.localPosition = Vector3.SmoothDamp(cam.transform.localPosition, newMove * strength, ref velocity, smoothTime);
 
        
     }
