@@ -20,14 +20,13 @@ public class CameraHandler : MonoBehaviour
     public float horizontalInput;
     public float verticalInput;
 
-    public float lerpVal;
-
-    //public Camera cam;
-
+    public float smoothTime = 0.3f;
+    private Vector3 velocity = Vector3.zero;
+    
     public Transform cam;
 
-
     public Vector3 toMove;
+    public float multiplier;
     #endregion
 
     #region Methods
@@ -50,7 +49,8 @@ public class CameraHandler : MonoBehaviour
         Debug.DrawRay(cam.position, toMove, Color.white, 5f);
 
 
-        cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, newMove, lerpVal);
+        //cam.transform.localPosition = Vector3.Lerp(cam.transform.localPosition, newMove, lerpRate);
+        cam.transform.localPosition = Vector3.SmoothDamp(cam.transform.localPosition, newMove * multiplier, ref velocity, smoothTime);
 
        
     }
