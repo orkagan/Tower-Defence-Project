@@ -34,56 +34,25 @@ public class CameraHandler : MonoBehaviour
 
     public void MoveCam()
     {
-       
+        #region mid
+        //Debug.DrawRay(cam.position, cam.forward, Color.blue);
+        //Debug.DrawRay(cam.position, cam.up, Color.green);
+        //Debug.DrawRay(cam.position, cam.right, Color.red);
+        #endregion
 
 
 
 
         toMove = cam.forward * verticalInput + cam.right * horizontalInput;
 
-        Vector3 newMove = Quaternion.AngleAxis(-30, cam.right) * toMove;
+        Vector3 newMove = Quaternion.AngleAxis(-30, cam.right) * toMove;           //TODO: this might be performance destroying, optimize by creating one vector3/ angle set on start
         Debug.DrawRay(cam.position, newMove, Color.magenta, 5f);
-
-
-       
         Debug.DrawRay(cam.position, toMove, Color.white, 5f);
-        Debug.DrawRay(cam.position, cam.forward, Color.blue);
-        Debug.DrawRay(cam.position, cam.up, Color.green);
 
-        //var matrix = Matrix4x4.Rotate(Quaternion.Euler(30, 0, 0)); //offsets the input vector by 45degrees, for iso 
-        //var isoForward = matrix.MultiplyPoint3x4(cam.forward); //this is in world space, not local
 
-        //Debug.DrawRay(cam.position, isoForward, Color.cyan);
-
-        Debug.DrawRay(cam.position, cam.right, Color.red);
-
-        //cam.localPosition = cam.localPosition + toMove;
-
+        cam.transform.position = Vector3.Lerp(cam.transform.position,  newMove, lerpVal);
 
        
-        //Debug.DrawRay(cam.position, isoMove, Color.red, 5f);
-
-        //cam.localPosition = cam.localPosition + isoMove;
-
-        //float camPosX = cam.transform.position.x;
-        //float camPosY = cam.transform.position.y;
-
-        //Vector3 lerpVector = new Vector3(Mathf.Lerp(camPosX, horizontalInput, lerpVal), camPosY, cam.transform.position.z);
-        //Debug.DrawRay(cam.transform.position, lerpVector);
-
-
-
-        //Vector3 rotLerpVector = new Vector3(Mathf.Lerp(camPosX, horizontalInput, lerpVal), camPosY, cam.transform.position.z) + cam.transform.forward;
-        //Debug.DrawRay(cam.transform.position, rotLerpVector, Color.red);
-
-        #region iso rotation 
-
-        //var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0)); //offsets the input vector by 45degrees, for iso
-
-        //var isoLerpVector = matrix.MultiplyPoint3x4(lerpVector);
-
-        //Debug.DrawRay(cam.transform.position, isoLerpVector, Color.red);
-        #endregion
     }
 
 

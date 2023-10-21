@@ -487,7 +487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalInput: 0
   verticalInput: 0
-  lerpVal: 0
+  lerpVal: 0.1
   cam: {fileID: 1906172168}
   toMove: {x: 0, y: 0, z: 0}
 --- !u!1 &2081516898
