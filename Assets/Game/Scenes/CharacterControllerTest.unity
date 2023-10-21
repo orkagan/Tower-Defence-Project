@@ -449,6 +449,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1906172168}
+  - component: {fileID: 1906172169}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -472,6 +473,23 @@ Transform:
   m_Father: {fileID: 190850433}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
+--- !u!114 &1906172169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906172167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17cb5d51e7d0d2b46ab4ce11143515b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalInput: 0
+  verticalInput: 0
+  lerpVal: 0
+  cam: {fileID: 1906172168}
+  toMove: {x: 0, y: 0, z: 0}
 --- !u!1 &2081516898
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,7 +543,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 852e3237ed984da469fc448ca36628f0, type: 2}
+  - {fileID: 2100000, guid: 40adae39d303fcc43bebf90d91a1ebf9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
