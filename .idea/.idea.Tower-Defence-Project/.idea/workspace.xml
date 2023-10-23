@@ -6,9 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="ba2093db-e173-4bda-bba5-6277299627db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Backgrounds.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Backgrounds.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Handles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Handles.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Materials/CatRaiseEyebrow.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Materials/CatRaiseEyebrow.jpg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Materials/DELETEblack.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Materials/DELETEblack.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Materials/DELETEfloor.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Materials/DELETEfloor.mat.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/CharacterControllerTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/CharacterControllerTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Gameplay Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Gameplay Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Player/Joystick.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Player/Joystick.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Player/MobilePlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Player/PlayerMovement.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Player/MobilePlayerMovement.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Textures.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +53,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "PlayerMovement+UI",
+    "git-widget-placeholder": "PlayerMovement+UI-(Mobile)",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -102,7 +116,7 @@
       <updated>1697422782643</updated>
       <workItem from="1697422783574" duration="1596000" />
       <workItem from="1697496038768" duration="2424000" />
-      <workItem from="1698014405868" duration="7082000" />
+      <workItem from="1698014405868" duration="8586000" />
     </task>
     <servers />
   </component>

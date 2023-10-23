@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class MobilePlayerMovement : MonoBehaviour
 {
     #region Variables
 
@@ -17,12 +17,10 @@ public class PlayerMovement : MonoBehaviour
     private float decelAmount;
     
     public float maxSpeed; //maximum speed
-    
 
 
+    public Joystick inputJoystick;
     public Transform orientation; //tbh i don't even remember what this does but it's set to the capsule and it works so
-    public float horizontalInput; //input system for A and D keys
-    public float verticalInput; //INput system for W and S keys
     
     public Vector3 moveDirection;
     public Vector3 wantedDir;
@@ -50,8 +48,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-
-        MyInput();
         SpeedControl();
 
     }
@@ -59,7 +55,6 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-
     }
 
     #endregion
@@ -68,16 +63,10 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// checks horizontal and vertical input    
     /// </summary>
-    private void MyInput()
-    {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
-    }
 
     private void MovePlayer()
     {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; 
+        moveDirection = new Vector3(inputJoystick.Input.x, 0, inputJoystick.Input.y); 
 
         var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0)); //offsets the input vector by 45degrees, for iso 
         var skewedMoveDirection = matrix.MultiplyPoint3x4(moveDirection.normalized);

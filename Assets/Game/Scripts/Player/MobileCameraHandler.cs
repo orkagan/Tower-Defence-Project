@@ -1,11 +1,11 @@
 using UnityEngine;
-public class CameraHandler : MonoBehaviour
+public class MobileCameraHandler : MonoBehaviour
 {
     
 
     #region Variables
     public Transform cam; //This name is deceptive, it goes on pivot, not cam
-
+    public Joystick inputJoystick;
     private float horizontalInput; //Input.GetAxis(horizontal)
 
     [Header("Multipliers")]
@@ -43,7 +43,7 @@ public class CameraHandler : MonoBehaviour
        
 
         //creates the vector3 we'll use to move the camera, based off the player's inputs
-        toMove = cam.forward * verticalInput * verticalMultiplier + cam.right * horizontalInput * horizontalMultiplier;
+        toMove = cam.forward * (inputJoystick.Input.y * verticalMultiplier) + cam.right * (inputJoystick.Input.x * horizontalMultiplier);
 
 
         //Rotate the Vector3 toMove by 30 degrees on a local axis, to make it move vertically,

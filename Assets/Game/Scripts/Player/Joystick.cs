@@ -23,6 +23,10 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     #region Properties
 
+    public Vector2 Input
+    {
+        get { return _input; }
+    }
     public float HandlerRange
     {
         get { return _handlerRange; }
