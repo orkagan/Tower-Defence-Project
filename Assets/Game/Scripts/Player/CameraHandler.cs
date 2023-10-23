@@ -12,6 +12,7 @@ public class CameraHandler : MonoBehaviour
     #endregion
 
     public Transform cam; //This name is deceptive, it goes on pivot, not cam
+    public Transform mouseCam;
 
     private float horizontalInput; //Input.GetAxis(horizontal)
 
@@ -33,7 +34,7 @@ public class CameraHandler : MonoBehaviour
     public float smoothTimeMouse;
     private Vector3 velocityMouse = Vector3.zero;
 
-
+    public float mouseStrength;
     
     private Vector3 toMove; //used in converting the horizontal and vertical inputs into horizontal and vertical camera movements
     [Space(20f)]
@@ -64,7 +65,7 @@ public class CameraHandler : MonoBehaviour
         }
 
         Vector3 newMouseMove = Quaternion.AngleAxis(-30, cam.right) * mouseMove;
-        Debug.DrawRay(cam.position, newMouseMove, Color.red);
+        Debug.DrawRay(mouseCam.position, newMouseMove, Color.red);
         Debug.Log("new mouse move magnitude is: " + newMouseMove.magnitude);
         
 
@@ -90,7 +91,7 @@ public class CameraHandler : MonoBehaviour
 
         //moves the camera
         cam.transform.localPosition = Vector3.SmoothDamp(cam.transform.localPosition, (newMove * strength), ref velocity, smoothTime);
-        cam.transform.localPosition = Vector3.SmoothDamp(cam.transform.localPosition, newMouseMove, ref velocityMouse, smoothTimeMouse);
+        mouseCam.transform.localPosition = Vector3.SmoothDamp(mouseCam.transform.localPosition, newMouseMove * mouseStrength , ref velocityMouse, smoothTimeMouse);
 
     }
 
