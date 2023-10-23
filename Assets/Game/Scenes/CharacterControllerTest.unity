@@ -582,7 +582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &675037992
 RectTransform:
   m_ObjectHideFlags: 0
@@ -951,7 +951,7 @@ GameObject:
   m_Layer: 0
   m_Name: mousehandler challenge
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1100,7 +1100,7 @@ MonoBehaviour:
   leavingTime: 1
   returningTime: 0.2
   returningInputThreshold: 0
-  smoothTimeMouse: 0
+  smoothTimeMouse: 0.5
   mouseStrength: 1
   strength: 1
 --- !u!1 &2081516898
