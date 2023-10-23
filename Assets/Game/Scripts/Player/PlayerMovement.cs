@@ -1,13 +1,30 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     #region Variables
 
+    #region DEBUG DELETE
 
-    
+    public Text uiText;
+
+    #endregion
+
+    #region Looking
+    [Header("MouseLook")]
+    public Camera cam;
+    private Vector2 _mousePosition;
+    private Vector2 _playerScreenPos;
+
+    public Transform tempRotHandler; //DELETE THIS ASAP
+    public float tempAngle; //ALSO DELETE THIS ASAP
+
+    #endregion
+
+    #region Moving
     private float accelRate; //The multiplier used on the final vector
-
+    [Space(20f)]
     [Header("Acceleration")]
     [Tooltip("DO NOT SET HIGHER THAN MAXSPEED OR LOWER THAN 1, GAME WILL BREAK")]
     public float acceleration;
@@ -30,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody rb;
     public CapsuleCollider col;
+
+    #endregion
 
     #endregion
 
@@ -60,7 +79,8 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-
+        DoLookage();
+        Debug.Log(tempAngle);
     }
 
     #endregion
@@ -74,6 +94,22 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
+        // _mousePosition = cam.ScreenToWorldPoint(Input.mousePosition); //mouse position is a world point currently
+        _mousePosition = Input.mousePosition; 
+        _playerScreenPos = cam.WorldToScreenPoint(rb.position);
+    }
+
+    private void DoLookage() //for the love of god please change this name later james
+    {
+        
+
+        Vector2 lookDirection = _mousePosition - _playerScreenPos;
+        uiText.text = $"lookDirection x = {lookDirection.x}, lookDirection y = {lookDirection.y}";
+
+        tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+
+        tempRotHandler.rotation = Quaternion.AngleAxis(tempAngle, orientation.up);
+        Debug.DrawRay(tempRotHandler.position, tempRotHandler.forward, Color.yellow);
     }
 
     private void MovePlayer()
