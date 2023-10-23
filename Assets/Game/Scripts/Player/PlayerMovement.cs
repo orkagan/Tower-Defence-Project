@@ -101,14 +101,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void DoLookage() //for the love of god please change this name later james
     {
-        
+
 
         Vector2 lookDirection = _mousePosition - _playerScreenPos;
         uiText.text = $"lookDirection x = {lookDirection.x}, lookDirection y = {lookDirection.y}";
 
-        tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg -135; //-45 is the magic number that makes this work but in opposite direction
 
-        tempRotHandler.rotation = Quaternion.AngleAxis(tempAngle, orientation.up);
+        tempRotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
         Debug.DrawRay(tempRotHandler.position, tempRotHandler.forward, Color.yellow);
     }
 
