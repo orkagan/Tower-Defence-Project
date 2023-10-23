@@ -1,9 +1,16 @@
 using UnityEngine;
 public class CameraHandler : MonoBehaviour
 {
-    
+
 
     #region Variables
+
+    #region DELETE THIS THIS IS DEBUG
+
+    public Vector2 PMgetter;
+
+    #endregion
+
     public Transform cam; //This name is deceptive, it goes on pivot, not cam
 
     private float horizontalInput; //Input.GetAxis(horizontal)
@@ -22,6 +29,9 @@ public class CameraHandler : MonoBehaviour
 
     private float smoothTime; //both of these are for Vector3.SmoothDamp
     private Vector3 velocity = Vector3.zero;
+
+    public float smoothTimeMouse;
+    private Vector3 velocityMouse = Vector3.zero;
 
 
     
@@ -46,6 +56,18 @@ public class CameraHandler : MonoBehaviour
         toMove = cam.forward * verticalInput * verticalMultiplier + cam.right * horizontalInput * horizontalMultiplier;
 
 
+        //DELETE THIS!!!!
+        Vector3 mouseMove = cam.forward * PMgetter.y + cam.right * PMgetter.x;
+        if (mouseMove.magnitude >=1)
+        {
+            mouseMove.Normalize();
+        }
+
+        Vector3 newMouseMove = Quaternion.AngleAxis(-30, cam.right) * mouseMove;
+        Debug.DrawRay(cam.position, newMouseMove, Color.red);
+        Debug.Log("new mouse move magnitude is: " + newMouseMove.magnitude);
+        
+
         //Rotate the Vector3 toMove by 30 degrees on a local axis, to make it move vertically,
         //the amount of degrees should always be equal to the Pivot object's x axis, multiplied by -1.
         //This hardcode will cause bad things later, but I don't want to fix it. Too bad!
@@ -67,9 +89,9 @@ public class CameraHandler : MonoBehaviour
         }
 
         //moves the camera
-        cam.transform.localPosition = Vector3.SmoothDamp(cam.transform.localPosition, newMove * strength, ref velocity, smoothTime);
+        cam.transform.localPosition = Vector3.SmoothDamp(cam.transform.localPosition, (newMove * strength), ref velocity, smoothTime);
+        cam.transform.localPosition = Vector3.SmoothDamp(cam.transform.localPosition, newMouseMove, ref velocityMouse, smoothTimeMouse);
 
-       
     }
 
 

@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     #region DEBUG DELETE
 
+    public CameraHandler camHandler;
     public Text uiText;
 
     #endregion
@@ -106,12 +107,15 @@ public class PlayerMovement : MonoBehaviour
         Vector2 lookDirection = _mousePosition - _playerScreenPos;
         uiText.text = $"lookDirection x = {lookDirection.x}, lookDirection y = {lookDirection.y}";
 
-        tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; //-45 is the magic number that makes this work but in opposite direction
+        camHandler.PMgetter = cam.ScreenToViewportPoint(lookDirection); //DELETE THIS JAMES!!!!!!!!!!!!!!!!!!!!!!!!
+
+        tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; 
 
         tempRotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
         Debug.DrawRay(tempRotHandler.position, tempRotHandler.forward, Color.yellow);
     }
 
+    #region center dolookage // this sucks
     //private void DoLookage() //THIS IS THE VERSION THAT ROTATES AROUND THE CENTER!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //{
     //    Vector2 centerView = new Vector2(0.5f, 0.5f);
@@ -125,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
     //    tempRotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
     //    Debug.DrawRay(tempRotHandler.position, tempRotHandler.forward, Color.yellow);
     //}
-
+    #endregion 
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; 

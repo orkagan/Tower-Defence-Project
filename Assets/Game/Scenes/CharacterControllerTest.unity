@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6942cf093522dc4dae4ad20b7abd9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camHandler: {fileID: 1906172169}
   uiText: {fileID: 675037993}
   cam: {fileID: 585804980}
   tempRotHandler: {fileID: 430425151}
@@ -1059,12 +1060,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cb5d51e7d0d2b46ab4ce11143515b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PMgetter: {x: 0, y: 0}
   cam: {fileID: 1906172168}
   horizontalMultiplier: 1
   verticalMultiplier: 2
   leavingTime: 1
   returningTime: 0.2
   returningInputThreshold: 0
+  smoothTimeMouse: 0.3
   strength: 1
 --- !u!1 &2081516898
 GameObject:
