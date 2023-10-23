@@ -5,9 +5,10 @@ public class PlayerMovement : MonoBehaviour
     #region Variables
 
 
-    [Header("Acceleration")]
+    
     private float accelRate; //The multiplier used on the final vector
 
+    [Header("Acceleration")]
     [Tooltip("DO NOT SET HIGHER THAN MAXSPEED OR LOWER THAN 1, GAME WILL BREAK")]
     public float acceleration;
     [Tooltip("DO NOT SET HIGHER THAN MAXSPEED OR LOWER THAN 1, GAME WILL BREAK")]
