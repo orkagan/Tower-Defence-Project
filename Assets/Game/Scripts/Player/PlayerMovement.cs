@@ -99,18 +99,32 @@ public class PlayerMovement : MonoBehaviour
         _playerScreenPos = cam.WorldToScreenPoint(rb.position);
     }
 
-    private void DoLookage() //for the love of god please change this name later james
+    private void DoLookage() //THIS IS THE VERSION THAT LOOKS AROUND THE PLAYER!!! THIS ONE IS WAY BETTER
     {
 
 
         Vector2 lookDirection = _mousePosition - _playerScreenPos;
         uiText.text = $"lookDirection x = {lookDirection.x}, lookDirection y = {lookDirection.y}";
 
-        tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg -135; //-45 is the magic number that makes this work but in opposite direction
+        tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; //-45 is the magic number that makes this work but in opposite direction
 
         tempRotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
         Debug.DrawRay(tempRotHandler.position, tempRotHandler.forward, Color.yellow);
     }
+
+    //private void DoLookage() //THIS IS THE VERSION THAT ROTATES AROUND THE CENTER!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //{
+    //    Vector2 centerView = new Vector2(0.5f, 0.5f);
+    //    Vector2 centerScreenSpace = cam.ViewportToScreenPoint(centerView);
+
+    //    Vector2 lookDirection = _mousePosition - centerScreenSpace;
+    //    uiText.text = $"lookDirection x = {lookDirection.x}, lookDirection y = {lookDirection.y}";
+
+    //    tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; //-45 is the magic number that makes this work but in opposite direction
+
+    //    tempRotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
+    //    Debug.DrawRay(tempRotHandler.position, tempRotHandler.forward, Color.yellow);
+    //}
 
     private void MovePlayer()
     {
