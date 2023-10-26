@@ -11,7 +11,17 @@ public class PlayerMovement : MonoBehaviour
 
     public CameraHandler camHandler;
     public Text uiText;
-
+    public Text angleText;
+    public Text playerAngleText;
+    public GameObject dirMarker;
+    public GameObject playerMarker;
+    public GameObject boxItself;
+    public GameObject boxPosMarker;
+    public GameObject boxDirMarker;
+    public Text differenceText;
+    public RectTransform rt;
+    public GameObject marker;
+    public Vector2 boxPosition;
     #endregion
 
     #region Looking
@@ -99,23 +109,45 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // _mousePosition = cam.ScreenToWorldPoint(Input.mousePosition); //mouse position is a world point currently
-        _mousePosition = Input.mousePosition; 
+        _mousePosition = Input.mousePosition;
         _playerScreenPos = cam.WorldToScreenPoint(rb.position);
+        boxPosition = cam.WorldToScreenPoint(boxItself.transform.position);
     }
 
     private void DoLookage() //THIS IS THE VERSION THAT LOOKS AROUND THE PLAYER!!! THIS ONE IS WAY BETTER
     {
 
+        var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, 0));
+
+        marker.transform.position = _mousePosition;
+        playerMarker.transform.position = _playerScreenPos;
+        boxPosMarker.transform.position = boxPosition;
 
         Vector2 lookDirection = _mousePosition - _playerScreenPos;
-        uiText.text = $"lookDirection x = {lookDirection.x}, lookDirection y = {lookDirection.y}";
+        Vector2 boxDirection = boxPosition - _playerScreenPos;
+
+        Vector2 skewedLookDirection = matrix.MultiplyPoint3x4(lookDirection);
+
+
+        float debugAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
+        float boxAngle = Mathf.Atan2(boxDirection.y, boxDirection.x) * Mathf.Rad2Deg - 90f;
+        angleText.text = $"{Mathf.Round(debugAngle) + 90f}*";
+        dirMarker.transform.rotation = Quaternion.AngleAxis(debugAngle, orientation.forward);
+        boxDirMarker.transform.rotation = Quaternion.AngleAxis(boxAngle, orientation.forward);
+
+        //uiText.text = $"lookDirection x = {lookDirection.x}, lookDirection y = {lookDirection.y}";
 
         camHandler.PMgetter = cam.ScreenToViewportPoint(lookDirection); //DELETE THIS JAMES!!!!!!!!!!!!!!!!!!!!!!!!
 
-        tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; 
+        //tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; //-135
+        tempAngle = Mathf.Atan2(skewedLookDirection.y, skewedLookDirection.x) * Mathf.Rad2Deg - 135; //-135
+
 
         tempRotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
         //Debug.DrawRay(tempRotHandler.position, tempRotHandler.forward, Color.yellow);
+        //playerAngleText.text = $"{Mathf.Round(tempRotHandler.rotation.eulerAngles.y)}*";
+        playerAngleText.text = $"{Mathf.Round(boxAngle) + 90f}";
+        differenceText.text = $"{Mathf.Abs((Mathf.Round(boxAngle) + 90f) - (Mathf.Round(debugAngle) + 90f))}";
     }
 
     #region center dolookage // this sucks
