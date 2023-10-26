@@ -66,7 +66,7 @@ public class CameraHandler : MonoBehaviour
 
         Vector3 newMouseMove = Quaternion.AngleAxis(-30, cam.right) * mouseMove;
         Debug.DrawRay(mouseCam.position, newMouseMove, Color.red);
-        Debug.Log("new mouse move magnitude is: " + newMouseMove.magnitude);
+        //Debug.Log("new mouse move magnitude is: " + newMouseMove.magnitude);
         
 
         //Rotate the Vector3 toMove by 30 degrees on a local axis, to make it move vertically,

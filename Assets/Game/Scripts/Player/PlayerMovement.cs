@@ -5,6 +5,8 @@ public class PlayerMovement : MonoBehaviour
 {
     #region Variables
 
+    public Player player;
+
     #region DEBUG DELETE
 
     public CameraHandler camHandler;
@@ -81,7 +83,8 @@ public class PlayerMovement : MonoBehaviour
     {
         MovePlayer();
         DoLookage();
-        Debug.Log(tempAngle);
+        //Debug.Log(tempAngle);
+        player.orientation = tempRotHandler.forward;
     }
 
     #endregion
@@ -112,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
         tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; 
 
         tempRotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
-        Debug.DrawRay(tempRotHandler.position, tempRotHandler.forward, Color.yellow);
+        //Debug.DrawRay(tempRotHandler.position, tempRotHandler.forward, Color.yellow);
     }
 
     #region center dolookage // this sucks

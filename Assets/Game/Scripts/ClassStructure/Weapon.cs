@@ -5,18 +5,23 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     #region fields
-    private float damage;
-    private float attackCooldown;
-    private bool isMelee;
-    private Collider hitbox;
-    private Projectile projectile;
-    private float projectileSpeed;
+    public float damage;
+    public float attackCooldown;
+    public bool isMelee;
+    public Collider hitbox;
+    public Projectile projectile;
+    public float projectileSpeed;
     #endregion
 
     #region methods
-    public virtual void Attack()
-    { 
-    
+    public virtual void Attack(Vector3 direction, Vector3 position)
+    {
+        Debug.Log("Attacked");
+
+        if (projectile != null)
+        {
+            projectile.Spawn(direction, position);
+        }
     }
     //TODO: if this Weapon has a projectile, do (that projectile).spawn in attack()
     
