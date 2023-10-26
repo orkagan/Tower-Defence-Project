@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 190850432}
   - component: {fileID: 190850431}
   - component: {fileID: 190850430}
+  - component: {fileID: 190850436}
   - component: {fileID: 190850435}
   - component: {fileID: 190850434}
   m_Layer: 0
@@ -253,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6942cf093522dc4dae4ad20b7abd9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 403926161}
+  player: {fileID: 190850436}
   camHandler: {fileID: 1906172169}
   uiText: {fileID: 675037993}
   cam: {fileID: 585804980}
@@ -269,6 +270,25 @@ MonoBehaviour:
   wantedDir: {x: 0, y: 0, z: 0}
   rb: {fileID: 190850434}
   col: {fileID: 190850430}
+--- !u!114 &190850436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190850429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ab8ea4ff2a21b4e88cc6f70152fa7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0
+  currency: 0
+  towers: []
+  weapons:
+  - {fileID: 2117976560356582920, guid: 2a70436586963d64c9745a6a76b9789d, type: 3}
+  readyToBeginWave: 0
+  orientation: {x: 0, y: 0, z: 0}
 --- !u!1 &331960132
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &403926161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -901,7 +921,7 @@ BoxCollider:
   m_GameObject: {fileID: 1342079173}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
