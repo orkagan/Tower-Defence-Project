@@ -20,7 +20,13 @@ public abstract class Weapon : MonoBehaviour
 
         if (projectile != null)
         {
-            projectile.Spawn(direction, position);
+            Projectile spawnedProjectile;
+            //projectile.Spawn(direction, position);
+            Vector3 aimDirection = direction;
+            Vector3 spawnPosition = position + aimDirection.normalized;
+            Debug.DrawRay(spawnPosition, aimDirection, Color.black, 3f);
+            spawnedProjectile = Instantiate(projectile, spawnPosition, Quaternion.identity);
+            spawnedProjectile.direction = aimDirection;
         }
     }
     //TODO: if this Weapon has a projectile, do (that projectile).spawn in attack()

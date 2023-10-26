@@ -16,6 +16,7 @@ public abstract class Projectile : MonoBehaviour
     public Rigidbody rb;
     public Collider hitbox;
     public float damage;
+    public Vector3 direction;
     #endregion
 
     #region Methods
@@ -23,15 +24,13 @@ public abstract class Projectile : MonoBehaviour
     {
     
     }
-    public virtual void Spawn(Vector3 direction, Vector3 position) //this could be tonnes of things
+
+    
+    public virtual void Spawn() //this could be tonnes of things
     {
         
-        Debug.Log("Projectile Spawn");
-        Vector3 aimDirection = direction;
-        Vector3 spawnPosition = position + aimDirection.normalized;
-        Debug.DrawRay(spawnPosition, aimDirection, Color.black, 3f);
-        Instantiate(this, spawnPosition, Quaternion.identity);
-        rb.AddForce(aimDirection * 50f, ForceMode.VelocityChange);// i think this is applying to the prefab and not the instance somehow
+        
+        rb.AddForce(direction * 50f, ForceMode.VelocityChange);// i think this is applying to the prefab and not the instance somehow
        
         
        
@@ -45,8 +44,15 @@ public abstract class Projectile : MonoBehaviour
     #region Unity Methods
 
     public virtual void Awake()
-    { 
-    
+    {
+        Debug.Log("bruh");
+        
+
+    }
+
+    public virtual void Start()
+    {
+        Spawn();
     }
     #endregion 
 }
