@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
     private void DoLookage() //THIS IS THE VERSION THAT LOOKS AROUND THE PLAYER!!! THIS ONE IS WAY BETTER
     {
 
-        var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, 0));
+        var matrix = Matrix4x4.Rotate(Quaternion.Euler(0    , 0, 0));
 
         marker.transform.position = _mousePosition;
         playerMarker.transform.position = _playerScreenPos;
@@ -167,9 +167,10 @@ public class PlayerMovement : MonoBehaviour
     #endregion 
     private void MovePlayer()
     {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput; 
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0)); //offsets the input vector by 45degrees, for iso 
+        //var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, 0));
         var skewedMoveDirection = matrix.MultiplyPoint3x4(moveDirection.normalized);
 
         wantedDir = skewedMoveDirection * maxSpeed;
