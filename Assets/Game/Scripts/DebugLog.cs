@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DebugLog : MonoBehaviour
 {
-    public void TestFunction()
+    public void TestFunction(string text)
     {
-        Debug.Log("This works!");
+        Debug.Log(text);
     }
 }
