@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5768924399162714821}
   m_Layer: 0
-  m_Name: Tower Prefab (Placeholder)
+  m_Name: Tower 1 Prefab (Placeholder)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
