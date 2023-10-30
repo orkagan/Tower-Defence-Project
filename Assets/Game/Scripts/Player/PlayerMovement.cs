@@ -9,6 +9,10 @@ public class PlayerMovement : MonoBehaviour
 
     #region DEBUG DELETE
 
+    public LayerMask groundMask;
+
+    public GameObject raycastHitpoint;
+
     public CameraHandler camHandler;
     public Text uiText;
     public Text angleText;
@@ -27,9 +31,10 @@ public class PlayerMovement : MonoBehaviour
     #region Looking
     [Header("MouseLook")]
     public Camera cam;
-    private Vector2 _mousePosition;
+    private Vector2 lookInputPosition;
     private Vector2 _playerScreenPos;
 
+    public Transform playerTransform;
     public Transform tempRotHandler; //DELETE THIS ASAP
     public float tempAngle; //ALSO DELETE THIS ASAP
 
@@ -108,25 +113,57 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        // _mousePosition = cam.ScreenToWorldPoint(Input.mousePosition); //mouse position is a world point currently
-        _mousePosition = Input.mousePosition;
+        // lookInputPosition = cam.ScreenToWorldPoint(Input.mousePosition); //mouse position is a world point currently
+        lookInputPosition = Input.mousePosition;//or this is 
         _playerScreenPos = cam.WorldToScreenPoint(rb.position);
         boxPosition = cam.WorldToScreenPoint(boxItself.transform.position);
     }
 
+    private (bool success, Vector3 position) GetMousePosition()
+    {
+        var ray = cam.ScreenPointToRay(lookInputPosition);
+        
+        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
+        {
+            Debug.DrawRay(cam.transform.position, hitInfo.point);
+            raycastHitpoint.transform.position = hitInfo.point;
+            return (success: true, position: hitInfo.point);
+        }
+        else
+        {
+            Debug.LogWarning("Aiming Raycast failed");
+            return (success: false, position: Vector3.zero);
+        }
+    }
+
     private void DoLookage() //THIS IS THE VERSION THAT LOOKS AROUND THE PLAYER!!! THIS ONE IS WAY BETTER
     {
+        
+        
+        var (success, position) = GetMousePosition();
+        if (success)
+        {
+            position.y = playerTransform.position.y;
+            var direction = position - playerTransform.position;
+            Debug.DrawRay(playerTransform.position, direction, Color.black);
+            Debug.DrawRay(playerTransform.position + direction, playerTransform.up * 5f);
+            //direction.y = tempRotHandler.forward.y;
+            Debug.DrawRay(playerTransform.position, direction, Color.white);
+            
+           
+            tempRotHandler.forward = direction;
 
-        var matrix = Matrix4x4.Rotate(Quaternion.Euler(0    , 0, 0));
+        }
 
-        marker.transform.position = _mousePosition;
+        #region old code (stinky)
+        marker.transform.position = lookInputPosition;
         playerMarker.transform.position = _playerScreenPos;
         boxPosMarker.transform.position = boxPosition;
 
-        Vector2 lookDirection = _mousePosition - _playerScreenPos;
+        Vector2 lookDirection = lookInputPosition - _playerScreenPos;
         Vector2 boxDirection = boxPosition - _playerScreenPos;
 
-        Vector2 skewedLookDirection = matrix.MultiplyPoint3x4(lookDirection);
+
 
 
         float debugAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
@@ -135,19 +172,26 @@ public class PlayerMovement : MonoBehaviour
         dirMarker.transform.rotation = Quaternion.AngleAxis(debugAngle, orientation.forward);
         boxDirMarker.transform.rotation = Quaternion.AngleAxis(boxAngle, orientation.forward);
 
-        //uiText.text = $"lookDirection x = {lookDirection.x}, lookDirection y = {lookDirection.y}";
+        uiText.text = $"lookDirection x = {lookDirection.x}, lookDirection y = {lookDirection.y}";
 
         camHandler.PMgetter = cam.ScreenToViewportPoint(lookDirection); //DELETE THIS JAMES!!!!!!!!!!!!!!!!!!!!!!!!
 
+        tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; //-135
         //tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; //-135
-        tempAngle = Mathf.Atan2(skewedLookDirection.y, skewedLookDirection.x) * Mathf.Rad2Deg - 135; //-135
 
 
-        tempRotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
+        //tempRotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
         //Debug.DrawRay(tempRotHandler.position, tempRotHandler.forward, Color.yellow);
-        //playerAngleText.text = $"{Mathf.Round(tempRotHandler.rotation.eulerAngles.y)}*";
+        playerAngleText.text = $"{Mathf.Round(tempRotHandler.rotation.eulerAngles.y)}*";
         playerAngleText.text = $"{Mathf.Round(boxAngle) + 90f}";
         differenceText.text = $"{Mathf.Abs((Mathf.Round(boxAngle) + 90f) - (Mathf.Round(debugAngle) + 90f))}";
+        if (Mathf.Abs((Mathf.Round(boxAngle) + 90f) - (Mathf.Round(debugAngle) + 90f))> 20 && Mathf.Abs((Mathf.Round(boxAngle) + 90f) - (Mathf.Round(debugAngle) + 90f)) < 50)
+        {
+            Debug.Log("fuck");
+            //Debug.Break();
+        }
+        #endregion
+
     }
 
     #region center dolookage // this sucks
@@ -156,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
     //    Vector2 centerView = new Vector2(0.5f, 0.5f);
     //    Vector2 centerScreenSpace = cam.ViewportToScreenPoint(centerView);
 
-    //    Vector2 lookDirection = _mousePosition - centerScreenSpace;
+    //    Vector2 lookDirection = lookInputPosition - centerScreenSpace;
     //    uiText.text = $"lookDirection x = {lookDirection.x}, lookDirection y = {lookDirection.y}";
 
     //    tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; //-45 is the magic number that makes this work but in opposite direction
