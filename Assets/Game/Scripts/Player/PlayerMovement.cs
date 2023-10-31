@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
 
     #region DEBUG DELETE
 
+    private Plane groundPlane;
+    private Plane projectilePlane;
+
     public LayerMask groundMask;
 
     public GameObject raycastHitpoint;
@@ -84,6 +87,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         orientation = GetComponent<Transform>();
         rb.freezeRotation = true;
+        groundPlane = new Plane(Vector3.up, Vector3.zero);
+        projectilePlane = new Plane(Vector3.up, rb.position);
     }
 
     private void Update()
@@ -121,19 +126,37 @@ public class PlayerMovement : MonoBehaviour
 
     private (bool success, Vector3 position) GetMousePosition()
     {
+        //create plane that is at the height of where the player shoots
+        //send ray to mouse point
+        //make it so ray can only hit the plane
+        //make that point the direction to shoot towards
+
         var ray = cam.ScreenPointToRay(lookInputPosition);
-        
-        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
+
+        if (projectilePlane.Raycast(ray, out var hitInfo))
         {
-            Debug.DrawRay(cam.transform.position, hitInfo.point);
-            raycastHitpoint.transform.position = hitInfo.point;
-            return (success: true, position: hitInfo.point);
+            Vector3 hitPoint = ray.GetPoint(hitInfo);   
+           raycastHitpoint.transform.position = hitPoint;
+            return (success: true, position: hitPoint);
         }
+
         else
         {
             Debug.LogWarning("Aiming Raycast failed");
             return (success: false, position: Vector3.zero);
         }
+
+        //if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
+        //{
+        //    Debug.DrawRay(cam.transform.position, hitInfo.point);
+        //    raycastHitpoint.transform.position = hitInfo.point;
+        //    return (success: true, position: hitInfo.point);
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("Aiming Raycast failed");
+        //    return (success: false, position: Vector3.zero);
+        //}
     }
 
     private void DoLookage() //THIS IS THE VERSION THAT LOOKS AROUND THE PLAYER!!! THIS ONE IS WAY BETTER
