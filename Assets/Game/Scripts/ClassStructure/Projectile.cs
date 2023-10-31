@@ -8,22 +8,22 @@ public abstract class Projectile : MonoBehaviour
     #region Fields
     public float speed;//currently not being used
     public float maxSpeed; //being used in speedControl
-    public float initialSpeed;
+    public float initialSpeed;//being used
 
     public bool hasGravity;//not implemented, might not ever because iso?
     public float gravityScale;//not implemented, might not even because iso?
-    
+
     public float maxDuration;//being used in durationControl
     public float duration;//being used in durationcontrol
-    
+
     public int maxHits;//need to implement enemies
     public int hits;//need to implement enemies
-    
+
     public Rigidbody rb;
     public Collider hitbox;
-    
+
     public float damage;
-    
+
     public Vector3 direction;
     #endregion
 
@@ -58,9 +58,25 @@ public abstract class Projectile : MonoBehaviour
             duration += 1;
         }
     }
-    public virtual void Hit()
+    public virtual void Hit(GameObject target)//what should this be?
     {
-        //What happens when a projectile hits a wall? what happens when it hits an enemy?
+        hits += 1;
+
+        Entity hitEntity = target.GetComponent<Entity>();
+        if (hitEntity != null)
+        {
+            //do hitting stuff to entity
+        }
+
+
+
+        if (hits >= maxHits)
+        {
+            Die();
+        }
+
+
+
     }
 
 
@@ -69,24 +85,19 @@ public abstract class Projectile : MonoBehaviour
 
 
         rb.AddForce(direction * initialSpeed, ForceMode.VelocityChange);
-        
+
     }
     public virtual void Die()
     {
         GameObject inGameInstance = gameObject;
         Destroy(inGameInstance);
-      
+
     }
     #endregion
 
     #region Unity Methods
 
-    public virtual void Awake()
-    {
-        Debug.Log("bruh");
 
-
-    }
 
     public virtual void Start()
     {
@@ -97,6 +108,18 @@ public abstract class Projectile : MonoBehaviour
     {
         SpeedControl();
         DurationControl();
+    }
+
+
+
+
+    void OnCollisionEnter(Collision collision)
+    {
+
+
+        Hit(collision.collider.gameObject);
+
+
     }
     #endregion 
 }
