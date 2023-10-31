@@ -115,7 +115,8 @@ MonoBehaviour:
   maxSpeed: 50
   hasGravity: 0
   gravityScale: 0
-  lifespan: 0
+  maxDuration: 150
+  duration: 0
   maxHits: 0
   hits: 0
   initialSpeed: 30

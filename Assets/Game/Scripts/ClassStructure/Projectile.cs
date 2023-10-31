@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Projectile : MonoBehaviour
@@ -9,7 +10,8 @@ public abstract class Projectile : MonoBehaviour
     public float maxSpeed;
     public bool hasGravity;
     public float gravityScale;
-    public float lifespan;
+    public float maxDuration;
+    public float duration;
     public int maxHits;
     public int hits;
     public float initialSpeed;
@@ -21,7 +23,7 @@ public abstract class Projectile : MonoBehaviour
 
     #region Methods
 
-    private void SpeedControl()
+    public virtual void SpeedControl()
     {
 
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z); //horizontal velocity
@@ -38,24 +40,36 @@ public abstract class Projectile : MonoBehaviour
 
     }
 
-    public virtual void Hit() 
+    public virtual void DurationControl()
     {
-    
+        if (duration >= maxDuration)
+        {
+            Die();
+        }
+
+        else
+        {
+            duration += 1;
+        }
+    }
+    public virtual void Hit()
+    {
+
     }
 
-    
+
     public virtual void Spawn() //this could be tonnes of things
     {
+
+
+        rb.AddForce(direction * initialSpeed, ForceMode.VelocityChange);
         
-        
-        rb.AddForce(direction * initialSpeed, ForceMode.VelocityChange);// i think this is applying to the prefab and not the instance somehow
-       
-        
-       
     }
     public virtual void Die()
-    { 
-    
+    {
+        GameObject inGameInstance = gameObject;
+        Destroy(inGameInstance);
+      
     }
     #endregion
 
@@ -64,7 +78,7 @@ public abstract class Projectile : MonoBehaviour
     public virtual void Awake()
     {
         Debug.Log("bruh");
-        
+
 
     }
 
@@ -76,6 +90,7 @@ public abstract class Projectile : MonoBehaviour
     public virtual void FixedUpdate()
     {
         SpeedControl();
+        DurationControl();
     }
     #endregion 
 }
