@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AggresiveEntity : Entity
+public abstract class AggressiveEntity : Entity
 {
     #region Fields
     private Collider target;

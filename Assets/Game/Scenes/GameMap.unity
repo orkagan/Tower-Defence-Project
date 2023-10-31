@@ -5595,7 +5595,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29318
+  m_Name: pb_Mesh23468
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6249,7 +6249,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28438
+  m_Name: pb_Mesh23312
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6493,7 +6493,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28246
+  m_Name: pb_Mesh23266
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17573,11 +17573,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8df3836c33a2746b85f2b67f316d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 190850429}
   _tower:
   - {fileID: 5768924399162714822, guid: 6a4e2619947789e47b4a471bfb4cf634, type: 3}
   - {fileID: 5768924399162714822, guid: 36d73858eb3af2c4bb70dd4ae0c721ec, type: 3}
   - {fileID: 5768924399162714822, guid: ad3e16fc175bda346bf164f7f7bc0730, type: 3}
   chosenTower: 0
+  _towerDistance: 3
   _layer:
     serializedVersion: 2
     m_Bits: 8
@@ -17585,6 +17587,7 @@ MonoBehaviour:
   onMouseClick:
     m_PersistentCalls:
       m_Calls: []
+  hud: {fileID: 5445093990849374172}
 --- !u!4 &1228395417
 Transform:
   m_ObjectHideFlags: 0
@@ -17609,16 +17612,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1228395415}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da84f5c49d59b549a87560d9635d847, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d1f0cbe596a78847bdf5408cb114801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _layer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!43 &1414906834
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28212
+  m_Name: pb_Mesh23252
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19797,7 +19803,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28890
+  m_Name: pb_Mesh23378
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20288,6 +20294,7 @@ GameObject:
   - component: {fileID: 5445093990849374170}
   - component: {fileID: 5445093990849374168}
   - component: {fileID: 5445093990849374169}
+  - component: {fileID: 5445093990849374172}
   m_Layer: 7
   m_Name: Gameplay HUD
   m_TagString: Untagged
@@ -20295,6 +20302,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5445093990849374172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5445093990849374171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0621568008770945ab6fc896060cb17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 5445093992286114634}
+  resources: {fileID: 9078488813285711363}
+  phaseText: {fileID: 5445093991774658479}
 --- !u!224 &5445093990992763477
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20566,6 +20588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goString: {fileID: 9078488813644936299}
+  number: 10
 --- !u!1 &9078488813644936293
 GameObject:
   m_ObjectHideFlags: 0

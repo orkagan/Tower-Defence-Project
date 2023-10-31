@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5768924399162714821}
-  m_Layer: 0
+  - component: {fileID: 8103773436518734941}
+  m_Layer: 8
   m_Name: Tower 3 Prefab (Placeholder)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,6 +34,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
+--- !u!114 &8103773436518734941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768924399162714822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0dba3b5929b05c4898bead76ae29ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerSO: {fileID: 11400000, guid: 9f5391d31afb5514d8868156f5902524, type: 2}
 --- !u!1 &5768924399603775613
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,7 +58,7 @@ GameObject:
   - component: {fileID: 5768924399603775612}
   - component: {fileID: 5768924399603775610}
   - component: {fileID: 5768924399603775611}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +139,7 @@ GameObject:
   - component: {fileID: 5768924400049655891}
   - component: {fileID: 5768924400049655892}
   - component: {fileID: 5768924400049655893}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +238,7 @@ GameObject:
   - component: {fileID: 5768924400306966873}
   - component: {fileID: 5768924400306966874}
   - component: {fileID: 5768924400306966875}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

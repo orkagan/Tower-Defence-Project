@@ -7,17 +7,22 @@ using UnityEngine.UI;
 public class IncreaseDecreaseNumber : MonoBehaviour
 {
     [SerializeField] private Text goString;
-    private int number;
+    [SerializeField] private int number;
+
+    public int GetCurrentCount
+    {
+        get => number;
+    }
 
     private void Start()
     {
-        number = 0;
+        goString.text = number.ToString();
     }
 
     public void IncreaseAmount(int amount)
     {
         number += amount;
-        goString.text = number.ToString();
+        Start();
     }
 
     public void DecreaseAmount(int amount)
@@ -28,6 +33,6 @@ public class IncreaseDecreaseNumber : MonoBehaviour
             number = 0;
         }
         
-        goString.text = number.ToString();
+        Start();
     }
 }

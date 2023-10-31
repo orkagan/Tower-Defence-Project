@@ -6,10 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="ba2093db-e173-4bda-bba5-6277299627db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower Prefab (Placeholder).prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower Prefab (Placeholder).prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 1 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 1 Prefab (Placeholder).prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 2 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 2 Prefab (Placeholder).prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 3 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 3 Prefab (Placeholder).prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/GameMap.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/GameMap.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/AggresiveEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/AggressiveEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/AggresiveEntity.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/AggressiveEntity.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Entity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Entity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Tower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Tower.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/CreateTowerOnMouseClick.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/CreateTowerOnMouseClick.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ImageFillAmount.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ImageFillAmount.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/IncreaseDecreaseNumber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/IncreaseDecreaseNumber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/UpgradeTower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ClickOnTowerToUpgrade.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/UpgradeTower.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ClickOnTowerToUpgrade.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +56,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Click-To-Place-Tower",
+    "git-widget-placeholder": "PlayerMovement+UI+MapBranch",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -107,7 +120,8 @@
       <workItem from="1697422783574" duration="1596000" />
       <workItem from="1697496038768" duration="2424000" />
       <workItem from="1698014405868" duration="7082000" />
-      <workItem from="1698619754790" duration="10319000" />
+      <workItem from="1698619754790" duration="10913000" />
+      <workItem from="1698707254037" duration="10980000" />
     </task>
     <servers />
   </component>
