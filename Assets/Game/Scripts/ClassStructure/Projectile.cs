@@ -20,6 +20,24 @@ public abstract class Projectile : MonoBehaviour
     #endregion
 
     #region Methods
+
+    private void SpeedControl()
+    {
+
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z); //horizontal velocity
+        if (flatVel.magnitude > maxSpeed)
+        {
+            Debug.Log("Speedcheck: limited velocity");
+            Vector3 limitedVel = flatVel.normalized * maxSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
+        if (flatVel.magnitude < 0.01f)
+        {
+            rb.velocity = Vector3.zero;
+        }
+
+    }
+
     public virtual void Hit() 
     {
     
@@ -30,7 +48,7 @@ public abstract class Projectile : MonoBehaviour
     {
         
         
-        rb.AddForce(direction * 50f, ForceMode.VelocityChange);// i think this is applying to the prefab and not the instance somehow
+        rb.AddForce(direction * initialSpeed, ForceMode.VelocityChange);// i think this is applying to the prefab and not the instance somehow
        
         
        
@@ -53,6 +71,11 @@ public abstract class Projectile : MonoBehaviour
     public virtual void Start()
     {
         Spawn();
+    }
+
+    public virtual void FixedUpdate()
+    {
+        SpeedControl();
     }
     #endregion 
 }
