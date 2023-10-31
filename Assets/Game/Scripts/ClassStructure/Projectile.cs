@@ -6,18 +6,24 @@ using UnityEngine;
 public abstract class Projectile : MonoBehaviour
 {
     #region Fields
-    public float speed;
-    public float maxSpeed;
-    public bool hasGravity;
-    public float gravityScale;
-    public float maxDuration;
-    public float duration;
-    public int maxHits;
-    public int hits;
+    public float speed;//currently not being used
+    public float maxSpeed; //being used in speedControl
     public float initialSpeed;
+
+    public bool hasGravity;//not implemented, might not ever because iso?
+    public float gravityScale;//not implemented, might not even because iso?
+    
+    public float maxDuration;//being used in durationControl
+    public float duration;//being used in durationcontrol
+    
+    public int maxHits;//need to implement enemies
+    public int hits;//need to implement enemies
+    
     public Rigidbody rb;
     public Collider hitbox;
+    
     public float damage;
+    
     public Vector3 direction;
     #endregion
 
@@ -54,7 +60,7 @@ public abstract class Projectile : MonoBehaviour
     }
     public virtual void Hit()
     {
-
+        //What happens when a projectile hits a wall? what happens when it hits an enemy?
     }
 
 
