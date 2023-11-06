@@ -8,12 +8,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Buildable Layer
   - Water
   - UI
-  - 
-  - 
-  - 
+  - World UI
+  - HUD
+  - Tower Layer
   - 
   - 
   - 
