@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ClickOnTowerToUpgrade : MonoBehaviour
 {
     private CreateTowerOnMouseClick _createTowerScript;
     [SerializeField] private LayerMask _layer;
+    public UnityEvent onTowerClick;
 
     private void Start()
     {
@@ -23,10 +25,10 @@ public class ClickOnTowerToUpgrade : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit rayHit, Mathf.Infinity, _layer)
                 && rayHit.collider.TryGetComponent(out TowerScript tower))
             {
-                tower.enabled = true;
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Debug.Log("Yup, that's a tower.");
+                    tower.enabled = true;
+                    onTowerClick.Invoke();
                 }
             }
         }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5768924399162714821}
   - component: {fileID: -1210318375292013171}
+  - component: {fileID: 4237611846267962626}
   m_Layer: 8
   m_Name: Tower 2 Prefab (Placeholder)
   m_TagString: Untagged
@@ -47,6 +48,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerSO: {fileID: 11400000, guid: ccecd4419dcc8724c977ef646462172e, type: 2}
+--- !u!65 &4237611846267962626
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768924399162714822}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.9577513, y: 10.0074, z: 5.957752}
+  m_Center: {x: -0.024543285, y: 4.9877286, z: 0}
 --- !u!1 &5768924399603775613
 GameObject:
   m_ObjectHideFlags: 0
