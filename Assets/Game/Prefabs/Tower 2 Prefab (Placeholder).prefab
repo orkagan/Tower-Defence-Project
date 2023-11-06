@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5768924399162714821}
-  - component: {fileID: -1210318375292013171}
-  - component: {fileID: 4237611846267962626}
   m_Layer: 8
   m_Name: Tower 2 Prefab (Placeholder)
   m_TagString: Untagged
@@ -35,32 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
---- !u!114 &-1210318375292013171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5768924399162714822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0dba3b5929b05c4898bead76ae29ffd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerSO: {fileID: 11400000, guid: ccecd4419dcc8724c977ef646462172e, type: 2}
---- !u!65 &4237611846267962626
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5768924399162714822}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.9577513, y: 10.0074, z: 5.957752}
-  m_Center: {x: -0.024543285, y: 4.9877286, z: 0}
 --- !u!1 &5768924399603775613
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,8 +125,9 @@ GameObject:
   - component: {fileID: 5768924400049655891}
   - component: {fileID: 5768924400049655892}
   - component: {fileID: 5768924400049655893}
+  - component: {fileID: 2929257010126585742}
   m_Layer: 8
-  m_Name: Tower
+  m_Name: Bomb Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,9 +209,22 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
-  m_Height: 2
+  m_Height: 2.5916078
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.00000003973643, y: -0.29579696, z: -0.00000007947286}
+--- !u!114 &2929257010126585742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768924400049655895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0dba3b5929b05c4898bead76ae29ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerSO: {fileID: 11400000, guid: ccecd4419dcc8724c977ef646462172e, type: 2}
 --- !u!1 &5768924400306966877
 GameObject:
   m_ObjectHideFlags: 0

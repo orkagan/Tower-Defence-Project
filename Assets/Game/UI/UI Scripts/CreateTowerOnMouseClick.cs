@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public enum PlayMode
 {
@@ -42,13 +41,13 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                 //Check for nearby towers - if one is too close, display message saying a tower cannot be placed there for that reason.
                 if (!CheckForTowers(rayHit.point))
                 {
-                    int towerCost = _tower[chosenTower].GetComponent<TowerScript>().GetCost;
+                    int towerCost = _tower[chosenTower].GetComponentInChildren<TowerScript>().GetCost;
                     int result = hud.GetResourceCount - towerCost;
                     //If a tower can be placed, refer to its attached ScriptableObject and the player HUD UI
                     //If the player does not have enough resources, it will not place.
                     if (result < 0)
                     {
-                        Debug.Log("Player does not have enough resources..");
+                        ChatHandler.Instance.CreateNewLine("Player does not have enough resources.");
                     }
                     //If they do, remove from the player's resource count the cost of the tower to place. 
                     else
@@ -61,8 +60,8 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                 }
                 else
                 {
-                    // display message (is easier)
-                    Debug.Log("There is a tower nearby.");
+                    // display message
+                    ChatHandler.Instance.CreateNewLine("This is too close to another tower.");
                 }
             }
         }
@@ -75,7 +74,7 @@ public class CreateTowerOnMouseClick : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(point, _towerDistance);
         foreach (Collider col in hitColliders)
         {
-            if (col.transform.parent.TryGetComponent(out TowerScript tower))
+            if (col.transform.TryGetComponent(out TowerScript tower))
             {
                 tower.enabled = true;
                 return true;
