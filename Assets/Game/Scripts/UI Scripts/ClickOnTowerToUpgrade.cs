@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class ClickOnTowerToUpgrade : MonoBehaviour
 {
     private CreateTowerOnMouseClick _createTowerScript;
+    [SerializeField] private Text _nameOfThingToUpgrade;
     [SerializeField] private LayerMask _layer;
     public UnityEvent onTowerClick;
 
@@ -23,11 +25,13 @@ public class ClickOnTowerToUpgrade : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit rayHit, Mathf.Infinity, _layer)
-                && rayHit.collider.TryGetComponent(out TowerScript tower))
+                && rayHit.collider.TryGetComponent(out TowerScript t))
             {
+                TowerScript tower = rayHit.collider.GetComponent<TowerScript>();
                 if (Input.GetMouseButtonDown(0))
                 {
-                    tower.enabled = true;
+                    t.enabled = true;
+                    _nameOfThingToUpgrade.text = $"Upgrade {tower.GetName}";
                     onTowerClick.Invoke();
                 }
             }

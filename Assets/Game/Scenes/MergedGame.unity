@@ -291,7 +291,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26260
+  m_Name: pb_Mesh38258
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -449,6 +449,65 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &150349865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 150349867}
+  - component: {fileID: 150349866}
+  m_Layer: 0
+  m_Name: Upgrade System Handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &150349866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150349865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b64060071a74674d8d1e453d150011a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parent: {fileID: 1390730791}
+  _upgradeInstancePrefab: {fileID: 109787133413623269, guid: 81d29475fe0d7f848a12308b1fb57a51, type: 3}
+  _upgradeAspect:
+  - upgradeName: Range
+    onButtonPress:
+      m_PersistentCalls:
+        m_Calls: []
+  - upgradeName: Attack Cooldown
+    onButtonPress:
+      m_PersistentCalls:
+        m_Calls: []
+  - upgradeName: Damage
+    onButtonPress:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!4 &150349867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150349865}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -46.713593, y: 11.226498, z: -26.509556}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &190850429
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,7 +787,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26496
+  m_Name: pb_Mesh38494
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1025,7 +1084,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26544
+  m_Name: pb_Mesh38542
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1517,7 +1576,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26488
+  m_Name: pb_Mesh38486
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2133,7 +2192,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723437028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.000054603}
+  m_LocalPosition: {x: 0, y: 0, z: -0.000027526656}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2141,18 +2200,18 @@ RectTransform:
   m_Father: {fileID: 1580683372}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -479.99997, y: -269.9297}
-  m_SizeDelta: {x: 960, y: 539.86}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 960, y: 51.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!43 &742806381
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26126
+  m_Name: pb_Mesh38124
   serializedVersion: 10
   m_SubMeshes: []
   m_Shapes:
@@ -2708,7 +2767,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26460
+  m_Name: pb_Mesh38458
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3132,7 +3191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8df3836c33a2746b85f2b67f316d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 190850429}
   _tower:
   - {fileID: 5768924399162714822, guid: 6a4e2619947789e47b4a471bfb4cf634, type: 3}
   - {fileID: 5768924399162714822, guid: 36d73858eb3af2c4bb70dd4ae0c721ec, type: 3}
@@ -3174,6 +3232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1f0cbe596a78847bdf5408cb114801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _nameOfThingToUpgrade: {fileID: 1854961994}
   _layer:
     serializedVersion: 2
     m_Bits: 256
@@ -3202,7 +3261,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1390730791}
   - component: {fileID: 1390730792}
-  - component: {fileID: 1390730793}
   m_Layer: 7
   m_Name: Button Container
   m_TagString: Untagged
@@ -3256,32 +3314,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1390730793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1390730790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b64060071a74674d8d1e453d150011a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _upgradeInstancePrefab: {fileID: 109787133413623269, guid: 81d29475fe0d7f848a12308b1fb57a51, type: 3}
-  _instanceOfUpgrade:
-  - upgradeName: Range
-    onButtonPress:
-      m_PersistentCalls:
-        m_Calls: []
-  - upgradeName: Damage
-    onButtonPress:
-      m_PersistentCalls:
-        m_Calls: []
-  - upgradeName: Rate of Fire
-    onButtonPress:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1 &1490141955
 GameObject:
   m_ObjectHideFlags: 0
@@ -3932,7 +3964,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26474
+  m_Name: pb_Mesh38472
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4176,7 +4208,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26516
+  m_Name: pb_Mesh38514
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4602,7 +4634,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26522
+  m_Name: pb_Mesh38520
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4771,7 +4803,7 @@ GameObject:
   - component: {fileID: 2010146158}
   - component: {fileID: 2010146157}
   m_Layer: 0
-  m_Name: Chat Handler
+  m_Name: Log Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4790,7 +4822,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chat: {fileID: 533206800}
-  lines: []
 --- !u!4 &2010146158
 Transform:
   m_ObjectHideFlags: 0
