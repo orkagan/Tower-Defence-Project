@@ -5,20 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba2093db-e173-4bda-bba5-6277299627db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ChatHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ChatHandler.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ED_GenerateStartupFolders.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ED_GenerateStartupFolders.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 1 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 1 Prefab (Placeholder).prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 2 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 2 Prefab (Placeholder).prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 3 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 3 Prefab (Placeholder).prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/MergedGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/MergedGame.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/Bomb Tower.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/Bomb Tower.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/Gun Tower.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/Gun Tower.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/Laser Tower.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/Laser Tower.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/TowerScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/TowerScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/CreateTowerOnMouseClick.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/CreateTowerOnMouseClick.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/IncreaseDecreaseNumber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/IncreaseDecreaseNumber.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/SwitchUIBasedOnDevice.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/SwitchUIBasedOnDevice.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/TowerUpgrades.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/TowerUpgrades.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ChatHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ChatHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ChatHandler.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ChatHandler.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ClickOnTowerToUpgrade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ClickOnTowerToUpgrade.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ClickOnTowerToUpgrade.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ClickOnTowerToUpgrade.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/CreateTowerOnMouseClick.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/CreateTowerOnMouseClick.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/CreateTowerOnMouseClick.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/CreateTowerOnMouseClick.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/FindCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/FindCamera.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/FindCamera.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/FindCamera.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/HUDManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/HUDManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/HUDManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/HUDManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ImageFillAmount.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ImageFillAmount.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ImageFillAmount.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ImageFillAmount.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/IncreaseDecreaseBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/IncreaseDecreaseBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/IncreaseDecreaseBar.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/IncreaseDecreaseBar.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/IncreaseDecreaseNumber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/IncreaseDecreaseNumber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/IncreaseDecreaseNumber.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/IncreaseDecreaseNumber.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/MenuHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/MenuHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/MenuHandler.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/MenuHandler.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/QuitGame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/QuitGame.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/QuitGame.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/QuitGame.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/SwitchTexts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/SwitchTexts.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/SwitchTexts.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/SwitchTexts.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/SwitchUIBasedOnDevice.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/SwitchUIBasedOnDevice.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/SwitchUIBasedOnDevice.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/SwitchUIBasedOnDevice.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ToggleButtonInteraction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ToggleButtonInteraction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ToggleButtonInteraction.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ToggleButtonInteraction.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/TowerUpgrades.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/TowerUpgrades.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/TowerUpgrades.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/TowerUpgrades.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/UpgradeInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/UpgradeInstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/UpgradeInstance.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/UpgradeInstance.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/Upgrade Button.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/UI/Upgrade Button.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,7 +157,7 @@
       <workItem from="1698619754790" duration="10913000" />
       <workItem from="1698707254037" duration="10980000" />
       <workItem from="1699227172198" duration="10499000" />
-      <workItem from="1699310803335" duration="1259000" />
+      <workItem from="1699310803335" duration="10611000" />
     </task>
     <servers />
   </component>

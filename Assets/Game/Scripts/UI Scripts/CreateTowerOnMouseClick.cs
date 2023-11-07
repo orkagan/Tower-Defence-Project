@@ -9,7 +9,6 @@ public enum PlayMode
 
 public class CreateTowerOnMouseClick : MonoBehaviour
 {
-    [SerializeField] private GameObject _player;
     [SerializeField] private GameObject[] _tower;
     [HideInInspector] public int chosenTower = 0;
     [SerializeField] private float _towerDistance = 3f;
@@ -28,6 +27,7 @@ public class CreateTowerOnMouseClick : MonoBehaviour
         CreateTower();
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void CreateTower()
     {
         //the following can only be executed when the player can build towers.

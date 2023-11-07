@@ -18,5 +18,5 @@ MonoBehaviour:
   attackCooldown: 0
   projectile: {fileID: 0}
   projectileSpeed: 0
-  range: 0
+  range: 15
   upgrades: 0

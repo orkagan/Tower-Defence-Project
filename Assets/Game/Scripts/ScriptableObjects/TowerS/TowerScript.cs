@@ -1,32 +1,51 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerScript : MonoBehaviour
 {
-    public Tower towerSO;
+    //scriptable object of the tower
+    public Tower _towerSo;
 
-    public string GetName
+    #region Properties
+    /// <summary>
+    /// The name of the Tower via ScriptableObject.
+    /// </summary>
+    public string GetName => _towerSo.entityName;
+    /// <summary>
+    /// The number of resources(int) required to place/upgrade a tower.
+    /// </summary>
+    public int GetCost => _towerSo.cost;
+    /// <summary>
+    /// The damage the tower deals towards enemies.
+    /// </summary>
+    public float GetDamage
     {
-        get => towerSO.entityName;
+        get => _towerSo.damage;
+        set => _towerSo.damage = value;
     }
-    
-    public int GetCost
+    /// <summary>
+    /// The number of seconds(float) between each tower's attack.
+    /// </summary>
+    public float GetAttackCooldown
     {
-        get => towerSO.cost;
+        get => _towerSo.attackCooldown;
+        set => _towerSo.attackCooldown = value;
     }
+    /// <summary>
+    /// The distance around the tower - where the tower searches for enemies.
+    /// </summary>
+    public float GetRange
+    {
+        get => _towerSo.range;
+        set => _towerSo.range = value;
+    }
+    #endregion
 
     private void OnValidate()
     {
-        string towerName = gameObject.name;
-        if (towerSO != null && towerSO.entityName != null)
+        if (_towerSo != null && _towerSo.entityName != null)
         {
-            gameObject.name = towerSO.entityName;
-        }
-        else
-        {
-            gameObject.name = towerName;
+            gameObject.name = _towerSo.entityName;
         }
     }
 }
