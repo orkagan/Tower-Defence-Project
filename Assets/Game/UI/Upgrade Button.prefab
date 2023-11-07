@@ -281,19 +281,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 109787133216077069}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2054747691654517609}
-        m_TargetAssemblyTypeName: IncreaseDecreaseNumber, Assembly-CSharp
-        m_MethodName: IncreaseAmount
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &109787133413623269
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +293,6 @@ GameObject:
   - component: {fileID: 109787133413623268}
   - component: {fileID: 109787133413623271}
   - component: {fileID: 7222146498603073447}
-  - component: {fileID: 2054747691654517609}
   m_Layer: 7
   m_Name: Upgrade Button
   m_TagString: Untagged
@@ -374,18 +361,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeButton: {fileID: 109787133216077058}
-  upgradeLevel: {fileID: 109787131912594171}
---- !u!114 &2054747691654517609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109787133413623269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0025ba41658709548b1a1a6cf0f753b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goString: {fileID: 109787131912594171}
-  number: 0
+  upgradeLevelText: {fileID: 109787131912594171}

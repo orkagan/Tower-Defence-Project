@@ -22,9 +22,19 @@ public class ChatHandler : MonoBehaviour
     #endregion
 
     public Text chat;
+    [SerializeField] List<string> lines;
 
     public void CreateNewLine(string text)
     {
-        chat.text = $"{text}";
+        lines.Add(text);
+        chat.text = $"{text}\n";
+    }
+
+    private void Update()
+    {
+        if (lines.Count > 20)
+        {
+            lines.RemoveAt(lines.Count - 1);
+        }
     }
 }
