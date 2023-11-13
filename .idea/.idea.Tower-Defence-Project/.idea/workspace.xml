@@ -5,9 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba2093db-e173-4bda-bba5-6277299627db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/DefaultNetworkPrefabs.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/NetworkingManager.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/NetworkingManager.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scenes/NetworkingTest.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scenes/NetworkingTest.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Netcode.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Netcode/NetworkUIManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Netcode/NetworkUIManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/SampleScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/SampleScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/Button Prefab.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/Button Prefab.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/Server Instance Prefab.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/Server Instance Prefab.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ImageFillAmount.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ImageFillAmount.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/MenuHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/MenuHandler.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/QuitGame.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/QuitGame.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ToggleButtonInteraction.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ToggleButtonInteraction.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,9 +45,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Game/Scripts/CreatePrefabToParent.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ImageFillAmount.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Game/UI/UI Scripts/QuitGame.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Game/UI/UI Scripts/ToggleButtonInteraction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Game/Scripts/Netcode/TestNetChar.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -36,6 +60,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -48,9 +73,9 @@
   },
   &quot;keyToStringList&quot;: {
     &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\arjay.comabig1\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\arjay.comabig1\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\arjay.comabig1\\AppData\\Local\\Symbols\\src&quot;
+      &quot;C:\\Users\\Jonathan\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Jonathan\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Jonathan\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
 }</component>
@@ -67,6 +92,14 @@
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.26f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\arjay.comabig1\Documents\GitHub\Tower-Defence-Project -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\arjay.comabig1\Documents\GitHub\Tower-Defence-Project" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.26f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\Jonathan\Documents\GitHub\Tower-Defence-Project -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Jonathan\Documents\GitHub\Tower-Defence-Project" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
@@ -102,6 +135,8 @@
       <updated>1697422782643</updated>
       <workItem from="1697422783574" duration="1596000" />
       <workItem from="1697496038768" duration="2424000" />
+      <workItem from="1699316960138" duration="2610000" />
+      <workItem from="1699769472147" duration="10751000" />
     </task>
     <servers />
   </component>
@@ -109,7 +144,7 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
-  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
