@@ -16,15 +16,14 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     [SerializeField] private PlayMode _playMode = PlayMode.BuildMode;
     public UnityEvent onMouseClick;
     public HUDManager hud;
-
-    public PlayMode CurrentPlayMode
-    {
-        get => _playMode;
-    }
+    public PlayMode CurrentPlayMode => _playMode;
 
     private void Update()
     {
-        CreateTower();
+        if (GameStateHandler.Instance.GetCurrentState == GameState.BuildPhase)
+        {
+            CreateTower();
+        }
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
