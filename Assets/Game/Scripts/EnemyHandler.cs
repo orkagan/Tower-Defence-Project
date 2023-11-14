@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class EnemyHandler : MonoBehaviour
 {
     [SerializeField] GameObject _enemyPrefab;
+    [SerializeField] Transform _gameMap;
 
     [SerializeField, Tooltip("The amount of enemies which spawn every turn.")]
     int _enemySpawnCountPerTurn = 15;
@@ -25,8 +26,8 @@ public class EnemyHandler : MonoBehaviour
         for (int i = 0; i < _enemySpawnCountPerTurn; i++)
         {
             int randomSpawn = Random.Range(0, _spawnPoints.Length);
-            GameObject newEnemy = Instantiate(_enemyPrefab, _spawnPoints[randomSpawn]);
-            newEnemy.transform.localPosition = GetRandomPointInBoxCollider(_spawnPoints[randomSpawn]);
+            GameObject newEnemy = Instantiate(_enemyPrefab, _gameMap);
+            newEnemy.transform.position = GetRandomPointInBoxCollider(_spawnPoints[randomSpawn]);
             ChatHandler.Instance.CreateNewLine($"Spawned enemy #{i + 1}");
             
             yield return new WaitForSeconds(0.5f);
@@ -38,10 +39,12 @@ public class EnemyHandler : MonoBehaviour
     {
         BoxCollider collider = area.gameObject.GetComponent<BoxCollider>();
 
-        return new Vector3(
+        Vector3 spawn = new Vector3(
             Random.Range(0, collider.size.x / 2),
-            0,
+            0f,
             Random.Range(0, collider.size.z / 2));
+
+        return area.position + spawn;
     }
 
     //increases the number of enemies that spawn each turn
