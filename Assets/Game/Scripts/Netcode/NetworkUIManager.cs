@@ -44,20 +44,17 @@ public class NetworkUIManager : MonoBehaviour
     {
         SetConnectionData(_ipField.text, _portField.text);
         NetworkManager.Singleton.StartHost();
-        Debug.Log("Start Host Called");
     }
 
     public void JoinWithIP()
     {
         SetConnectionData(_ipField.text, _portField.text);
         NetworkManager.Singleton.StartClient();
-        Debug.Log("Start Client Called");
     }
 
     public void Disconnect()
     {
         NetworkManager.Singleton.Shutdown();
-        Debug.Log("Shutdown");
         _disconnectButton.interactable = false;
     }
     
