@@ -140,7 +140,8 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = controls.Player.Movement.ReadValue<Vector2>().y;
 
         // lookInputPosition = cam.ScreenToWorldPoint(Input.mousePosition); //mouse position is a world point currently
-        lookInputPosition = Input.mousePosition;//or this is 
+        //lookInputPosition = Input.mousePosition;//or this is 
+        lookInputPosition = controls.Player.MousePosition.ReadValue<Vector2>();
         _playerScreenPos = cam.WorldToScreenPoint(rb.position);
         boxPosition = cam.WorldToScreenPoint(boxItself.transform.position);
     }
