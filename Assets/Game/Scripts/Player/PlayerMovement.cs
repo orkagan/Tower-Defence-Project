@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -59,7 +60,18 @@ public class PlayerMovement : MonoBehaviour
     public Transform orientation; //tbh i don't even remember what this does but it's set to the capsule and it works so
     public float horizontalInput; //input system for A and D keys
     public float verticalInput; //INput system for W and S keys
-    
+
+    #region New Input System
+    [Header("New Input System")]
+    public InputMaster controls;
+
+
+    #endregion
+
+
+
+
+
     public Vector3 moveDirection;
     public Vector3 wantedDir;
 
@@ -72,9 +84,21 @@ public class PlayerMovement : MonoBehaviour
 
     #region Unity Methods
 
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
 
     private void Awake()
     {
+        controls = new InputMaster();
+
+
         accelAmount = (50 * acceleration) / maxSpeed;
         decelAmount = (50 * deceleration) / maxSpeed;
 
@@ -88,6 +112,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+       
+
+
+
 
         MyInput();
         SpeedControl();
@@ -105,13 +133,21 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Methods
+    
+    
+    
+    
+    
+    
     /// <summary>
     /// checks horizontal and vertical input    
     /// </summary>
     private void MyInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        //horizontalInput = Input.GetAxisRaw("Horizontal");
+        //verticalInput = Input.GetAxisRaw("Vertical");
+        horizontalInput = controls.Player.Movement.ReadValue<Vector2>().x;
+        verticalInput = controls.Player.Movement.ReadValue<Vector2>().y;
 
         // lookInputPosition = cam.ScreenToWorldPoint(Input.mousePosition); //mouse position is a world point currently
         lookInputPosition = Input.mousePosition;//or this is 
