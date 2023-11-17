@@ -159,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
       
     }
 
-    private void DoLookage() //THIS IS THE VERSION THAT LOOKS AROUND THE PLAYER!!! THIS ONE IS WAY BETTER
+    private void DoLookage() 
     {
 
 
@@ -179,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 lookDirection = lookInputPosition - _playerScreenPos;
       
-        camHandler.PMgetter = cam.ScreenToViewportPoint(lookDirection); //DELETE THIS JAMES!!!!!!!!!!!!!!!!!!!!!!!!
+        camHandler.PMgetter = cam.ScreenToViewportPoint(lookDirection); 
 
     }
 
@@ -189,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0)); //offsets the input vector by 45degrees, for iso 
-        //var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, 0));
+       
         var skewedMoveDirection = matrix.MultiplyPoint3x4(moveDirection.normalized);
 
         wantedDir = skewedMoveDirection * maxSpeed;
@@ -210,10 +210,10 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 singleAddVelocity = new Vector3(rb.velocity.x + (Time.fixedDeltaTime * velocityDifference.x * accelRate), rb.velocity.y, rb.velocity.z + (Time.fixedDeltaTime * velocityDifference.z * accelRate));
 
-        //Debug.Log("Speed added from accel in one tick " + singleAddVelocity.magnitude);
+        
         if (singleAddVelocity.magnitude > maxSpeed)
         {
-            Debug.LogWarning("Speed added from accel is higher than max speed, CATASTROPHIC, CALL JAME");
+            Debug.LogWarning("Speed added from accel is higher than max speed, tell James");
         }
 
 
