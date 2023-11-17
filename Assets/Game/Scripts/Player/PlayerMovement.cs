@@ -8,7 +8,13 @@ public class PlayerMovement : MonoBehaviour
 
     public Player player;
 
+    public InputMaster controls;
+
+
     #region DEBUG DELETE
+
+    private Plane groundPlane;
+    private Plane projectilePlane;
 
     public LayerMask groundMask;
 
@@ -49,28 +55,17 @@ public class PlayerMovement : MonoBehaviour
     public float acceleration;
     [Tooltip("DO NOT SET HIGHER THAN MAXSPEED OR LOWER THAN 1, GAME WILL BREAK")]
     public float deceleration;
-    
+
     private float accelAmount;
     private float decelAmount;
-    
+
     public float maxSpeed; //maximum speed
-    
+
 
 
     public Transform orientation; //tbh i don't even remember what this does but it's set to the capsule and it works so
     public float horizontalInput; //input system for A and D keys
     public float verticalInput; //INput system for W and S keys
-
-    #region New Input System
-    [Header("New Input System")]
-    public InputMaster controls;
-
-
-    #endregion
-
-
-
-
 
     public Vector3 moveDirection;
     public Vector3 wantedDir;
@@ -84,6 +79,16 @@ public class PlayerMovement : MonoBehaviour
 
     #region Unity Methods
 
+
+    private void Awake()
+    {
+        controls = new InputMaster();
+
+        accelAmount = (50 * acceleration) / maxSpeed;
+        decelAmount = (50 * deceleration) / maxSpeed;
+
+    }
+
     private void OnEnable()
     {
         controls.Enable();
@@ -94,29 +99,19 @@ public class PlayerMovement : MonoBehaviour
         controls.Disable();
     }
 
-    private void Awake()
-    {
-        controls = new InputMaster();
-
-
-        accelAmount = (50 * acceleration) / maxSpeed;
-        decelAmount = (50 * deceleration) / maxSpeed;
-
-    }
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         orientation = GetComponent<Transform>();
         rb.freezeRotation = true;
+        groundPlane = new Plane(Vector3.up, Vector3.zero);
+        projectilePlane = new Plane(Vector3.up, rb.position);
     }
 
     private void Update()
     {
-       
-
-
-
-
+        
+        
         MyInput();
         SpeedControl();
 
@@ -133,12 +128,6 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Methods
-    
-    
-    
-    
-    
-    
     /// <summary>
     /// checks horizontal and vertical input    
     /// </summary>
@@ -147,6 +136,7 @@ public class PlayerMovement : MonoBehaviour
         //horizontalInput = Input.GetAxisRaw("Horizontal");
         //verticalInput = Input.GetAxisRaw("Vertical");
         horizontalInput = controls.Player.Movement.ReadValue<Vector2>().x;
+        //Debug.Log(controls.Player.Movement.ReadValue<Vector2>().x);
         verticalInput = controls.Player.Movement.ReadValue<Vector2>().y;
 
         // lookInputPosition = cam.ScreenToWorldPoint(Input.mousePosition); //mouse position is a world point currently
@@ -157,25 +147,43 @@ public class PlayerMovement : MonoBehaviour
 
     private (bool success, Vector3 position) GetMousePosition()
     {
+        //create plane that is at the height of where the player shoots
+        //send ray to mouse point
+        //make it so ray can only hit the plane
+        //make that point the direction to shoot towards
+
         var ray = cam.ScreenPointToRay(lookInputPosition);
-        
-        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
+
+        if (projectilePlane.Raycast(ray, out var hitInfo))
         {
-            Debug.DrawRay(cam.transform.position, hitInfo.point);
-            raycastHitpoint.transform.position = hitInfo.point;
-            return (success: true, position: hitInfo.point);
+            Vector3 hitPoint = ray.GetPoint(hitInfo);
+            raycastHitpoint.transform.position = hitPoint;
+            return (success: true, position: hitPoint);
         }
+
         else
         {
             Debug.LogWarning("Aiming Raycast failed");
             return (success: false, position: Vector3.zero);
         }
+
+        //if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
+        //{
+        //    Debug.DrawRay(cam.transform.position, hitInfo.point);
+        //    raycastHitpoint.transform.position = hitInfo.point;
+        //    return (success: true, position: hitInfo.point);
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("Aiming Raycast failed");
+        //    return (success: false, position: Vector3.zero);
+        //}
     }
 
     private void DoLookage() //THIS IS THE VERSION THAT LOOKS AROUND THE PLAYER!!! THIS ONE IS WAY BETTER
     {
-        
-        
+
+
         var (success, position) = GetMousePosition();
         if (success)
         {
@@ -185,8 +193,8 @@ public class PlayerMovement : MonoBehaviour
             Debug.DrawRay(playerTransform.position + direction, playerTransform.up * 5f);
             //direction.y = tempRotHandler.forward.y;
             Debug.DrawRay(playerTransform.position, direction, Color.white);
-            
-           
+
+
             tempRotHandler.forward = direction;
 
         }
@@ -221,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
         playerAngleText.text = $"{Mathf.Round(tempRotHandler.rotation.eulerAngles.y)}*";
         playerAngleText.text = $"{Mathf.Round(boxAngle) + 90f}";
         differenceText.text = $"{Mathf.Abs((Mathf.Round(boxAngle) + 90f) - (Mathf.Round(debugAngle) + 90f))}";
-        if (Mathf.Abs((Mathf.Round(boxAngle) + 90f) - (Mathf.Round(debugAngle) + 90f))> 20 && Mathf.Abs((Mathf.Round(boxAngle) + 90f) - (Mathf.Round(debugAngle) + 90f)) < 50)
+        if (Mathf.Abs((Mathf.Round(boxAngle) + 90f) - (Mathf.Round(debugAngle) + 90f)) > 20 && Mathf.Abs((Mathf.Round(boxAngle) + 90f) - (Mathf.Round(debugAngle) + 90f)) < 50)
         {
             Debug.Log("fuck");
             //Debug.Break();
@@ -256,38 +264,38 @@ public class PlayerMovement : MonoBehaviour
         wantedDir = skewedMoveDirection * maxSpeed;
 
         Vector3 velocityDifference = wantedDir - rb.velocity;
-        
+
         #region debug rays
         //Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 1, rb.position.z), skewedMoveDirection.normalized, Color.white, 0.1f);
         //Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 2, rb.position.z), wantedDir, Color.red, 0.1f);
         //Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 3, rb.position.z), velocityDifference, Color.blue, 0.1f);
         //Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 4, rb.position.z), rb.velocity, Color.black, 0.1f);
         #endregion
-        
-        
+
+
 
         if (wantedDir.magnitude > 0.1f)
         {
             accelRate = accelAmount;
         }
         else if (wantedDir.magnitude < 0.1f)
-        { 
-        accelRate = decelAmount;
+        {
+            accelRate = decelAmount;
         }
 
-     
+
         rb.AddForce(velocityDifference * accelRate, ForceMode.Acceleration);
 
-        Vector3 singleAddVelocity = new Vector3 (rb.velocity.x + (Time.fixedDeltaTime * velocityDifference.x * accelRate), rb.velocity.y, rb.velocity.z + (Time.fixedDeltaTime * velocityDifference.z * accelRate));
+        Vector3 singleAddVelocity = new Vector3(rb.velocity.x + (Time.fixedDeltaTime * velocityDifference.x * accelRate), rb.velocity.y, rb.velocity.z + (Time.fixedDeltaTime * velocityDifference.z * accelRate));
 
         //Debug.Log("Speed added from accel in one tick " + singleAddVelocity.magnitude);
         if (singleAddVelocity.magnitude > maxSpeed)
         {
             Debug.LogWarning("Speed added from accel is higher than max speed, CATASTROPHIC, CALL JAME");
         }
-        
-        
-       
+
+
+
     }
 
     /// <summary>
