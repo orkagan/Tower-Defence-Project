@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public InputMaster controls;
 
 
-    #region DEBUG DELETE
+    
 
     private Plane groundPlane;
     private Plane projectilePlane;
@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     
     
     
-    #endregion
+    
 
     #region Looking
     [Header("MouseLook")]
@@ -38,8 +38,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _playerScreenPos;
 
     public Transform playerTransform;
-    public Transform tempRotHandler; //DELETE THIS ASAP
-    public float tempAngle; //ALSO DELETE THIS ASAP
+    public Transform rotHandler;
+    
 
     #endregion
 
@@ -117,26 +117,22 @@ public class PlayerMovement : MonoBehaviour
     {
         MovePlayer();
         DoLookage();
-        //Debug.Log(tempAngle);
-        player.orientation = tempRotHandler.forward;
+        
+        player.orientation = rotHandler.forward;
     }
 
     #endregion
 
     #region Methods
-    /// <summary>
-    /// checks horizontal and vertical input    
-    /// </summary>
+    
     private void MyInput()
     {
-        //horizontalInput = Input.GetAxisRaw("Horizontal");
-        //verticalInput = Input.GetAxisRaw("Vertical");
+        
         horizontalInput = controls.Player.Movement.ReadValue<Vector2>().x;
-        //Debug.Log(controls.Player.Movement.ReadValue<Vector2>().x);
+     
         verticalInput = controls.Player.Movement.ReadValue<Vector2>().y;
 
-        // lookInputPosition = cam.ScreenToWorldPoint(Input.mousePosition); //mouse position is a world point currently
-        //lookInputPosition = Input.mousePosition;//or this is 
+       
         lookInputPosition = controls.Player.MousePosition.ReadValue<Vector2>();
         _playerScreenPos = cam.WorldToScreenPoint(rb.position);
         
@@ -144,10 +140,6 @@ public class PlayerMovement : MonoBehaviour
 
     private (bool success, Vector3 position) GetMousePosition()
     {
-        //create plane that is at the height of where the player shoots
-        //send ray to mouse point
-        //make it so ray can only hit the plane
-        //make that point the direction to shoot towards
 
         var ray = cam.ScreenPointToRay(lookInputPosition);
 
@@ -164,17 +156,7 @@ public class PlayerMovement : MonoBehaviour
             return (success: false, position: Vector3.zero);
         }
 
-        //if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
-        //{
-        //    Debug.DrawRay(cam.transform.position, hitInfo.point);
-        //    raycastHitpoint.transform.position = hitInfo.point;
-        //    return (success: true, position: hitInfo.point);
-        //}
-        //else
-        //{
-        //    Debug.LogWarning("Aiming Raycast failed");
-        //    return (success: false, position: Vector3.zero);
-        //}
+      
     }
 
     private void DoLookage() //THIS IS THE VERSION THAT LOOKS AROUND THE PLAYER!!! THIS ONE IS WAY BETTER
@@ -186,55 +168,22 @@ public class PlayerMovement : MonoBehaviour
         {
             position.y = playerTransform.position.y;
             var direction = position - playerTransform.position;
-            Debug.DrawRay(playerTransform.position, direction, Color.black);
-            Debug.DrawRay(playerTransform.position + direction, playerTransform.up * 5f);
-            //direction.y = tempRotHandler.forward.y;
-            Debug.DrawRay(playerTransform.position, direction, Color.white);
+            //Debug.DrawRay(playerTransform.position, direction, Color.black);
+            //Debug.DrawRay(playerTransform.position + direction, playerTransform.up * 5f);
+            
+            //Debug.DrawRay(playerTransform.position, direction, Color.white);
 
-
-            tempRotHandler.forward = direction;
+            rotHandler.forward = direction;
 
         }
 
-       
-        
-
         Vector2 lookDirection = lookInputPosition - _playerScreenPos;
       
-
-
-
-
-        
-      
-
         camHandler.PMgetter = cam.ScreenToViewportPoint(lookDirection); //DELETE THIS JAMES!!!!!!!!!!!!!!!!!!!!!!!!
-
-        tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; //-135
-        //tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; //-135
-
-
-        //tempRotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
-        //Debug.DrawRay(tempRotHandler.position, tempRotHandler.forward, Color.yellow);
-       
 
     }
 
-    #region center dolookage // this sucks
-    //private void DoLookage() //THIS IS THE VERSION THAT ROTATES AROUND THE CENTER!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //{
-    //    Vector2 centerView = new Vector2(0.5f, 0.5f);
-    //    Vector2 centerScreenSpace = cam.ViewportToScreenPoint(centerView);
-
-    //    Vector2 lookDirection = lookInputPosition - centerScreenSpace;
-    //    uiText.text = $"lookDirection x = {lookDirection.x}, lookDirection y = {lookDirection.y}";
-
-    //    tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; //-45 is the magic number that makes this work but in opposite direction
-
-    //    tempRotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
-    //    Debug.DrawRay(tempRotHandler.position, tempRotHandler.forward, Color.yellow);
-    //}
-    #endregion 
+    
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
@@ -246,15 +195,6 @@ public class PlayerMovement : MonoBehaviour
         wantedDir = skewedMoveDirection * maxSpeed;
 
         Vector3 velocityDifference = wantedDir - rb.velocity;
-
-        #region debug rays
-        //Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 1, rb.position.z), skewedMoveDirection.normalized, Color.white, 0.1f);
-        //Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 2, rb.position.z), wantedDir, Color.red, 0.1f);
-        //Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 3, rb.position.z), velocityDifference, Color.blue, 0.1f);
-        //Debug.DrawRay( new Vector3(rb.position.x, rb.position.y + 4, rb.position.z), rb.velocity, Color.black, 0.1f);
-        #endregion
-
-
 
         if (wantedDir.magnitude > 0.1f)
         {

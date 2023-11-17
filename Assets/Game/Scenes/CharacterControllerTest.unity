@@ -260,21 +260,9 @@ MonoBehaviour:
     m_Bits: 4294967295
   raycastHitpoint: {fileID: 1657621676}
   camHandler: {fileID: 1906172169}
-  uiText: {fileID: 675037993}
-  angleText: {fileID: 0}
-  playerAngleText: {fileID: 0}
-  dirMarker: {fileID: 0}
-  playerMarker: {fileID: 0}
-  boxItself: {fileID: 1342079173}
-  boxPosMarker: {fileID: 0}
-  boxDirMarker: {fileID: 0}
-  differenceText: {fileID: 0}
-  marker: {fileID: 0}
-  boxPosition: {x: 0, y: 0}
   cam: {fileID: 585804980}
   playerTransform: {fileID: 190850433}
-  tempRotHandler: {fileID: 430425151}
-  tempAngle: 0
+  rotHandler: {fileID: 430425151}
   acceleration: 30
   deceleration: 30
   maxSpeed: 30
@@ -1338,7 +1326,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906172167}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17cb5d51e7d0d2b46ab4ce11143515b4, type: 3}
   m_Name: 
