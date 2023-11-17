@@ -21,18 +21,14 @@ public class PlayerMovement : MonoBehaviour
     public GameObject raycastHitpoint;
 
     public CameraHandler camHandler;
-    public Text uiText;
-    public Text angleText;
-    public Text playerAngleText;
-    public GameObject dirMarker;
-    public GameObject playerMarker;
-    public GameObject boxItself;
-    public GameObject boxPosMarker;
-    public GameObject boxDirMarker;
-    public Text differenceText;
-    public RectTransform rt;
-    public GameObject marker;
-    public Vector2 boxPosition;
+    
+   
+    
+ 
+    
+    
+    
+    
     #endregion
 
     #region Looking
@@ -143,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
         //lookInputPosition = Input.mousePosition;//or this is 
         lookInputPosition = controls.Player.MousePosition.ReadValue<Vector2>();
         _playerScreenPos = cam.WorldToScreenPoint(rb.position);
-        boxPosition = cam.WorldToScreenPoint(boxItself.transform.position);
+        
     }
 
     private (bool success, Vector3 position) GetMousePosition()
@@ -200,24 +196,17 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        #region old code (stinky)
-        marker.transform.position = lookInputPosition;
-        playerMarker.transform.position = _playerScreenPos;
-        boxPosMarker.transform.position = boxPosition;
+       
+        
 
         Vector2 lookDirection = lookInputPosition - _playerScreenPos;
-        Vector2 boxDirection = boxPosition - _playerScreenPos;
+      
 
 
 
 
-        float debugAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
-        float boxAngle = Mathf.Atan2(boxDirection.y, boxDirection.x) * Mathf.Rad2Deg - 90f;
-        angleText.text = $"{Mathf.Round(debugAngle) + 90f}*";
-        dirMarker.transform.rotation = Quaternion.AngleAxis(debugAngle, orientation.forward);
-        boxDirMarker.transform.rotation = Quaternion.AngleAxis(boxAngle, orientation.forward);
-
-        uiText.text = $"lookDirection x = {lookDirection.x}, lookDirection y = {lookDirection.y}";
+        
+      
 
         camHandler.PMgetter = cam.ScreenToViewportPoint(lookDirection); //DELETE THIS JAMES!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -227,15 +216,7 @@ public class PlayerMovement : MonoBehaviour
 
         //tempRotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
         //Debug.DrawRay(tempRotHandler.position, tempRotHandler.forward, Color.yellow);
-        playerAngleText.text = $"{Mathf.Round(tempRotHandler.rotation.eulerAngles.y)}*";
-        playerAngleText.text = $"{Mathf.Round(boxAngle) + 90f}";
-        differenceText.text = $"{Mathf.Abs((Mathf.Round(boxAngle) + 90f) - (Mathf.Round(debugAngle) + 90f))}";
-        if (Mathf.Abs((Mathf.Round(boxAngle) + 90f) - (Mathf.Round(debugAngle) + 90f)) > 20 && Mathf.Abs((Mathf.Round(boxAngle) + 90f) - (Mathf.Round(debugAngle) + 90f)) < 50)
-        {
-            Debug.Log("fuck");
-            //Debug.Break();
-        }
-        #endregion
+       
 
     }
 
