@@ -8,12 +8,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Buildable Layer
   - Water
   - UI
-  - MORE UI
-  - 
-  - 
+  - World UI
+  - HUD
+  - Tower Layer
   - 
   - 
   - 
@@ -40,10 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: below
-    uniqueID: 2330804273
-    locked: 0
-  - name: above maybe
-    uniqueID: 2151594697
     locked: 0
