@@ -11,13 +11,12 @@ public class Player : Entity
     public Tower[] towers;
     public Weapon[] weapons;
     public bool readyToBeginWave;
-    public Vector3 orientation; //this comes from PlayerMovement
     #endregion
 
     #region Methods
     public void Attack()
-    {
-        weapons[0].Attack(orientation, this.transform.position);
+    { 
+    
     }
 
     public void ReadyUp()
@@ -33,21 +32,6 @@ public class Player : Entity
     public void UpgradeTower(Tower tower)
     { 
     
-    }
-
-
-    #endregion
-
-    #region Unity Methods
-
-    public void Update()
-    {
-        Debug.DrawRay(this.transform.position, orientation);
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Attack();
-        }
     }
     #endregion
 }

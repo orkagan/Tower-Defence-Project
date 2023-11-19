@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Game/Scripts/DebugLog.cs.meta
 guid: 2da84f5c49d59b549a87560d9635d847
-========
-guid: 3cce20fc35564fb41b47bc8e29f81588
->>>>>>>> MovementNewInputSystem:Assets/Game/Scripts/Player/InputMaster.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

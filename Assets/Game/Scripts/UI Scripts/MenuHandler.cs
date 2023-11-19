@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LearningProjectile : Projectile
+public class MenuHandler : MonoBehaviour
 {
     
 }
