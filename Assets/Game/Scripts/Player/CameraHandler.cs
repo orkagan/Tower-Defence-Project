@@ -1,11 +1,15 @@
 using UnityEngine;
-public class MobileCameraHandler : MonoBehaviour
+public class CameraHandler : MonoBehaviour
 {
-    
+
 
     #region Variables
+
+    public Vector2 PMgetter;
+
     public Transform cam; //This name is deceptive, it goes on pivot, not cam
-    public Joystick inputJoystick;
+    public Transform mouseCam;
+
     private float horizontalInput; //Input.GetAxis(horizontal)
 
     [Header("Multipliers")]
@@ -23,7 +27,10 @@ public class MobileCameraHandler : MonoBehaviour
     private float smoothTime; //both of these are for Vector3.SmoothDamp
     private Vector3 velocity = Vector3.zero;
 
+    public float smoothTimeMouse;
+    private Vector3 velocityMouse = Vector3.zero;
 
+    public float mouseStrength;
     
     private Vector3 toMove; //used in converting the horizontal and vertical inputs into horizontal and vertical camera movements
     [Space(20f)]
@@ -34,27 +41,32 @@ public class MobileCameraHandler : MonoBehaviour
 
     public void MoveCam()
     {
-        #region mid
-        //Debug.DrawRay(cam.position, cam.forward, Color.blue);
-        //Debug.DrawRay(cam.position, cam.up, Color.green);
-        //Debug.DrawRay(cam.position, cam.right, Color.red);
-        #endregion
+        
 
        
 
         //creates the vector3 we'll use to move the camera, based off the player's inputs
-        toMove = cam.forward * (inputJoystick.Input.y * verticalMultiplier) + cam.right * (inputJoystick.Input.x * horizontalMultiplier);
+        toMove = cam.forward * verticalInput * verticalMultiplier + cam.right * horizontalInput * horizontalMultiplier;
 
+
+        Vector3 mouseMove = cam.forward * PMgetter.y + cam.right * PMgetter.x;
+        if (mouseMove.magnitude >=1)
+        {
+            mouseMove.Normalize();
+        }
+
+        Vector3 newMouseMove = Quaternion.AngleAxis(-30, cam.right) * mouseMove;
+       
+        
 
         //Rotate the Vector3 toMove by 30 degrees on a local axis, to make it move vertically,
         //the amount of degrees should always be equal to the Pivot object's x axis, multiplied by -1.
         //This hardcode will cause bad things later, but I don't want to fix it. Too bad!
-        Vector3 newMove = Quaternion.AngleAxis(-30, cam.right) * toMove; //TODO: Quaternion.AngleAxis might be performance destroying, optimize by creating one vector3/ angle set on start
+        Vector3 newMove = Quaternion.AngleAxis(-30, cam.right) * toMove; 
         
         
         
-        //Debug.DrawRay(cam.position, newMove, Color.magenta, 5f);
-        //Debug.DrawRay(cam.position, toMove, Color.white, 5f);
+        
 
         //Calculating whether the camera should be / is returning or leaving
         if (Mathf.Abs(verticalInput) <= returningInputThreshold && Mathf.Abs(horizontalInput) <= returningInputThreshold)
@@ -67,9 +79,9 @@ public class MobileCameraHandler : MonoBehaviour
         }
 
         //moves the camera
-        cam.transform.localPosition = Vector3.SmoothDamp(cam.transform.localPosition, newMove * strength, ref velocity, smoothTime);
+        cam.transform.localPosition = Vector3.SmoothDamp(cam.transform.localPosition, (newMove * strength), ref velocity, smoothTime);
+        mouseCam.transform.localPosition = Vector3.SmoothDamp(mouseCam.transform.localPosition, newMouseMove * mouseStrength , ref velocityMouse, smoothTimeMouse);
 
-       
     }
 
 
@@ -88,7 +100,7 @@ public class MobileCameraHandler : MonoBehaviour
     {
         MyInput();
         
-        MoveCam(); //if optimizing in future, not sure if this needs to be run every tick or every frame.
+        MoveCam(); 
     }
     #endregion
 }
