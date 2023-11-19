@@ -1,11 +1,10 @@
 using UnityEngine;
 public class CameraHandler : MonoBehaviour
 {
-    #region Variables
-    public Vector2 PMgetter;
+    
 
-    public Transform pivot; //This name is deceptive, it goes on pivot, not cam
-    public Transform mouseCam;
+    #region Variables
+    public Transform cam; //This name is deceptive, it goes on pivot, not cam
 
     private float horizontalInput; //Input.GetAxis(horizontal)
 
@@ -24,33 +23,38 @@ public class CameraHandler : MonoBehaviour
     private float smoothTime; //both of these are for Vector3.SmoothDamp
     private Vector3 velocity = Vector3.zero;
 
-    public float smoothTimeMouse;
-    private Vector3 velocityMouse = Vector3.zero;
 
-    public float mouseStrength;
     
     private Vector3 toMove; //used in converting the horizontal and vertical inputs into horizontal and vertical camera movements
     [Space(20f)]
     public float strength; //how far the camera moves compared to the input
     #endregion
+
     #region Methods
+
     public void MoveCam()
     {
-        //creates the vector3 we'll use to move the camera, based off the player's inputs
-        toMove = pivot.forward * verticalInput * verticalMultiplier + pivot.right * horizontalInput * horizontalMultiplier;
+        #region mid
+        //Debug.DrawRay(cam.position, cam.forward, Color.blue);
+        //Debug.DrawRay(cam.position, cam.up, Color.green);
+        //Debug.DrawRay(cam.position, cam.right, Color.red);
+        #endregion
 
-        Vector3 mouseMove = pivot.forward * PMgetter.y + pivot.right * PMgetter.x;
-        if (mouseMove.magnitude >=1)
-        {
-            mouseMove.Normalize();
-        }
-
-        Vector3 newMouseMove = Quaternion.AngleAxis(-30, pivot.right) * mouseMove;
        
+
+        //creates the vector3 we'll use to move the camera, based off the player's inputs
+        toMove = cam.forward * verticalInput * verticalMultiplier + cam.right * horizontalInput * horizontalMultiplier;
+
+
         //Rotate the Vector3 toMove by 30 degrees on a local axis, to make it move vertically,
         //the amount of degrees should always be equal to the Pivot object's x axis, multiplied by -1.
         //This hardcode will cause bad things later, but I don't want to fix it. Too bad!
-        Vector3 newMove = Quaternion.AngleAxis(-30, pivot.right) * toMove; 
+        Vector3 newMove = Quaternion.AngleAxis(-30, cam.right) * toMove; //TODO: Quaternion.AngleAxis might be performance destroying, optimize by creating one vector3/ angle set on start
+        
+        
+        
+        //Debug.DrawRay(cam.position, newMove, Color.magenta, 5f);
+        //Debug.DrawRay(cam.position, toMove, Color.white, 5f);
 
         //Calculating whether the camera should be / is returning or leaving
         if (Mathf.Abs(verticalInput) <= returningInputThreshold && Mathf.Abs(horizontalInput) <= returningInputThreshold)
@@ -63,21 +67,28 @@ public class CameraHandler : MonoBehaviour
         }
 
         //moves the camera
-        pivot.transform.localPosition = Vector3.SmoothDamp(pivot.transform.localPosition, (newMove * strength), ref velocity, smoothTime);
-        mouseCam.transform.localPosition = Vector3.SmoothDamp(mouseCam.transform.localPosition, newMouseMove * mouseStrength , ref velocityMouse, smoothTimeMouse);
+        cam.transform.localPosition = Vector3.SmoothDamp(cam.transform.localPosition, newMove * strength, ref velocity, smoothTime);
+
+       
     }
+
 
     private void MyInput() //gathers player inputs, called every tick
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+
     }
+
     #endregion
+
     #region Unity Methods
+
     public void Update()
     {
-        MyInput();        
-        MoveCam(); 
+        MyInput();
+        
+        MoveCam(); //if optimizing in future, not sure if this needs to be run every tick or every frame.
     }
     #endregion
 }
