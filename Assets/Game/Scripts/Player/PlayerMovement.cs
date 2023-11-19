@@ -1,48 +1,26 @@
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     #region Variables
-
     public Player player;
-
     public InputMaster controls;
-
-
-    
+    public LayerMask groundMask;
+    public GameObject raycastHitpoint;
+    public CameraHandler camHandler;
 
     private Plane groundPlane;
     private Plane projectilePlane;
 
-    public LayerMask groundMask;
-
-    public GameObject raycastHitpoint;
-
-    public CameraHandler camHandler;
-    
-   
-    
- 
-    
-    
-    
-    
-    
-
     #region Looking
     [Header("MouseLook")]
     public Camera cam;
+    public Transform playerTransform;
+    public Transform rotHandler;  
+
     private Vector2 lookInputPosition;
     private Vector2 _playerScreenPos;
-
-    public Transform playerTransform;
-    public Transform rotHandler;
-    
-
     #endregion
-
     #region Moving
     private float accelRate; //The multiplier used on the final vector
     [Space(20f)]
@@ -57,8 +35,6 @@ public class PlayerMovement : MonoBehaviour
 
     public float maxSpeed; //maximum speed
 
-
-
     public Transform orientation; //tbh i don't even remember what this does but it's set to the capsule and it works so
     public float horizontalInput; //input system for A and D keys
     public float verticalInput; //INput system for W and S keys
@@ -68,21 +44,15 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody rb;
     public CapsuleCollider col;
-
     #endregion
-
     #endregion
-
     #region Unity Methods
-
-
     private void Awake()
     {
         controls = new InputMaster();
 
         accelAmount = (50 * acceleration) / maxSpeed;
         decelAmount = (50 * deceleration) / maxSpeed;
-
     }
 
     private void OnEnable()
@@ -106,11 +76,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        
-        
         MyInput();
         SpeedControl();
-
     }
 
     private void FixedUpdate()
@@ -120,27 +87,19 @@ public class PlayerMovement : MonoBehaviour
         
         player.orientation = rotHandler.forward;
     }
-
     #endregion
-
-    #region Methods
-    
+    #region Methods   
     private void MyInput()
     {
-        
-        horizontalInput = controls.Player.Movement.ReadValue<Vector2>().x;
-     
+        horizontalInput = controls.Player.Movement.ReadValue<Vector2>().x;     
         verticalInput = controls.Player.Movement.ReadValue<Vector2>().y;
-
        
         lookInputPosition = controls.Player.MousePosition.ReadValue<Vector2>();
-        _playerScreenPos = cam.WorldToScreenPoint(rb.position);
-        
+        _playerScreenPos = cam.WorldToScreenPoint(rb.position);        
     }
 
     private (bool success, Vector3 position) GetMousePosition()
     {
-
         var ray = cam.ScreenPointToRay(lookInputPosition);
 
         if (projectilePlane.Raycast(ray, out var hitInfo))
@@ -149,20 +108,15 @@ public class PlayerMovement : MonoBehaviour
             raycastHitpoint.transform.position = hitPoint;
             return (success: true, position: hitPoint);
         }
-
         else
         {
             Debug.LogWarning("Aiming Raycast failed");
             return (success: false, position: Vector3.zero);
-        }
-
-      
+        }      
     }
 
     private void DoLookage() 
     {
-
-
         var (success, position) = GetMousePosition();
         if (success)
         {
@@ -174,15 +128,12 @@ public class PlayerMovement : MonoBehaviour
             //Debug.DrawRay(playerTransform.position, direction, Color.white);
 
             rotHandler.forward = direction;
-
         }
 
         Vector2 lookDirection = lookInputPosition - _playerScreenPos;
       
         camHandler.PMgetter = cam.ScreenToViewportPoint(lookDirection); 
-
     }
-
     
     private void MovePlayer()
     {
@@ -205,19 +156,14 @@ public class PlayerMovement : MonoBehaviour
             accelRate = decelAmount;
         }
 
-
         rb.AddForce(velocityDifference * accelRate, ForceMode.Acceleration);
 
         Vector3 singleAddVelocity = new Vector3(rb.velocity.x + (Time.fixedDeltaTime * velocityDifference.x * accelRate), rb.velocity.y, rb.velocity.z + (Time.fixedDeltaTime * velocityDifference.z * accelRate));
-
         
         if (singleAddVelocity.magnitude > maxSpeed)
         {
             Debug.LogWarning("Speed added from accel is higher than max speed, tell James");
         }
-
-
-
     }
 
     /// <summary>
@@ -225,7 +171,6 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void SpeedControl()
     {
-
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z); //horizontal velocity
         if (flatVel.magnitude > maxSpeed)
         {
@@ -237,8 +182,6 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
         }
-
     }
     #endregion 
-
 }
