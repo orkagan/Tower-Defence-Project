@@ -5,11 +5,7 @@ public class CameraHandler : MonoBehaviour
 
     #region Variables
 
-    #region DELETE THIS THIS IS DEBUG
-
     public Vector2 PMgetter;
-
-    #endregion
 
     public Transform cam; //This name is deceptive, it goes on pivot, not cam
     public Transform mouseCam;
@@ -45,11 +41,7 @@ public class CameraHandler : MonoBehaviour
 
     public void MoveCam()
     {
-        #region mid
-        //Debug.DrawRay(cam.position, cam.forward, Color.blue);
-        //Debug.DrawRay(cam.position, cam.up, Color.green);
-        //Debug.DrawRay(cam.position, cam.right, Color.red);
-        #endregion
+        
 
        
 
@@ -57,7 +49,6 @@ public class CameraHandler : MonoBehaviour
         toMove = cam.forward * verticalInput * verticalMultiplier + cam.right * horizontalInput * horizontalMultiplier;
 
 
-        //DELETE THIS!!!!
         Vector3 mouseMove = cam.forward * PMgetter.y + cam.right * PMgetter.x;
         if (mouseMove.magnitude >=1)
         {
@@ -65,19 +56,17 @@ public class CameraHandler : MonoBehaviour
         }
 
         Vector3 newMouseMove = Quaternion.AngleAxis(-30, cam.right) * mouseMove;
-        Debug.DrawRay(mouseCam.position, newMouseMove, Color.red);
-        //Debug.Log("new mouse move magnitude is: " + newMouseMove.magnitude);
+       
         
 
         //Rotate the Vector3 toMove by 30 degrees on a local axis, to make it move vertically,
         //the amount of degrees should always be equal to the Pivot object's x axis, multiplied by -1.
         //This hardcode will cause bad things later, but I don't want to fix it. Too bad!
-        Vector3 newMove = Quaternion.AngleAxis(-30, cam.right) * toMove; //TODO: Quaternion.AngleAxis might be performance destroying, optimize by creating one vector3/ angle set on start
+        Vector3 newMove = Quaternion.AngleAxis(-30, cam.right) * toMove; 
         
         
         
-        //Debug.DrawRay(cam.position, newMove, Color.magenta, 5f);
-        //Debug.DrawRay(cam.position, toMove, Color.white, 5f);
+        
 
         //Calculating whether the camera should be / is returning or leaving
         if (Mathf.Abs(verticalInput) <= returningInputThreshold && Mathf.Abs(horizontalInput) <= returningInputThreshold)
@@ -111,7 +100,7 @@ public class CameraHandler : MonoBehaviour
     {
         MyInput();
         
-        MoveCam(); //if optimizing in future, not sure if this needs to be run every tick or every frame.
+        MoveCam(); 
     }
     #endregion
 }
