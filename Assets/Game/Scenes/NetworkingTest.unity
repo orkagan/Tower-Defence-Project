@@ -260,22 +260,9 @@ MonoBehaviour:
     m_Bits: 4294967295
   raycastHitpoint: {fileID: 1657621676}
   camHandler: {fileID: 1906172169}
-  uiText: {fileID: 675037993}
-  angleText: {fileID: 424241232}
-  playerAngleText: {fileID: 1553267418}
-  dirMarker: {fileID: 1530026577}
-  playerMarker: {fileID: 816868911}
-  boxItself: {fileID: 1342079173}
-  boxPosMarker: {fileID: 345803212}
-  boxDirMarker: {fileID: 1417409165}
-  differenceText: {fileID: 965449217}
-  rt: {fileID: 0}
-  marker: {fileID: 728809113}
-  boxPosition: {x: 0, y: 0}
   cam: {fileID: 585804980}
   playerTransform: {fileID: 190850433}
-  tempRotHandler: {fileID: 430425151}
-  tempAngle: 0
+  rotHandler: {fileID: 0}
   acceleration: 30
   deceleration: 30
   maxSpeed: 30
@@ -789,7 +776,7 @@ PrefabInstance:
     - target: {fileID: 7579406152439192143, guid: 51dbd088fdc973f44a6da485aebed44b, type: 3}
       propertyPath: NetworkConfig.PlayerPrefab
       value: 
-      objectReference: {fileID: 8248669409845014607, guid: 1f7c3569fcae18c4d826d772ddd31bb9, type: 3}
+      objectReference: {fileID: 6683819330751915028, guid: 59bb53090377e0e4a94d93802f389674, type: 3}
     - target: {fileID: 7579406152439192143, guid: 51dbd088fdc973f44a6da485aebed44b, type: 3}
       propertyPath: NetworkConfig.ForceSamePrefabs
       value: 0
