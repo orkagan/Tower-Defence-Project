@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class TowerScript : MonoBehaviour
@@ -18,7 +19,7 @@ public class TowerScript : MonoBehaviour
     /// <summary>
     /// The damage the tower deals towards enemies.
     /// </summary>
-    public float GetDamage
+    public float GetBaseDamage
     {
         get => _towerSo.damage;
         set => _towerSo.damage = value;
@@ -26,7 +27,7 @@ public class TowerScript : MonoBehaviour
     /// <summary>
     /// The number of seconds(float) between each tower's attack.
     /// </summary>
-    public float GetAttackCooldown
+    public float GetBaseAttackCooldown
     {
         get => _towerSo.attackCooldown;
         set => _towerSo.attackCooldown = value;
@@ -34,12 +35,17 @@ public class TowerScript : MonoBehaviour
     /// <summary>
     /// The distance around the tower - where the tower searches for enemies.
     /// </summary>
-    public float GetRange
+    public float GetBaseRange
     {
         get => _towerSo.range;
-        set => _towerSo.range = value;
+        private set => _towerSo.range = value;
     }
     #endregion
+
+    public void SetRange(int increase)
+    {
+        GetBaseRange += increase;
+    }
 
     private void OnValidate()
     {

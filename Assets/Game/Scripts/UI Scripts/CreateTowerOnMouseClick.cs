@@ -11,7 +11,6 @@ public class CreateTowerOnMouseClick : MonoBehaviour
 {
     [SerializeField] private GameObject[] _tower;
     [HideInInspector] public int chosenTower = 0;
-    [SerializeField] private float _towerDistance = 3f;
     [SerializeField] private LayerMask _layer;
     [SerializeField] private PlayMode _playMode = PlayMode.BuildMode;
     public UnityEvent onMouseClick;
@@ -70,7 +69,10 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     //Then checks whether any of those colliders belongs to a tower. Returns true if there is, false if not.
     private bool CheckForTowers(Vector3 point)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(point, _towerDistance);
+        TowerScript ts = _tower[chosenTower].GetComponentInChildren<TowerScript>();
+        float towerDistance = ts.GetBaseRange;
+        
+        Collider[] hitColliders = Physics.OverlapSphere(point, towerDistance);
         foreach (Collider col in hitColliders)
         {
             if (col.transform.TryGetComponent(out TowerScript tower))

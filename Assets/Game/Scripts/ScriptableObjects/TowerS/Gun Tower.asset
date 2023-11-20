@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Gun Tower
   m_EditorClassIdentifier: 
   entityName: Gun Tower
-  damage: 0
+  damage: 5
   cost: 1
-  attackCooldown: 0
+  attackCooldown: 3
   projectile: {fileID: 0}
   projectileSpeed: 0
   range: 5

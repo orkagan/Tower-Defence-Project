@@ -25,7 +25,8 @@ public class EnemyHandler : MonoBehaviour
             int randomSpawn = Random.Range(0, _spawnPoints.Length);
             GameObject newEnemy = Instantiate(_enemyPrefab, _gameMap);
             newEnemy.transform.position = GetRandomPointInBoxCollider(_spawnPoints[randomSpawn]);
-            ChatHandler.Instance.CreateNewLine($"Spawned enemy #{i + 1}");
+            newEnemy.name = $"Enemy #{i + 1}";
+            Debug.Log($"Spawned enemy #{i + 1}");
             
             yield return new WaitForSeconds(0.5f);
         }

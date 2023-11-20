@@ -11,12 +11,12 @@ NavMeshProjectSettings:
     cost: 1
   - name: Jump
     cost: 2
-  - name: Tower Radius
+  - name: Tower 1 Radius
+    cost: 2
+  - name: Tower 2 Radius
     cost: 5
-  - name: 
-    cost: 1
-  - name: 
-    cost: 1
+  - name: Tower 3 Radius
+    cost: 8
   - name: 
     cost: 1
   - name: 
