@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Tower : AggresiveEntity
+public abstract class Tower : AggressiveEntity
 {
     #region Fields
-    private float damage;
-    private int cost;
-    private float attackCooldown;
-    private Projectile projectile;
-    private float projectileSpeed;
-    private float range;
-    private int upgrades;
+    public string entityName;
+    public float damage;
+    public int cost;
+    public float attackCooldown;
+    public Projectile projectile;
+    public float projectileSpeed;
+    public float range;
+    public int upgrades;
     #endregion
 }
