@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : AggresiveEntity
+public abstract class Enemy : AggressiveEntity
 {
     #region Fields
     private Transform enemyTransform;
