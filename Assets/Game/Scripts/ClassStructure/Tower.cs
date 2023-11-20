@@ -1,26 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Tower", menuName = "Entities/Aggressive Entities/Tower")]
-public class Tower : AggressiveEntity
+public abstract class Tower : AggresiveEntity
 {
     #region Fields
-    public string entityName;
-    public float damage;
-    public int cost;
-    public float attackCooldown;
-    public Projectile projectile;
-    public float projectileSpeed;
-    public float range;
-    public int upgrades;
+    private float damage;
+    private int cost;
+    private float attackCooldown;
+    private Projectile projectile;
+    private float projectileSpeed;
+    private float range;
+    private int upgrades;
     #endregion
-
-    public override void Attack()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override Collider FindTarget()
-    {
-        throw new System.NotImplementedException();
-    }
 }
