@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 5768924400049655891}
   - component: {fileID: 5768924400049655892}
   - component: {fileID: 5768924400049655893}
-  - component: {fileID: 8970923401223973660}
+  - component: {fileID: 4259936270300240255}
   m_Layer: 8
   m_Name: Laser Tower
   m_TagString: Untagged
@@ -212,7 +212,7 @@ CapsuleCollider:
   m_Height: 2.5916078
   m_Direction: 1
   m_Center: {x: 0.00000003973643, y: -0.29579696, z: -0.00000007947286}
---- !u!114 &8970923401223973660
+--- !u!114 &4259936270300240255
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,10 +221,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5768924400049655895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0dba3b5929b05c4898bead76ae29ffd, type: 3}
+  m_Script: {fileID: 11500000, guid: 04a7e967d79aba046ab183d6b64f4f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerSo: {fileID: 11400000, guid: 9f5391d31afb5514d8868156f5902524, type: 2}
+  entityName: Laser Tower
+  damage: 8
+  cost: 5
+  attackCooldown: 5
+  projectile: {fileID: 0}
+  projectileSpeed: 0
+  range: 8
+  upgrades: 0
 --- !u!1 &5768924400306966877
 GameObject:
   m_ObjectHideFlags: 0

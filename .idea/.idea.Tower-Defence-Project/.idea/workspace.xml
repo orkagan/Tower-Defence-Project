@@ -6,12 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="ba2093db-e173-4bda-bba5-6277299627db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/CharacterControllerTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/CharacterControllerTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/MainMenuScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/MainMenuScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 1 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 1 Prefab (Placeholder).prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 2 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 2 Prefab (Placeholder).prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 3 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 3 Prefab (Placeholder).prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/MergedGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/MergedGame.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/MenuHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/MenuHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/SwitchUIBasedOnDevice.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/SwitchUIBasedOnDevice.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Tower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Tower.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +125,7 @@
       <workItem from="1699227172198" duration="10499000" />
       <workItem from="1699310803335" duration="10611000" />
       <workItem from="1700453067432" duration="2303000" />
-      <workItem from="1700520039473" duration="1060000" />
+      <workItem from="1700520039473" duration="2132000" />
     </task>
     <servers />
   </component>

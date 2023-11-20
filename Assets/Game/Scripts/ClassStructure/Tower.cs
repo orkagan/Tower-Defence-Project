@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public abstract class Tower : AggressiveEntity
+public class Tower : AggressiveEntity
 {
     #region Fields
     public string entityName;
@@ -14,4 +13,19 @@ public abstract class Tower : AggressiveEntity
     public float range;
     public int upgrades;
     #endregion
+
+    public override void Attack()
+    {
+        Transform target = FindTarget().transform;
+    }
+
+    public override Collider FindTarget()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void OnValidate()
+    {
+        gameObject.name = entityName;
+    }
 }

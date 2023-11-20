@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 5768924400049655891}
   - component: {fileID: 5768924400049655892}
   - component: {fileID: 5768924400049655893}
-  - component: {fileID: 2929257010126585742}
+  - component: {fileID: 390856538073960254}
   m_Layer: 8
   m_Name: Bomb Tower
   m_TagString: Untagged
@@ -212,7 +212,7 @@ CapsuleCollider:
   m_Height: 2.5916078
   m_Direction: 1
   m_Center: {x: 0.00000003973643, y: -0.29579696, z: -0.00000007947286}
---- !u!114 &2929257010126585742
+--- !u!114 &390856538073960254
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,10 +221,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5768924400049655895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0dba3b5929b05c4898bead76ae29ffd, type: 3}
+  m_Script: {fileID: 11500000, guid: 04a7e967d79aba046ab183d6b64f4f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerSo: {fileID: 11400000, guid: ccecd4419dcc8724c977ef646462172e, type: 2}
+  entityName: Bomb Tower
+  damage: 5
+  cost: 3
+  attackCooldown: 1
+  projectile: {fileID: 0}
+  projectileSpeed: 0
+  range: 3
+  upgrades: 0
 --- !u!1 &5768924400306966877
 GameObject:
   m_ObjectHideFlags: 0
