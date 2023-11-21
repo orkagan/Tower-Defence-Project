@@ -1,6 +1,7 @@
 using System;
+using Unity.Netcode;
 using UnityEngine;
-public class CameraHandler : MonoBehaviour
+public class NetCameraHandler : NetworkBehaviour
 {
     
 
@@ -85,7 +86,11 @@ public class CameraHandler : MonoBehaviour
 
     #region Unity Methods
 
-    
+    private void Awake()
+    {
+        if (!GetComponent<NetworkObject>().IsOwner) enabled = false;
+        else GetComponentInChildren<Camera>().gameObject.SetActive(true);
+    }
 
     public void Update()
     {

@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
@@ -12,11 +14,22 @@ public class NetworkUIManager : MonoBehaviour
     [SerializeField] private Button _joinButton;
     [SerializeField] private Button _disconnectButton;
 
-    [SerializeField] private string defaultIP = "127.0.0.1";
+    //[SerializeField] private string defaultIP = "127.0.0.1";
+    [SerializeField] private string defaultIP;
     [SerializeField] private int defaultPort = 7777;
-
+    
+    public string GetLocalIPv4()
+    {
+        return Dns.GetHostEntry(Dns.GetHostName())
+            .AddressList.First(
+                f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+            .ToString();
+    }
+    
     private void Awake()
     {
+        defaultIP = GetLocalIPv4();
+        
         //_serverButton.onClick.AddListener(()=>{NetworkManager.Singleton.StartServer();});
         _hostButton.onClick.AddListener(() => { HostWithIP(); });
         _joinButton.onClick.AddListener(() => { JoinWithIP(); });
@@ -34,6 +47,24 @@ public class NetworkUIManager : MonoBehaviour
         }
 
         ip = string.IsNullOrEmpty(ip) ? defaultIP : ip;
+        IPAddress address;
+        if (IPAddress.TryParse(ip, out address))
+        {
+            switch (address.AddressFamily)
+            {
+                case System.Net.Sockets.AddressFamily.InterNetwork:
+                    // we have IPv4
+                    break;
+                case System.Net.Sockets.AddressFamily.InterNetworkV6:
+                    // we have IPv6
+                    break;
+                default:
+                    // umm... yeah... I'm going to need to take your red packet and...
+                    ip = defaultIP;
+                    break;
+            }
+        }
+        
         Debug.Log($"Connection Data Set as {ip}:{portNum}");
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(
             ip,
