@@ -1,38 +1,43 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(CheckForNearbyObjects))]
-public class Tower : AggressiveEntity, IPointerEnterHandler, IPointerExitHandler
+public class Tower : AggressiveEntity
 {
     #region Fields
 
-    [Header("Polish")]
     [SerializeField] private GameObject _towerDisplayName;
-    
-    [Header("Main Variables")]
+    [SerializeField] private string _tagName;
     [SerializeField] private string _entityName;
+
     [SerializeField] private float _damage;
     [SerializeField] private int _cost;
+
     [SerializeField] private float _attackCooldown;
+
     //[SerializeField] private Projectile _projectile;
     [SerializeField] private GameObject _projectile;
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private float _range;
     [SerializeField] private Transform _shootFrom;
+
+    private List<Collider> _enemiesInRange;
+
     #endregion
-    
+
     #region Properties
+
     /// <summary>
     /// The name of the Tower.
     /// </summary>
     public string GetName => _entityName;
+
     /// <summary>
     /// The number of resources(int) required to place/upgrade a tower.
     /// </summary>
     public int GetCost => _cost;
+
     /// <summary>
     /// The damage the tower deals towards enemies.
     /// </summary>
@@ -41,6 +46,7 @@ public class Tower : AggressiveEntity, IPointerEnterHandler, IPointerExitHandler
         get => _damage;
         set => _damage = value;
     }
+
     /// <summary>
     /// The number of seconds(float) between each tower's attack.
     /// </summary>
@@ -49,6 +55,7 @@ public class Tower : AggressiveEntity, IPointerEnterHandler, IPointerExitHandler
         get => _attackCooldown;
         set => _attackCooldown = value;
     }
+
     /// <summary>
     /// The distance around the tower - where the tower searches for enemies.
     /// </summary>
@@ -57,17 +64,10 @@ public class Tower : AggressiveEntity, IPointerEnterHandler, IPointerExitHandler
         get => _range;
         private set => _range = value;
     }
-    /// <summary>
-    /// Connected component which finds nearby enemies within range.
-    /// </summary>
-    private CheckForNearbyObjects EnemyFinder => GetComponent<CheckForNearbyObjects>();
+
     #endregion
 
     #region Unity Methods
-    private void Start()
-    {
-        _towerDisplayName.SetActive(false);
-    }
 
     private void Update()
     {
@@ -79,21 +79,27 @@ public class Tower : AggressiveEntity, IPointerEnterHandler, IPointerExitHandler
         name = GetName;
         _towerDisplayName.GetComponent<Text>().text = GetName;
     }
-    
-    public void OnPointerEnter(PointerEventData eventData)
+
+    private void OnTriggerEnter(Collider other)
     {
-        _towerDisplayName.SetActive(true);
+        if (!other.gameObject.CompareTag(_tagName)) return;
+
+        _enemiesInRange.Add(other);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    private void OnTriggerExit(Collider other)
     {
-        _towerDisplayName.SetActive(false);
+        if (!other.gameObject.CompareTag(_tagName)) return;
+
+        _enemiesInRange.Remove(other);
     }
+
     #endregion
 
     #region Methods
-    
+
     #region Upgrades
+
     public void SetRange(int increase)
     {
         GetRange += increase;
@@ -108,25 +114,31 @@ public class Tower : AggressiveEntity, IPointerEnterHandler, IPointerExitHandler
     {
         GetAttackCooldown -= decrease;
     }
+
     #endregion
 
     public override void Attack()
     {
-        Transform target = FindTarget().transform;
-        
-        //shoot a projectile from top of tower and onto target
-        Vector3 shootPoint = _shootFrom.position;
-        GameObject newBullet = Instantiate(_projectile, shootPoint, Quaternion.identity, transform);
-        Vector3 direction = shootPoint - target.position;
-        
-        newBullet.transform.position += direction * (Time.deltaTime * _projectileSpeed);
+        StartCoroutine(nameof(Shoot));
     }
 
-    //refer to script which finds any enemies that are in range
-    public override Collider FindTarget()
+    private IEnumerable<WaitForSeconds> Shoot()
     {
-        Collider enemy = GetComponent<CheckForNearbyObjects>().enemyCollider;
-        return enemy;
+        if (_enemiesInRange.Count > 0)
+        {
+            foreach (Collider enemy in _enemiesInRange)
+            {
+                //shoot a projectile from top of tower and onto target
+                Vector3 shootPoint = _shootFrom.position;
+                GameObject newBullet = Instantiate(_projectile, shootPoint, Quaternion.identity, transform);
+                Vector3 direction = shootPoint - enemy.transform.position;
+
+                newBullet.transform.position += direction * (Time.deltaTime * _projectileSpeed);
+            }
+        }
+
+        yield return new WaitForSeconds(GetAttackCooldown);
     }
+
     #endregion
 }

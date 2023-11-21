@@ -132,7 +132,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -159,7 +159,6 @@ GameObject:
   - component: {fileID: 8054996514003752562}
   - component: {fileID: 4817999762146863682}
   - component: {fileID: 1995018945561079612}
-  - component: {fileID: 258123064512113722}
   m_Layer: 8
   m_Name: Laser Tower
   m_TagString: Untagged
@@ -289,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerDisplayName: {fileID: 5768924399603775613}
+  _tagName: Enemy
   _entityName: Laser Tower
   _damage: 10
   _cost: 5
@@ -297,27 +297,6 @@ MonoBehaviour:
   _projectileSpeed: 30
   _range: 8
   _shootFrom: {fileID: 2888040137513178301}
---- !u!114 &258123064512113722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5768924400049655895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6408d92e34c71b47875a13be790883c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagName: Enemy
-  debugEnter: 0
-  destroyThis: 0
-  destroyOther: 0
-  invokeEvent: 0
-  collisionEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  enemyCollider: {fileID: 0}
 --- !u!1 &5768924400306966877
 GameObject:
   m_ObjectHideFlags: 0

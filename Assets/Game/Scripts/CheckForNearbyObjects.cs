@@ -8,13 +8,10 @@ public class CheckForNearbyObjects : MonoBehaviour
     [SerializeField] private bool debugEnter, destroyThis, destroyOther, invokeEvent;
     
     public UnityEvent collisionEnter;
-    [HideInInspector] public Collider enemyCollider;
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag(tagName)) return;
-
-        enemyCollider = other;
         
         if (debugEnter)
         {
