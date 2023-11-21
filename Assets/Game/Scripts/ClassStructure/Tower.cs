@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -84,14 +85,15 @@ public class Tower : AggressiveEntity
     {
         if (!other.gameObject.CompareTag(_tagName)) return;
 
-        _enemiesInRange.Add(other);
+        
+        //_enemiesInRange.Add(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.gameObject.CompareTag(_tagName)) return;
 
-        _enemiesInRange.Remove(other);
+        //_enemiesInRange.Remove(other);
     }
 
     #endregion
@@ -122,7 +124,7 @@ public class Tower : AggressiveEntity
         StartCoroutine(nameof(Shoot));
     }
 
-    private IEnumerable<WaitForSeconds> Shoot()
+    private IEnumerator Shoot()
     {
         if (_enemiesInRange.Count > 0)
         {

@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class EnemyHandler : MonoBehaviour
 {
@@ -15,8 +18,31 @@ public class EnemyHandler : MonoBehaviour
     [SerializeField, Space(20), Tooltip("The areas where the enemies spawn.")]
     Transform[] _spawnPoints;
 
+    private UnityEvent onFinishSpawning;
+
+    private void Start()
+    {
+        onFinishSpawning.AddListener(CountAllEnemies);
+    }
+
     public void BeginSpawning() => StartCoroutine(nameof(SpawnEnemies));
-    
+    public void CountAllEnemies() => StartCoroutine(nameof(CountEnemies));
+
+    private IEnumerator CountEnemies()
+    {
+        while (GameStateHandler.Instance.GetCurrentState == GameState.AttackPhase)
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            if (enemies.Length == 0)
+            {
+                GameStateHandler.Instance.SwitchState();
+            }
+        }
+        
+        yield return new WaitForSeconds(1f);
+    }
+
     //spawns a set number of enemies
     private IEnumerator SpawnEnemies()
     {
@@ -30,6 +56,8 @@ public class EnemyHandler : MonoBehaviour
             
             yield return new WaitForSeconds(0.5f);
         }
+        
+        onFinishSpawning.Invoke();
     }
 
     //returns random position within a transform's box collider.

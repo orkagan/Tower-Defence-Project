@@ -3223,7 +3223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  _navMeshSurface: {fileID: 0}
+  _navMeshSurface: {fileID: 2117970887}
   onAttackPhase:
     m_PersistentCalls:
       m_Calls:

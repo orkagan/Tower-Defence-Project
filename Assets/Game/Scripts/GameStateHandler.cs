@@ -30,17 +30,20 @@ public class GameStateHandler : MonoBehaviour
     #endregion
 
     [SerializeField] GameState state;
-    //[SerializeField] private NavMeshSurface _navMeshSurface;
+    [SerializeField] private NavMeshSurface _navMeshSurface;
     public UnityEvent onAttackPhase, onBuildPhase;
 
     public GameState GetCurrentState => state;
 
+    /// <summary>
+    /// Changes game state from Attack to Build, or Build to Attack.
+    /// </summary>
     public void SwitchState()
     {
         if (state == GameState.BuildPhase)
         {
             state = GameState.AttackPhase;
-            //_navMeshSurface.BuildNavMesh(); //rebuilds the navmesh map to include tower areas (high cost areas which enemies will try to avoid)
+            _navMeshSurface.BuildNavMesh(); //rebuilds the navmesh map to include tower areas (high cost areas which enemies will try to avoid)
             onAttackPhase.Invoke();
         }
         else
