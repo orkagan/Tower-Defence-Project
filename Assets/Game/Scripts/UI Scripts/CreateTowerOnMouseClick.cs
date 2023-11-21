@@ -39,7 +39,7 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                 //Check for nearby towers - if one is too close, display message saying a tower cannot be placed there for that reason.
                 if (!CheckForTowers(rayHit.point))
                 {
-                    int towerCost = _tower[chosenTower].GetComponentInChildren<TowerScript>().GetCost;
+                    int towerCost = _tower[chosenTower].GetComponentInChildren<Tower>().GetCost;
                     int result = hud.GetResourceCount - towerCost;
                     //If a tower can be placed, refer to its attached ScriptableObject and the player HUD UI
                     //If the player does not have enough resources, it will not place.
@@ -69,13 +69,13 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     //Then checks whether any of those colliders belongs to a tower. Returns true if there is, false if not.
     private bool CheckForTowers(Vector3 point)
     {
-        TowerScript ts = _tower[chosenTower].GetComponentInChildren<TowerScript>();
-        float towerDistance = ts.GetBaseRange;
+        Tower ts = _tower[chosenTower].GetComponentInChildren<Tower>();
+        float towerDistance = ts.GetRange;
         
         Collider[] hitColliders = Physics.OverlapSphere(point, towerDistance);
         foreach (Collider col in hitColliders)
         {
-            if (col.transform.TryGetComponent(out TowerScript tower))
+            if (col.transform.TryGetComponent(out Tower tower))
             {
                 tower.enabled = true;
                 return true;

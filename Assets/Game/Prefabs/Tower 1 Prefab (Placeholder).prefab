@@ -40,9 +40,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5768924399162714821}
-  - component: {fileID: 5395704806334229929}
-  - component: {fileID: 987301836859436223}
-  - component: {fileID: 615812634617289170}
   m_Layer: 8
   m_Name: Tower 1 Prefab (Placeholder)
   m_TagString: Tower
@@ -67,55 +64,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5395704806334229929
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5768924399162714822}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10, y: 3, z: 10}
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &987301836859436223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5768924399162714822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Size: {x: 10, y: 3, z: 10}
-  m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 3
-  m_AffectedAgents: 00000000
---- !u!114 &615812634617289170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5768924399162714822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6408d92e34c71b47875a13be790883c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagName: Enemy
-  debugEnter: 1
-  destroyThis: 0
-  destroyOther: 0
-  invokeEvent: 0
-  collisionEnter:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &5768924399603775613
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +143,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: Gun Tower
 --- !u!1 &5768924400049655895
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,8 +156,10 @@ GameObject:
   - component: {fileID: 5768924400049655891}
   - component: {fileID: 5768924400049655892}
   - component: {fileID: 5768924400049655893}
-  - component: {fileID: 2745055154023717461}
-  - component: {fileID: 3836951811445981650}
+  - component: {fileID: 8054996514003752562}
+  - component: {fileID: 4817999762146863682}
+  - component: {fileID: 1995018945561079612}
+  - component: {fileID: 258123064512113722}
   m_Layer: 8
   m_Name: Gun Tower
   m_TagString: Untagged
@@ -261,7 +211,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7eb50e2b4b9609340ad2574e16d3448c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -297,7 +247,20 @@ CapsuleCollider:
   m_Height: 2.5916078
   m_Direction: 1
   m_Center: {x: 0.00000003973643, y: -0.29579696, z: -0.00000007947286}
---- !u!114 &2745055154023717461
+--- !u!65 &8054996514003752562
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768924400049655895}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 0.5, z: 3}
+  m_Center: {x: 0, y: -0.8, z: 0}
+--- !u!114 &4817999762146863682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -306,11 +269,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5768924400049655895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0dba3b5929b05c4898bead76ae29ffd, type: 3}
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerSo: {fileID: 11400000, guid: 61c72054bdcd25048a53e72383273769, type: 2}
---- !u!114 &3836951811445981650
+  m_Size: {x: 3, y: 0.5, z: 3}
+  m_Center: {x: 0, y: -0.8, z: 0}
+  m_Area: 3
+  m_AffectedAgents: 00000000
+--- !u!114 &1995018945561079612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -319,10 +285,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 5768924400049655895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c07b90a91a8717f49bd24a4ba36e7711, type: 3}
+  m_Script: {fileID: 11500000, guid: 04a7e967d79aba046ab183d6b64f4f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerSo: {fileID: 0}
+  _towerDisplayName: {fileID: 5768924399603775613}
+  _entityName: Gun Tower
+  _damage: 3
+  _cost: 1
+  _attackCooldown: 2
+  _projectile: {fileID: 1692887742105329241, guid: 226bfa396b3b6c9499382a5bc73a9d58, type: 3}
+  _projectileSpeed: 15
+  _range: 3
+  _shootFrom: {fileID: 2888040137513178301}
+--- !u!114 &258123064512113722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768924400049655895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6408d92e34c71b47875a13be790883c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagName: Enemy
+  debugEnter: 0
+  destroyThis: 0
+  destroyOther: 0
+  invokeEvent: 0
+  collisionEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  enemyCollider: {fileID: 0}
 --- !u!1 &5768924400306966877
 GameObject:
   m_ObjectHideFlags: 0

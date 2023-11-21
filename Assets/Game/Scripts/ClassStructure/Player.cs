@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[CreateAssetMenu(menuName = "Entities/Player", fileName = "New Player")]
 public class Player : Entity
 {
     #region Fields

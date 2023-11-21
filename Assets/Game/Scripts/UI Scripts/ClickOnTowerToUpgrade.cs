@@ -25,9 +25,9 @@ public class ClickOnTowerToUpgrade : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit rayHit, Mathf.Infinity, _layer)
-                && rayHit.collider.TryGetComponent(out TowerScript t))
+                && rayHit.collider.TryGetComponent(out Tower t))
             {
-                TowerScript tower = rayHit.collider.GetComponent<TowerScript>();
+                Tower tower = rayHit.collider.GetComponent<Tower>();
                 if (Input.GetMouseButtonDown(0))
                 {
                     t.enabled = true;

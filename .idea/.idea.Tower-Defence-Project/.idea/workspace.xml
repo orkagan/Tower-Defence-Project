@@ -6,17 +6,34 @@
   <component name="ChangeListManager">
     <list default="true" id="ba2093db-e173-4bda-bba5-6277299627db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Enemy.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 1 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 1 Prefab (Placeholder).prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 2 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 2 Prefab (Placeholder).prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 2 Prefab (Placeholder).prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 2 Prefab (Placeholder).prefab.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 3 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 3 Prefab (Placeholder).prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/TowerNavmesh.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/TowerNavmesh.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/EnemyHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/EnemyHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/GameStateHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/GameStateHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/Gun Tower.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/Gun Tower.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/TowerScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/TowerScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 3 Prefab (Placeholder).prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 3 Prefab (Placeholder).prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/CheckForNearbyObjects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/CheckForNearbyObjects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Entity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Entity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Tower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Tower.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Player/PlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/Player.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/Player/New Player.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/Player/New Player.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/Bomb Tower.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/Bomb Tower.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/Gun Tower.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/Gun Tower.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/GunTower.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/GunTower.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/Laser Tower.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/Laser Tower.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/TowerScript.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ScriptableObjects/TowerS/TowerScript.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ClickOnTowerToUpgrade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ClickOnTowerToUpgrade.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/CreateTowerOnMouseClick.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/CreateTowerOnMouseClick.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/NavMeshAreas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/NavMeshAreas.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
