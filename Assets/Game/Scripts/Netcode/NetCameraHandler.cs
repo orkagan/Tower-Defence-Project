@@ -9,17 +9,16 @@ public class NetCameraHandler : NetworkBehaviour
     public Transform cam; //This name is deceptive, it goes on pivot, not cam
 
     private float horizontalInput; //Input.GetAxis(horizontal)
+    private float verticalInput; //Input.GetAxis(Vertical)
 
     [Header("Multipliers")]
-    public float horizontalMultiplier; //increases the amount the camera will move east and west
-
-    private float verticalInput; //Input.GetAxis(Vertical)
-    public float verticalMultiplier; //increases the amount the camera will move north and south
+    public float horizontalMultiplier = 1; //increases the amount the camera will move east and west
+    public float verticalMultiplier = 2; //increases the amount the camera will move north and south
 
     [Header("Leaving/Returning")]
-    public float leavingTime; //(seconds) how long does it take for the camera to move TOWARDS the desired location
-    public float returningTime; //(seconds) how long does it take for the camera to RETURN from its location
-    public float returningInputThreshold; //the input threshold for the camera acting as returning from its location 
+    public float leavingTime = 1; //(seconds) how long does it take for the camera to move TOWARDS the desired location
+    public float returningTime = 0.2f; //(seconds) how long does it take for the camera to RETURN from its location
+    public float returningInputThreshold = 0; //the input threshold for the camera acting as returning from its location 
     //^^^ (returningInputThreshold is scuffed, if needed James will come up with a better solution)
 
     private float smoothTime; //both of these are for Vector3.SmoothDamp
@@ -29,7 +28,7 @@ public class NetCameraHandler : NetworkBehaviour
     
     private Vector3 toMove; //used in converting the horizontal and vertical inputs into horizontal and vertical camera movements
     [Space(20f)]
-    public float strength; //how far the camera moves compared to the input
+    public float strength = 1; //how far the camera moves compared to the input
     #endregion
 
     #region Methods
@@ -88,8 +87,25 @@ public class NetCameraHandler : NetworkBehaviour
 
     private void Awake()
     {
-        if (!GetComponent<NetworkObject>().IsOwner) enabled = false;
-        else GetComponentInChildren<Camera>().gameObject.SetActive(true);
+        cam = GetComponentInChildren<Camera>().transform;
+    }
+    public override void OnNetworkSpawn()
+    {
+        //quick solution for using camera of player.
+        if (GetComponent<NetworkObject>().IsOwner)
+        {
+            Debug.Log("Congrats it's an owner!");
+            Camera.main.tag = "Untagged";
+            cam.gameObject.tag = "MainCamera";
+            cam.gameObject.SetActive(true);
+
+        }
+        else
+        {
+            Debug.Log("I'm sorry, it's not yours.");
+            cam.gameObject.tag = "Untagged";
+            cam.gameObject.SetActive(false);
+        }
     }
 
     public void Update()

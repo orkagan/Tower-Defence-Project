@@ -107,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6055766975767220440}
-  - component: {fileID: 6252848653785124011}
+  - component: {fileID: 3190389645654024087}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -131,7 +131,7 @@ Transform:
   m_Father: {fileID: 1515233855107776092}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
---- !u!114 &6252848653785124011
+--- !u!114 &3190389645654024087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,10 +140,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3834051084635565334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17cb5d51e7d0d2b46ab4ce11143515b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bb32cff450b9fe498fd5223417c44a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 6055766975767220440}
+  cam: {fileID: 0}
   horizontalMultiplier: 1
   verticalMultiplier: 2
   leavingTime: 1
@@ -167,7 +167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4310227753460384651
 Transform:
   m_ObjectHideFlags: 0
@@ -206,7 +206,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: -30
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -298,9 +298,9 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &8228945482358837744
@@ -335,8 +335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcae4a3910d0514bb989cb95cc06e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 30
-  deceleration: 30
+  acceleration: 20
+  deceleration: 20
   maxSpeed: 30
   orientation: {fileID: 0}
   horizontalInput: 0

@@ -10,9 +10,9 @@ public class NetPlayerMovement : NetworkBehaviour
     private float accelRate; //The multiplier used on the final vector
 
     [Tooltip("DO NOT SET HIGHER THAN MAXSPEED OR LOWER THAN 1, GAME WILL BREAK")]
-    public float acceleration = 30;
+    public float acceleration = 20;
     [Tooltip("DO NOT SET HIGHER THAN MAXSPEED OR LOWER THAN 1, GAME WILL BREAK")]
-    public float deceleration = 30;
+    public float deceleration = 20;
     
     private float accelAmount;
     private float decelAmount;
