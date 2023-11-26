@@ -25,6 +25,6 @@ public class ChatHandler : MonoBehaviour
 
     public void CreateNewLine(string text)
     {
-        chat.text += $"{text}\n";
+        chat.text = $"{text}";
     }
 }
