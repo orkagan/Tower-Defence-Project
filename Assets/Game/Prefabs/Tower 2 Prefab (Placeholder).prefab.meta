@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Game/Prefabs/Tower 2 Prefab (Placeholder).prefab.meta
 guid: 36d73858eb3af2c4bb70dd4ae0c721ec
+========
+guid: 7d8fa68858d8c664594e41e2b2e66828
+>>>>>>>> origin/MobileMovementNewInput:Assets/Game/Scenes/Canvas.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
