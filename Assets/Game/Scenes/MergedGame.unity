@@ -493,6 +493,9 @@ MonoBehaviour:
     onButtonPress:
       m_PersistentCalls:
         m_Calls: []
+  onSuccessfulUpgrade:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &150349867
 Transform:
   m_ObjectHideFlags: 0
@@ -3192,7 +3195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tower:
-  - {fileID: 5768924399162714822, guid: 6a4e2619947789e47b4a471bfb4cf634, type: 3}
+  - {fileID: 5768924399162714822, guid: d1ae44c2831c6c749bbdadf9f6a0547f, type: 3}
   - {fileID: 5768924399162714822, guid: 36d73858eb3af2c4bb70dd4ae0c721ec, type: 3}
   - {fileID: 5768924399162714822, guid: ad3e16fc175bda346bf164f7f7bc0730, type: 3}
   chosenTower: 0
