@@ -151,4 +151,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52ff9cc7b2c5e145bd6706d76ddeff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _distanceToSearch: 5
+  health: 50
+  _moveSpeed: 0
+  _attackRange: 15
+  _resourceDrop: 1
+  _enemyState: 0
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []

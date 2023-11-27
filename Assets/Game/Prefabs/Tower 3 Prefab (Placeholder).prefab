@@ -287,6 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a7e967d79aba046ab183d6b64f4f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   _towerDisplayName: {fileID: 5768924399603775613}
   _tagName: Enemy
   _entityName: Laser Tower

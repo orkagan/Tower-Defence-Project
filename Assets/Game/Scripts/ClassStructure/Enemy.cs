@@ -4,12 +4,13 @@ using UnityEngine;
 public class Enemy : AggressiveEntity
 {
     #region Fields
-    private Transform enemyTransform;
-    private Rigidbody enemyRB;
-    private ParticleSystem enemyPS;
-    private float moveSpeed;
-    private int resourceDrop; //we might want to dynamically calculate this during death
-    private EnemyState enemyState;
+    //protected Transform _enemyTransform;
+    //protected Rigidbody _enemyRB;
+    //protected ParticleSystem _enemyPS;
+    //[SerializeField] protected float _moveSpeed;
+    [SerializeField] protected float _attackRange;
+    [SerializeField] protected int _resourceDrop; //we might want to dynamically calculate this during death
+    [SerializeField] protected EnemyState _enemyState;
     #endregion
     
     #region Properties
@@ -30,7 +31,8 @@ public class Enemy : AggressiveEntity
     
     }
     #endregion
-    enum EnemyState
+
+    public enum EnemyState
     {
         Attacking,
         Rushing

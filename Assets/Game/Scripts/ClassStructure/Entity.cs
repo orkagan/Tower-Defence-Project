@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class Entity : MonoBehaviour
 {
     #region Fields
-    protected float health;
+    [SerializeField] protected float health;
     protected float maximumHealth;
     #endregion
 

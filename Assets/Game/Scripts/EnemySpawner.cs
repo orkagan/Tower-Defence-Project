@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-public class EnemyHandler : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject _enemyPrefab;
     [SerializeField] Transform _gameMap;
@@ -28,6 +28,11 @@ public class EnemyHandler : MonoBehaviour
         while (GameStateHandler.Instance.GetCurrentState == GameState.AttackPhase)
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                KillAllEnemies(enemies);
+            }
 
             if (enemies.Length == 0)
             {
@@ -74,8 +79,11 @@ public class EnemyHandler : MonoBehaviour
         _enemySpawnCountPerTurn += _countIncreasePerFollowingTurn;
     }
 
-    public void KillAllEnemies()
+    public void KillAllEnemies(GameObject[] enemies)
     {
-        
+        foreach (GameObject enemy in enemies)
+        {
+            DestroyImmediate(enemy);
+        }
     }
 }

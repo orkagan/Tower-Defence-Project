@@ -1,20 +1,21 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : Enemy
 {
-    private NavMeshAgent _agent;
+    public UnityEvent onDeath;
+    
     private GameObject _target, _player, _drill;
-    [SerializeField] private float _distanceToSearch = 5f;
+
+    private NavMeshAgent _agent => GetComponent<NavMeshAgent>();
+    private float DistanceToSearch => _attackRange;
 
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _drill = GameObject.FindGameObjectWithTag("Drill");
-        _agent = GetComponent<NavMeshAgent>();
-
-        FindTarget();
     }
 
     private void Update()
@@ -22,20 +23,29 @@ public class EnemyMovement : MonoBehaviour
         //change target to player
         //if player becomes out of range, change back to drill
         _target = IsPlayerInRange() ? _player : _drill;
+
+        FindTarget();
     }
 
     private void FindTarget()
     {
-        _target = GameObject.FindGameObjectWithTag("Drill");
         Vector3 position = _target.transform.position;
         _agent.SetDestination(position);
+    }
+
+    private void TrackHealth()
+    {
+        if (health <= 0)
+        {
+            onDeath.Invoke();
+        }
     }
 
     private bool IsPlayerInRange()
     {
         float distance = Vector3.Distance(_player.transform.position, transform.position);
 
-        if (distance < _distanceToSearch)
+        if (distance < DistanceToSearch)
         {
             return true;
         }

@@ -14,9 +14,9 @@ NavMeshProjectSettings:
   - name: Tower 1 Radius
     cost: 2
   - name: Tower 2 Radius
-    cost: 5
+    cost: 3
   - name: Tower 3 Radius
-    cost: 8
+    cost: 4
   - name: 
     cost: 1
   - name: 
