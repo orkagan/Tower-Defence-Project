@@ -18,12 +18,7 @@ public class EnemyHandler : MonoBehaviour
     [SerializeField, Space(20), Tooltip("The areas where the enemies spawn.")]
     Transform[] _spawnPoints;
 
-    private UnityEvent onFinishSpawning;
-
-    private void Start()
-    {
-        onFinishSpawning.AddListener(CountAllEnemies);
-    }
+    public UnityEvent onFinishSpawning;
 
     public void BeginSpawning() => StartCoroutine(nameof(SpawnEnemies));
     public void CountAllEnemies() => StartCoroutine(nameof(CountEnemies));

@@ -12,19 +12,18 @@ public class UpgradeInstance : MonoBehaviour
     /// The UI Text GameObject attached to the upgrade instance.
     /// </summary>
     [SerializeField] Text upgradeLevel;
-
+    
     /// <summary>
     /// The text of the UpgradeButton Button.
     /// </summary>
-    public string upgradeButtonText
+    public string UpgradeButtonText
     {
         set => upgradeButton.GetComponentInChildren<Text>().text = value;
     }
-
     /// <summary>
     /// The text of the UpgradeLevel Text.
     /// </summary>
-    public string upgradeText
+    public string UpgradeText
     {
         set => upgradeLevel.text = value;
     }

@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public abstract class Enemy : AggressiveEntity
+public class Enemy : AggressiveEntity
 {
     #region Fields
     private Transform enemyTransform;
@@ -12,8 +11,20 @@ public abstract class Enemy : AggressiveEntity
     private int resourceDrop; //we might want to dynamically calculate this during death
     private EnemyState enemyState;
     #endregion
+    
+    #region Properties
+
+    public float GetHealth
+    { 
+        get => health;
+        set => health = value;
+    }
+    #endregion
 
     #region Methods
+
+    public void DecreaseHealth(int decrement) => GetHealth -= decrement;
+    
     public static void CalculateState() //i've decided i'll make these static so i don't have to redo them
     { 
     
@@ -23,5 +34,10 @@ public abstract class Enemy : AggressiveEntity
     {
         Attacking,
         Rushing
+    }
+
+    public override void Attack()
+    {
+        throw new NotImplementedException();
     }
 }

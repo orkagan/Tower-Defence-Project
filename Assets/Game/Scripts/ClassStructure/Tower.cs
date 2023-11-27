@@ -12,16 +12,17 @@ public class Tower : AggressiveEntity
     [SerializeField] private string _tagName;
     [SerializeField] private string _entityName;
 
-    [SerializeField] private float _damage;
-    [SerializeField] private int _cost;
-
+    [SerializeField, Space(10)] private float _range;
     [SerializeField] private float _attackCooldown;
+    [SerializeField] private float _damage;
+    
+    [SerializeField, Space(10)] private int _cost;
+
 
     //[SerializeField] private Projectile _projectile;
-    [SerializeField] private GameObject _projectile;
-    [SerializeField] private float _projectileSpeed;
-    [SerializeField] private float _range;
-    [SerializeField] private Transform _shootFrom;
+    //[SerializeField] private GameObject _projectile;
+    //[SerializeField] private float _projectileSpeed;
+    //[SerializeField] private Transform _shootFrom;
 
     private List<Collider> _enemiesInRange;
 
@@ -45,7 +46,7 @@ public class Tower : AggressiveEntity
     public float GetDamage
     {
         get => _damage;
-        set => _damage = value;
+        private set => _damage = value;
     }
 
     /// <summary>
@@ -54,11 +55,11 @@ public class Tower : AggressiveEntity
     public float GetAttackCooldown
     {
         get => _attackCooldown;
-        set => _attackCooldown = value;
+        private set => _attackCooldown = value;
     }
 
     /// <summary>
-    /// The distance around the tower - where the tower searches for enemies.
+    /// The distance around the tower - how far around the tower it searches for enemies.
     /// </summary>
     public float GetRange
     {
@@ -85,15 +86,14 @@ public class Tower : AggressiveEntity
     {
         if (!other.gameObject.CompareTag(_tagName)) return;
 
-        
-        //_enemiesInRange.Add(other);
+        _enemiesInRange.Add(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.gameObject.CompareTag(_tagName)) return;
 
-        //_enemiesInRange.Remove(other);
+        _enemiesInRange.Remove(other);
     }
 
     #endregion
@@ -121,22 +121,28 @@ public class Tower : AggressiveEntity
 
     public override void Attack()
     {
-        StartCoroutine(nameof(Shoot));
+        if (GameStateHandler.Instance.GetCurrentState == GameState.AttackPhase)
+        {
+            if (_enemiesInRange.Count !<= 0)
+            {
+                StartCoroutine(nameof(Shoot));
+            }
+        }
     }
 
     private IEnumerator Shoot()
     {
-        if (_enemiesInRange.Count > 0)
+        foreach (Collider enemy in _enemiesInRange)
         {
-            foreach (Collider enemy in _enemiesInRange)
-            {
-                //shoot a projectile from top of tower and onto target
-                Vector3 shootPoint = _shootFrom.position;
-                GameObject newBullet = Instantiate(_projectile, shootPoint, Quaternion.identity, transform);
-                Vector3 direction = shootPoint - enemy.transform.position;
-
-                newBullet.transform.position += direction * (Time.deltaTime * _projectileSpeed);
-            }
+            //shoot a projectile from top of tower and onto target
+            #region code for actually shooting a projectile, but due to time constraints, won't
+            //Vector3 shootPoint = _shootFrom.position;
+            //GameObject newBullet = Instantiate(_projectile, shootPoint, Quaternion.identity, transform);
+            //Vector3 direction = shootPoint - enemy.transform.position;
+            //newBullet.transform.position += direction * (Time.deltaTime * _projectileSpeed);
+            #endregion
+            
+            enemy.GetComponent<Enemy>().DecreaseHealth(5);
         }
 
         yield return new WaitForSeconds(GetAttackCooldown);

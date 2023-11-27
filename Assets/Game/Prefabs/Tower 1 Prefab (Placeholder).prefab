@@ -290,13 +290,10 @@ MonoBehaviour:
   _towerDisplayName: {fileID: 5768924399603775613}
   _tagName: Enemy
   _entityName: Gun Tower
+  _range: 3
+  _attackCooldown: 2
   _damage: 3
   _cost: 1
-  _attackCooldown: 2
-  _projectile: {fileID: 1692887742105329241, guid: 226bfa396b3b6c9499382a5bc73a9d58, type: 3}
-  _projectileSpeed: 15
-  _range: 3
-  _shootFrom: {fileID: 2888040137513178301}
 --- !u!1 &5768924400306966877
 GameObject:
   m_ObjectHideFlags: 0

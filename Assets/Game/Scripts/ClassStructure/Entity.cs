@@ -3,8 +3,8 @@ using UnityEngine;
 public abstract class Entity : MonoBehaviour
 {
     #region Fields
-    private float health;
-    private float maximumHealth;
+    protected float health;
+    protected float maximumHealth;
     #endregion
 
     #region Methods
