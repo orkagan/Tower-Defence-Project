@@ -295,6 +295,7 @@ MonoBehaviour:
   _attackCooldown: 2
   _damage: 3
   _cost: 1
+  _enemiesInRange: []
 --- !u!1 &5768924400306966877
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,12 +23,10 @@ public class Tower : AggressiveEntity
     //[SerializeField] private float _projectileSpeed;
     //[SerializeField] private Transform _shootFrom;
 
-    private List<Collider> _enemiesInRange = new List<Collider>();
-
+    [SerializeField] private List<Collider> _enemiesInRange = new List<Collider>();
     #endregion
 
     #region Properties
-
     /// <summary>
     /// The name of the Tower.
     /// </summary>
@@ -65,11 +63,9 @@ public class Tower : AggressiveEntity
         get => _range;
         private set => _range = value;
     }
-
     #endregion
 
     #region Unity Methods
-
     private void Update()
     {
         if (GameStateHandler.Instance.GetCurrentState == GameState.AttackPhase)
@@ -100,13 +96,10 @@ public class Tower : AggressiveEntity
 
         _enemiesInRange.Remove(other);
     }
-
     #endregion
 
-    #region Methods
-
+    #region Methods 
     #region Upgrades
-
     public void SetRange(int increase)
     {
         GetRange += increase;
@@ -121,7 +114,6 @@ public class Tower : AggressiveEntity
     {
         GetAttackCooldown -= decrease;
     }
-
     #endregion
 
     public override void Attack()
@@ -149,6 +141,5 @@ public class Tower : AggressiveEntity
 
         yield return new WaitForSeconds(GetAttackCooldown);
     }
-
     #endregion
 }

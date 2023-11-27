@@ -1,11 +1,14 @@
+using System.Collections;
+using UnityEngine;
+
 public class Player : Entity
 {
     #region Fields
-    public float moveSpeed;
+    [SerializeField] private float moveSpeed;
     public int currency;
-    public Tower[] towers;
-    public Weapon[] weapons;
-    public bool readyToBeginWave;
+    //[SerializeField] private Tower[] towers;
+    [SerializeField] private Weapon[] weapons;
+    [SerializeField] private bool readyToBeginWave;
     #endregion
 
     #region Methods
@@ -24,9 +27,14 @@ public class Player : Entity
     
     }
 
-    public void UpgradeTower(Tower tower)
-    { 
-    
+    public override IEnumerator Die()
+    {
+        return base.Die();
     }
+
+    //public void UpgradeTower(Tower tower)
+    //{ 
+
+    //}
     #endregion
 }

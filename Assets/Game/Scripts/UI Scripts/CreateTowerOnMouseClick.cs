@@ -14,7 +14,6 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     [SerializeField] private LayerMask _layer;
     [SerializeField] private PlayMode _playMode = PlayMode.BuildMode;
     public UnityEvent onMouseClick;
-    public HUDManager hud;
     public PlayMode CurrentPlayMode => _playMode;
 
     private void Update()
@@ -40,7 +39,7 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                 if (!CheckForTowers(rayHit.point))
                 {
                     int towerCost = _tower[chosenTower].GetComponentInChildren<Tower>().GetCost;
-                    int result = hud.GetResourceCount - towerCost;
+                    int result = HUDManager.Instance.GetResourceCount - towerCost;
                     //If a tower can be placed, refer to its attached ScriptableObject and the player HUD UI
                     //If the player does not have enough resources, it will not place.
                     if (result < 0)
@@ -50,8 +49,7 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                     //If they do, remove from the player's resource count the cost of the tower to place. 
                     else
                     {
-                        hud.resources.GetComponent<IncreaseDecreaseNumber>()
-                            .DecreaseAmount(towerCost);
+                        HUDManager.Instance.SetResourceCount(towerCost, true);
                         Instantiate(_tower[chosenTower], rayHit.point, Quaternion.identity, transform);
                         onMouseClick.Invoke();
                     }
@@ -84,13 +82,7 @@ public class CreateTowerOnMouseClick : MonoBehaviour
         return false;
     }
 
-    public void SetChosenTower(int i)
-    {
-        chosenTower = i;
-    }
+    public void SetChosenTower(int i) => chosenTower = i;
 
-    public void SwitchToBuildMode(bool mode)
-    {
-        _playMode = mode ? PlayMode.BuildMode : PlayMode.Other;
-    }
+    public void SwitchToBuildMode(bool mode) => _playMode = mode ? PlayMode.BuildMode : PlayMode.Other;
 }

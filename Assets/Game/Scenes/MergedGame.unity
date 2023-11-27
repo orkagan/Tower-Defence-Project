@@ -463,6 +463,7 @@ GameObject:
   - component: {fileID: 190850430}
   - component: {fileID: 190850435}
   - component: {fileID: 190850434}
+  - component: {fileID: 190850436}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -588,6 +589,23 @@ MonoBehaviour:
   wantedDir: {x: 0, y: 0, z: 0}
   rb: {fileID: 190850434}
   col: {fileID: 190850430}
+--- !u!114 &190850436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190850429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ab8ea4ff2a21b4e88cc6f70152fa7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  moveSpeed: 30
+  currency: 10
+  weapons: []
+  readyToBeginWave: 0
 --- !u!1 &245626802
 GameObject:
   m_ObjectHideFlags: 0
@@ -2479,6 +2497,54 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 2, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &900295806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900295808}
+  - component: {fileID: 900295807}
+  m_Layer: 0
+  m_Name: HUD Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &900295807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900295806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0621568008770945ab6fc896060cb17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 190850436}
+  _healthBar: {fileID: 0}
+  _resources: {fileID: 0}
+  _phaseText: {fileID: 0}
+--- !u!4 &900295808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900295806}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 25.62014, y: -24.035685, z: -46.604164}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!850595691 &903259584
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -3020,7 +3086,6 @@ MonoBehaviour:
   onMouseClick:
     m_PersistentCalls:
       m_Calls: []
-  hud: {fileID: 5445093990849374172}
 --- !u!4 &1228395417
 Transform:
   m_ObjectHideFlags: 0
@@ -6275,7 +6340,6 @@ GameObject:
   - component: {fileID: 5445093990849374170}
   - component: {fileID: 5445093990849374168}
   - component: {fileID: 5445093990849374169}
-  - component: {fileID: 5445093990849374172}
   - component: {fileID: 5445093990849374173}
   m_Layer: 7
   m_Name: Gameplay HUD
@@ -6284,21 +6348,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5445093990849374172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5445093990849374171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0621568008770945ab6fc896060cb17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 5445093992286114634}
-  resources: {fileID: 9078488813285711363}
-  phaseText: {fileID: 5445093991774658479}
 --- !u!225 &5445093990849374173
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -4,9 +4,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class EnemyMovement : Enemy
-{
-    public UnityEvent onDeath;
-    
+{    
     private GameObject _target, _player, _drill;
 
     private NavMeshAgent _agent => GetComponent<NavMeshAgent>();
@@ -31,14 +29,6 @@ public class EnemyMovement : Enemy
     {
         Vector3 position = _target.transform.position;
         _agent.SetDestination(position);
-    }
-
-    private void TrackHealth()
-    {
-        if (health <= 0)
-        {
-            onDeath.Invoke();
-        }
     }
 
     private bool IsPlayerInRange()
