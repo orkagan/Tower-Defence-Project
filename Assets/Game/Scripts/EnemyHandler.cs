@@ -33,9 +33,9 @@ public class EnemyHandler : MonoBehaviour
             {
                 GameStateHandler.Instance.SwitchState();
             }
+
+            yield return null;
         }
-        
-        yield return new WaitForSeconds(1f);
     }
 
     //spawns a set number of enemies
@@ -72,5 +72,10 @@ public class EnemyHandler : MonoBehaviour
     public void IncreaseEnemySpawnCount()
     {
         _enemySpawnCountPerTurn += _countIncreasePerFollowingTurn;
+    }
+
+    public void KillAllEnemies()
+    {
+        
     }
 }

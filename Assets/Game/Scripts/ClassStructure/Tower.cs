@@ -15,16 +15,15 @@ public class Tower : AggressiveEntity
     [SerializeField, Space(10)] private float _range;
     [SerializeField] private float _attackCooldown;
     [SerializeField] private float _damage;
-    
-    [SerializeField, Space(10)] private int _cost;
 
+    [SerializeField, Space(10)] private int _cost;
 
     //[SerializeField] private Projectile _projectile;
     //[SerializeField] private GameObject _projectile;
     //[SerializeField] private float _projectileSpeed;
     //[SerializeField] private Transform _shootFrom;
 
-    private List<Collider> _enemiesInRange;
+    private List<Collider> _enemiesInRange = new List<Collider>();
 
     #endregion
 
@@ -73,7 +72,13 @@ public class Tower : AggressiveEntity
 
     private void Update()
     {
-        Attack();
+        if (GameStateHandler.Instance.GetCurrentState == GameState.AttackPhase)
+        {
+            if (_enemiesInRange.Count ! <= 0)
+            {
+                Attack();
+            }
+        }
     }
 
     private void OnValidate()
@@ -121,13 +126,7 @@ public class Tower : AggressiveEntity
 
     public override void Attack()
     {
-        if (GameStateHandler.Instance.GetCurrentState == GameState.AttackPhase)
-        {
-            if (_enemiesInRange.Count !<= 0)
-            {
-                StartCoroutine(nameof(Shoot));
-            }
-        }
+        StartCoroutine(nameof(Shoot));
     }
 
     private IEnumerator Shoot()
@@ -135,13 +134,16 @@ public class Tower : AggressiveEntity
         foreach (Collider enemy in _enemiesInRange)
         {
             //shoot a projectile from top of tower and onto target
+
             #region code for actually shooting a projectile, but due to time constraints, won't
+
             //Vector3 shootPoint = _shootFrom.position;
             //GameObject newBullet = Instantiate(_projectile, shootPoint, Quaternion.identity, transform);
             //Vector3 direction = shootPoint - enemy.transform.position;
             //newBullet.transform.position += direction * (Time.deltaTime * _projectileSpeed);
+
             #endregion
-            
+
             enemy.GetComponent<Enemy>().DecreaseHealth(5);
         }
 
