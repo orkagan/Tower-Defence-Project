@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("MouseLook")]
     public Camera cam;
     public Transform playerTransform;
-    public Transform rotHandler;  
+    public Transform rotHandler;
 
     private Vector2 lookInputPosition;
     private Vector2 _playerScreenPos;

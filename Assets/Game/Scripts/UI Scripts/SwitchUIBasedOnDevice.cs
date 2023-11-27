@@ -11,6 +11,11 @@ public class SwitchUIBasedOnDevice : MonoBehaviour
         mobileControls.SetActive(false);
         
         SwitchUI();
+        
+#if UNITY_EDITOR
+        pCControls.SetActive(true);
+#endif
+        
     }
 
     private void SwitchUI()

@@ -613,68 +613,6 @@ Transform:
   m_Father: {fileID: 190850433}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &150349865
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 150349867}
-  - component: {fileID: 150349866}
-  m_Layer: 0
-  m_Name: Upgrade System Handler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &150349866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150349865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b64060071a74674d8d1e453d150011a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _parent: {fileID: 1390730791}
-  _upgradeInstancePrefab: {fileID: 109787133413623269, guid: 81d29475fe0d7f848a12308b1fb57a51, type: 3}
-  _upgradeAspect:
-  - upgradeName: Range
-    onButtonPress:
-      m_PersistentCalls:
-        m_Calls: []
-  - upgradeName: Attack Cooldown
-    onButtonPress:
-      m_PersistentCalls:
-        m_Calls: []
-  - upgradeName: Damage
-    onButtonPress:
-      m_PersistentCalls:
-        m_Calls: []
-  onSuccessfulUpgrade:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!4 &150349867
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150349865}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.1619568, y: -21.923508, z: 12.86599}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 863764873}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &190850429
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,9 +776,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ab8ea4ff2a21b4e88cc6f70152fa7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   moveSpeed: 0
   currency: 0
-  towers: []
   weapons: []
   readyToBeginWave: 0
   orientation: {x: 0, y: 0, z: 0}
@@ -984,7 +922,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24352
+  m_Name: pb_Mesh31656
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3357,41 +3295,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!1 &863764872
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 863764873}
-  m_Layer: 0
-  m_Name: HANDLERS
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &863764873
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863764872}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -49.87555, y: 33.150005, z: -39.375546}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1228395417}
-  - {fileID: 1738949974}
-  - {fileID: 2010146158}
-  - {fileID: 150349867}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &902642718
 Mesh:
   m_ObjectHideFlags: 0
@@ -3827,15 +3730,15 @@ MonoBehaviour:
   - {fileID: 5768924399162714822, guid: 36d73858eb3af2c4bb70dd4ae0c721ec, type: 3}
   - {fileID: 5768924399162714822, guid: ad3e16fc175bda346bf164f7f7bc0730, type: 3}
   chosenTower: 0
-  _towerDistance: 3
   _layer:
     serializedVersion: 2
     m_Bits: 8
   _playMode: 1
+  _pcHUD: {fileID: 0}
+  _mobileHUD: {fileID: 0}
   onMouseClick:
     m_PersistentCalls:
       m_Calls: []
-  hud: {fileID: 5445093990849374172}
 --- !u!4 &1228395417
 Transform:
   m_ObjectHideFlags: 0
@@ -3844,12 +3747,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228395415}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.70235, y: -31.809383, z: 45.47027}
+  m_LocalPosition: {x: -30.173199, y: 1.340622, z: 6.0947227}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 863764873}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1228395418
 MonoBehaviour:
@@ -3867,21 +3770,13 @@ MonoBehaviour:
   _layer:
     serializedVersion: 2
     m_Bits: 256
-  onTowerClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 556733397}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+  _rangeText: {fileID: 0}
+  _cooldownText: {fileID: 0}
+  _damageText: {fileID: 0}
+  _rangeBtn: {fileID: 0}
+  _cooldownBtn: {fileID: 0}
+  _damageBtn: {fileID: 0}
+  upgradePanel: {fileID: 0}
 --- !u!1 &1390730790
 GameObject:
   m_ObjectHideFlags: 0
@@ -5248,12 +5143,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738949972}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 29.675549, y: -27.150005, z: 89.21983}
+  m_LocalPosition: {x: -20.2, y: 6, z: 49.844288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 863764873}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1854670647
 GameObject:
@@ -5442,9 +5337,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0621568008770945ab6fc896060cb17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 656758274}
-  resources: {fileID: 572915551}
-  phaseText: {fileID: 78712856}
+  _player: {fileID: 0}
+  _healthBar: {fileID: 0}
+  _resources: {fileID: 0}
+  _phaseText: {fileID: 0}
 --- !u!114 &1893722829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5741,12 +5637,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2010146156}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.567715, y: -14.001686, z: -6.471012}
+  m_LocalPosition: {x: -31.307835, y: 19.14832, z: -45.846558}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 863764873}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2112720358
 GameObject:
@@ -6714,9 +6610,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0621568008770945ab6fc896060cb17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 5445093992286114634}
-  resources: {fileID: 9078488813285711363}
-  phaseText: {fileID: 5445093991774658479}
+  _player: {fileID: 0}
+  _healthBar: {fileID: 0}
+  _resources: {fileID: 0}
+  _phaseText: {fileID: 0}
 --- !u!225 &5445093990849374173
 CanvasGroup:
   m_ObjectHideFlags: 0

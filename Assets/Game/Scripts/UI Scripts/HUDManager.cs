@@ -4,23 +4,6 @@ using UnityEngine;
 
 public class HUDManager : MonoBehaviour
 {
-    #region Singleton
-    public static HUDManager Instance;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    #endregion
-
     [SerializeField] private Player _player;
     [SerializeField] private GameObject _healthBar, _resources, _phaseText;
 

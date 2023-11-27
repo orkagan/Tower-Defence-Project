@@ -13,8 +13,13 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     [HideInInspector] public int chosenTower = 0;
     [SerializeField] private LayerMask _layer;
     [SerializeField] private PlayMode _playMode = PlayMode.BuildMode;
+    [SerializeField] private GameObject _pcHUD, _mobileHUD;
+    
     public UnityEvent onMouseClick;
     public PlayMode CurrentPlayMode => _playMode;
+    private HUDManager PC_HUD => _pcHUD.GetComponent<HUDManager>();
+    private HUDManager MOB_HUD => _mobileHUD.GetComponent<HUDManager>();
+    private HUDManager hud => _pcHUD.activeSelf ? PC_HUD : MOB_HUD;
 
     private void Update()
     {
@@ -39,7 +44,7 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                 if (!CheckForTowers(rayHit.point))
                 {
                     int towerCost = _tower[chosenTower].GetComponentInChildren<Tower>().GetCost;
-                    int result = HUDManager.Instance.GetResourceCount - towerCost;
+                    int result = hud.GetResourceCount - towerCost;
                     //If a tower can be placed, refer to its attached ScriptableObject and the player HUD UI
                     //If the player does not have enough resources, it will not place.
                     if (result < 0)
@@ -49,7 +54,7 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                     //If they do, remove from the player's resource count the cost of the tower to place. 
                     else
                     {
-                        HUDManager.Instance.SetResourceCount(towerCost, true);
+                        hud.SetResourceCount(towerCost, true);
                         Instantiate(_tower[chosenTower], rayHit.point, Quaternion.identity, transform);
                         onMouseClick.Invoke();
                     }

@@ -22,6 +22,15 @@ public class Enemy : AggressiveEntity
     [SerializeField] protected EnemyState _enemyState;
 
     [SerializeField] private Text _healthText;
+
+    private HUDManager activeHUD
+    {
+        get
+        {
+            HUDManager activeHUD = GameObject.FindObjectOfType<HUDManager>();
+            return activeHUD;
+        }
+    }
     #endregion
 
     #region Properties
@@ -49,7 +58,7 @@ public class Enemy : AggressiveEntity
     {
         GetHealth = GetMaxHealth;
 
-        onDeath.AddListener(() => HUDManager.Instance.GetResourceCount = 1);
+        onDeath.AddListener(() => activeHUD.GetResourceCount = 1);
     }
 
     private void Update()

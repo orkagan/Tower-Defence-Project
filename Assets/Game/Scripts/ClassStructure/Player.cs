@@ -9,12 +9,23 @@ public class Player : Entity
     //[SerializeField] private Tower[] towers;
     [SerializeField] private Weapon[] weapons;
     [SerializeField] private bool readyToBeginWave;
+
+    public Vector3 orientation;
     #endregion
 
     #region Methods
+    public void Update()
+    {
+        Debug.DrawRay(this.transform.position, orientation);
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Attack();
+        }
+    }
     public void Attack()
     { 
-    
+        
     }
 
     public void ReadyUp()
