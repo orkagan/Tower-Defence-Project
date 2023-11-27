@@ -11,20 +11,17 @@ public class CreateTowerOnMouseClick : MonoBehaviour
 {
     [SerializeField] private GameObject[] _tower;
     [HideInInspector] public int chosenTower = 0;
-    [SerializeField] private float _towerDistance = 3f;
     [SerializeField] private LayerMask _layer;
     [SerializeField] private PlayMode _playMode = PlayMode.BuildMode;
     public UnityEvent onMouseClick;
-    public HUDManager hud;
-
-    public PlayMode CurrentPlayMode
-    {
-        get => _playMode;
-    }
+    public PlayMode CurrentPlayMode => _playMode;
 
     private void Update()
     {
-        CreateTower();
+        if (GameStateHandler.Instance.GetCurrentState == GameState.BuildPhase)
+        {
+            CreateTower();
+        }
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
@@ -41,8 +38,8 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                 //Check for nearby towers - if one is too close, display message saying a tower cannot be placed there for that reason.
                 if (!CheckForTowers(rayHit.point))
                 {
-                    int towerCost = _tower[chosenTower].GetComponentInChildren<TowerScript>().GetCost;
-                    int result = hud.GetResourceCount - towerCost;
+                    int towerCost = _tower[chosenTower].GetComponentInChildren<Tower>().GetCost;
+                    int result = HUDManager.Instance.GetResourceCount - towerCost;
                     //If a tower can be placed, refer to its attached ScriptableObject and the player HUD UI
                     //If the player does not have enough resources, it will not place.
                     if (result < 0)
@@ -52,8 +49,7 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                     //If they do, remove from the player's resource count the cost of the tower to place. 
                     else
                     {
-                        hud.resources.GetComponent<IncreaseDecreaseNumber>()
-                            .DecreaseAmount(towerCost);
+                        HUDManager.Instance.SetResourceCount(towerCost, true);
                         Instantiate(_tower[chosenTower], rayHit.point, Quaternion.identity, transform);
                         onMouseClick.Invoke();
                     }
@@ -71,10 +67,13 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     //Then checks whether any of those colliders belongs to a tower. Returns true if there is, false if not.
     private bool CheckForTowers(Vector3 point)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(point, _towerDistance);
+        Tower ts = _tower[chosenTower].GetComponentInChildren<Tower>();
+        float towerDistance = ts.GetRange;
+        
+        Collider[] hitColliders = Physics.OverlapSphere(point, towerDistance);
         foreach (Collider col in hitColliders)
         {
-            if (col.transform.TryGetComponent(out TowerScript tower))
+            if (col.transform.TryGetComponent(out Tower tower))
             {
                 tower.enabled = true;
                 return true;
@@ -83,13 +82,7 @@ public class CreateTowerOnMouseClick : MonoBehaviour
         return false;
     }
 
-    public void SetChosenTower(int i)
-    {
-        chosenTower = i;
-    }
+    public void SetChosenTower(int i) => chosenTower = i;
 
-    public void SwitchToBuildMode(bool mode)
-    {
-        _playMode = mode ? PlayMode.BuildMode : PlayMode.Other;
-    }
+    public void SwitchToBuildMode(bool mode) => _playMode = mode ? PlayMode.BuildMode : PlayMode.Other;
 }

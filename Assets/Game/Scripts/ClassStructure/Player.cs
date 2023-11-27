@@ -1,22 +1,20 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Entity
 {
     #region Fields
-    public float moveSpeed;
+    [SerializeField] private float moveSpeed;
     public int currency;
-    public Tower[] towers;
-    public Weapon[] weapons;
-    public bool readyToBeginWave;
-    public Vector3 orientation; //this comes from PlayerMovement
+    //[SerializeField] private Tower[] towers;
+    [SerializeField] private Weapon[] weapons;
+    [SerializeField] private bool readyToBeginWave;
     #endregion
 
     #region Methods
     public void Attack()
-    {
-        weapons[0].Attack(orientation, this.transform.position);
+    { 
+    
     }
 
     public void ReadyUp()
@@ -29,24 +27,14 @@ public class Player : Entity
     
     }
 
-    public void UpgradeTower(Tower tower)
-    { 
-    
-    }
-
-
-    #endregion
-
-    #region Unity Methods
-
-    public void Update()
+    public override IEnumerator Die()
     {
-        Debug.DrawRay(this.transform.position, orientation);
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Attack();
-        }
+        return base.Die();
     }
+
+    //public void UpgradeTower(Tower tower)
+    //{ 
+
+    //}
     #endregion
 }
