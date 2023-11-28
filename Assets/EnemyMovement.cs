@@ -7,7 +7,7 @@ public class EnemyMovement : Enemy
 {    
     private GameObject _target, _player, _drill;
 
-    private NavMeshAgent _agent => GetComponent<NavMeshAgent>();
+    private NavMeshAgent _agent => GetComponentInChildren<NavMeshAgent>();
     private float DistanceToSearch => _attackRange;
 
     private void Start()

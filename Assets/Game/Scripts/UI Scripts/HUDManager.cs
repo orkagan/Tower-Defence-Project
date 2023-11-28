@@ -1,16 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private GameObject _healthBar, _resources, _phaseText;
 
+    private void FixedUpdate()
+    {
+        UpdateResources();
+        UpdateHealth();
+    }
+
     public int GetResourceCount
     {
         get => _player.currency;
-        set => GetResourceCount = value;
+        private set => _player.currency = value;
     }
 
     public void SetResourceCount(int value, bool decrement = false)
@@ -19,5 +27,17 @@ public class HUDManager : MonoBehaviour
             GetResourceCount -= value;
         else
             GetResourceCount += value;
+    }
+
+    private void UpdateResources()
+    {
+        Text money = _resources.GetComponent<Text>();
+        money.text = GetResourceCount.ToString();
+    }
+
+    private void UpdateHealth()
+    {
+        Image healthBar = _healthBar.GetComponent<Image>();
+        healthBar.fillAmount = _player.GetHealth;
     }
 }

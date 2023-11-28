@@ -34,12 +34,6 @@ public class Enemy : AggressiveEntity
     #endregion
 
     #region Properties
-    public float GetHealth
-    {
-        get => health;
-        set => health = value;
-    }
-
     public float GetMaxHealth => _maximumHealth;
 
     private string HealthText
@@ -58,7 +52,7 @@ public class Enemy : AggressiveEntity
     {
         GetHealth = GetMaxHealth;
 
-        onDeath.AddListener(() => activeHUD.GetResourceCount = 1);
+        onDeath.AddListener(() => activeHUD.SetResourceCount(1));
     }
 
     private void Update()

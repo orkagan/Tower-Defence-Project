@@ -31,6 +31,7 @@ public class GameStateHandler : MonoBehaviour
 
     [SerializeField] GameState state;
     [SerializeField] private NavMeshSurface _navMeshSurface;
+    [SerializeField] private CanvasGroup _towerSelection;
     public UnityEvent onAttackPhase, onBuildPhase;
 
     public GameState GetCurrentState => state;
@@ -43,12 +44,20 @@ public class GameStateHandler : MonoBehaviour
         if (state == GameState.BuildPhase)
         {
             state = GameState.AttackPhase;
+            
+            _towerSelection.interactable = false;
+            _towerSelection.blocksRaycasts = false;
             _navMeshSurface.BuildNavMesh(); //rebuilds the navmesh map to include tower areas (high cost areas which enemies will try to avoid)
+            
             onAttackPhase.Invoke();
         }
         else
         {
             state = GameState.BuildPhase;
+            
+            _towerSelection.interactable = true;
+            _towerSelection.blocksRaycasts = true;
+            
             onBuildPhase.Invoke();
         }
     }

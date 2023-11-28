@@ -20,8 +20,12 @@ public class EnemySpawner : MonoBehaviour
 
     public UnityEvent onFinishSpawning;
 
+    private void Start()
+    {
+        onFinishSpawning.AddListener(() => StartCoroutine(nameof(CountEnemies)));
+    }
+
     public void BeginSpawning() => StartCoroutine(nameof(SpawnEnemies));
-    public void CountAllEnemies() => StartCoroutine(nameof(CountEnemies));
 
     private IEnumerator CountEnemies()
     {

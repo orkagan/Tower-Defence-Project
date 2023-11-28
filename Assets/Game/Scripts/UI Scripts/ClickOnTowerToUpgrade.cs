@@ -11,8 +11,6 @@ public class ClickOnTowerToUpgrade : MonoBehaviour
 
     public GameObject upgradePanel;
 
-    private Tower _tower;
-
     private CreateTowerOnMouseClick CreateTower => GetComponent<CreateTowerOnMouseClick>();
 
     private void Update()
@@ -25,8 +23,6 @@ public class ClickOnTowerToUpgrade : MonoBehaviour
                 if (Physics.Raycast(ray, out RaycastHit rayHit, Mathf.Infinity, _layer)
                     && rayHit.collider.TryGetComponent(out Tower t))
                 {
-                    _tower = rayHit.collider.GetComponent<Tower>();
-                    
                     ClickOnTower(t);
                 }
             }
@@ -37,24 +33,29 @@ public class ClickOnTowerToUpgrade : MonoBehaviour
     private void ClickOnTower(Tower t)
     {
         t.enabled = true;
-        _nameOfThingToUpgrade.text = $"Upgrade {_tower.GetName}";
+        _nameOfThingToUpgrade.text = $"Upgrade {t.GetName}";
 
         _rangeBtn.onClick.RemoveAllListeners();
         _cooldownBtn.onClick.RemoveAllListeners();
         _damageBtn.onClick.RemoveAllListeners();
 
-        _rangeBtn.onClick.AddListener(() => _tower.SetRange(1));
-        _cooldownBtn.onClick.AddListener(() => _tower.SetAttackCooldown(1));
-        _damageBtn.onClick.AddListener(() => _tower.SetDamage(1));
+        _rangeBtn.onClick.AddListener(() => t.SetRange(1));
+        _rangeBtn.onClick.AddListener(() => UpdateDisplay(t));
         
-        UpdateDisplay();
+        _cooldownBtn.onClick.AddListener(() => t.SetAttackCooldown(1));
+        _cooldownBtn.onClick.AddListener(() => UpdateDisplay(t));
+        
+        _damageBtn.onClick.AddListener(() => t.SetDamage(1));
+        _damageBtn.onClick.AddListener(() => UpdateDisplay(t));
+        
         upgradePanel.SetActive(true);
+        UpdateDisplay(t);
     }
 
-    private void UpdateDisplay()
+    private void UpdateDisplay(Tower t)
     {
-        _rangeText.text = _tower.GetRange.ToString();
-        _cooldownText.text = _tower.GetAttackCooldown.ToString();
-        _damageText.text = _tower.GetDamage.ToString();
+        _rangeText.text = t.GetRange.ToString();
+        _cooldownText.text = t.GetAttackCooldown.ToString();
+        _damageText.text = t.GetDamage.ToString();
     }
 }

@@ -6,20 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="ba2093db-e173-4bda-bba5-6277299627db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 1 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 1 Prefab (Placeholder).prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 2 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 2 Prefab (Placeholder).prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 3 Prefab (Placeholder).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Tower 3 Prefab (Placeholder).prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/AINavMesh.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/AINavMesh.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/MergedGame.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/MergedGame.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/EnemyMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/EnemyMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Enemy.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Merged Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Merged Game.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Enemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Player/PlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Entity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Entity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/EnemySpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/EnemySpawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/GameStateHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/GameStateHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ClickOnTowerToUpgrade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ClickOnTowerToUpgrade.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/CreateTowerOnMouseClick.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/CreateTowerOnMouseClick.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/HUDManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/HUDManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/SwitchUIBasedOnDevice.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/SwitchUIBasedOnDevice.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +130,7 @@
       <workItem from="1699914500601" duration="4715000" />
       <workItem from="1700435270014" duration="10884000" />
       <workItem from="1701039086611" duration="12172000" />
-      <workItem from="1701125249623" duration="1737000" />
+      <workItem from="1701125249623" duration="5137000" />
     </task>
     <servers />
   </component>

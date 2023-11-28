@@ -43,7 +43,8 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                 //Check for nearby towers - if one is too close, display message saying a tower cannot be placed there for that reason.
                 if (!CheckForTowers(rayHit.point))
                 {
-                    int towerCost = _tower[chosenTower].GetComponentInChildren<Tower>().GetCost;
+                    Tower t = _tower[chosenTower].GetComponentInChildren<Tower>();
+                    int towerCost = t.GetCost;
                     int result = hud.GetResourceCount - towerCost;
                     //If a tower can be placed, refer to its attached ScriptableObject and the player HUD UI
                     //If the player does not have enough resources, it will not place.
@@ -56,6 +57,8 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                     {
                         hud.SetResourceCount(towerCost, true);
                         Instantiate(_tower[chosenTower], rayHit.point, Quaternion.identity, transform);
+                        ChatHandler.Instance.CreateNewLine($"{t.GetName} cost the player {t.GetCost} resources.");
+                        
                         onMouseClick.Invoke();
                     }
                 }
