@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +24,6 @@ public class ChatHandler : MonoBehaviour
 
     public void CreateNewLine(string text)
     {
-        chat.text = $"{text}";
+        chat.text += $"{text}\n";
     }
 }

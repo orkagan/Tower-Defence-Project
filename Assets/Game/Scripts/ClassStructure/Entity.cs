@@ -1,17 +1,27 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
-public abstract class Entity : ScriptableObject
+public abstract class Entity : MonoBehaviour
 {
-
     #region Fields
-    private float health;
-    private float maximumHealth;
+    [Header("Entity Fields")]
+    [SerializeField] protected float health;
+    protected float _maximumHealth = 100f;
+
+    public UnityEvent onDeath;
     #endregion
 
+    public float GetHealth
+    {
+        get => health;
+        set => health = value;
+    }
+
     #region Methods
-    public static void Die()
-    { 
-    
+    public virtual IEnumerator Die()
+    {
+        yield return null;
     }
     #endregion
 }

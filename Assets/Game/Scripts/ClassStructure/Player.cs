@@ -1,22 +1,39 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Entities/Player", fileName = "New Player")]
 public class Player : Entity
 {
     #region Fields
-    public float moveSpeed;
+    [Header("Player Fields")]
+    [SerializeField] private float moveSpeed;
     public int currency;
-    public Tower[] towers;
-    public Weapon[] weapons;
-    public bool readyToBeginWave;
+    //[SerializeField] private Tower[] towers;
+    [SerializeField] private Weapon[] weapons;
+    [SerializeField] private bool readyToBeginWave;
+
+    public Vector3 orientation;
     #endregion
 
     #region Methods
+
+    private void Start()
+    {
+        onDeath.AddListener(() =>
+            ChatHandler.Instance.CreateNewLine("Player has died."));
+    }
+
+    public void Update()
+    {
+        Debug.DrawRay(this.transform.position, orientation);
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Attack();
+        }
+    }
     public void Attack()
     { 
-    
+        
     }
 
     public void ReadyUp()
@@ -29,9 +46,18 @@ public class Player : Entity
     
     }
 
-    public void UpgradeTower(Tower tower)
-    { 
-    
+    public override IEnumerator Die()
+    {
+        onDeath.Invoke();
+        
+        DestroyImmediate(gameObject);
+        
+        return base.Die();
     }
+
+    //public void UpgradeTower(Tower tower)
+    //{ 
+
+    //}
     #endregion
 }
