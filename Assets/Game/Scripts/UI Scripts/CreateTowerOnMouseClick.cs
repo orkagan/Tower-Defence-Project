@@ -15,7 +15,6 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     [SerializeField] private PlayMode _playMode = PlayMode.BuildMode;
     [SerializeField] private GameObject _pcHUD, _mobileHUD;
     
-    public UnityEvent onMouseClick;
     public PlayMode CurrentPlayMode => _playMode;
     private HUDManager PC_HUD => _pcHUD.GetComponent<HUDManager>();
     private HUDManager MOB_HUD => _mobileHUD.GetComponent<HUDManager>();
@@ -58,8 +57,6 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                         hud.SetResourceCount(towerCost, true);
                         Instantiate(_tower[chosenTower], rayHit.point, Quaternion.identity, transform);
                         ChatHandler.Instance.CreateNewLine($"{t.GetName} cost the player {t.GetCost} resources.");
-                        
-                        onMouseClick.Invoke();
                     }
                 }
                 else
