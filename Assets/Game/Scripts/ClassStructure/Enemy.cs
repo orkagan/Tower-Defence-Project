@@ -12,11 +12,13 @@ public enum EnemyState
 public class Enemy : AggressiveEntity
 {
     #region Fields
+
     [Header("Enemy Fields")]
     //protected Transform _enemyTransform;
     //protected Rigidbody _enemyRB;
     //protected ParticleSystem _enemyPS;
     //[SerializeField] protected float _moveSpeed;
+    [SerializeField] private CapsuleCollider _attackCollider;
     [SerializeField] protected float _attackRange;
     [SerializeField] protected int _resourceDrop;
     [SerializeField] protected EnemyState _enemyState;
@@ -57,12 +59,17 @@ public class Enemy : AggressiveEntity
     {
         GetHealth = GetMaxHealth;
 
-        onDeath.AddListener(() => activeHUD.SetResourceCount(1));
+        onDeath.AddListener(() => activeHUD.SetResourceCount(_resourceDrop));
     }
 
     private void Update()
     {
         UpdateHealth();
+    }
+
+    private void OnValidate()
+    {
+        _attackCollider.radius = GetRange;
     }
 
     private void UpdateHealth()
@@ -87,15 +94,15 @@ public class Enemy : AggressiveEntity
         return base.Die();
     }
 
+    public override void Attack()
+    {
+        
+    }
+
     //public static void CalculateState() //i've decided i'll make these static so i don't have to redo them
     //{
     //    
     //}
-
-    public override void Attack()
-    {
-        throw new NotImplementedException();
-    }
 
     #endregion
 }

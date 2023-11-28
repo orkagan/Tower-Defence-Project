@@ -23,9 +23,11 @@ public class Tower : AggressiveEntity
     //[SerializeField] private Transform _shootFrom;
 
     [SerializeField] private List<Collider> _enemiesInRange = new List<Collider>();
+
     #endregion
 
     #region Properties
+
     /// <summary>
     /// The name of the Tower.
     /// </summary>
@@ -62,9 +64,11 @@ public class Tower : AggressiveEntity
         get => _range;
         private set => _range = value;
     }
+
     #endregion
 
     #region Unity Methods
+
     private void Update()
     {
         if (GameStateHandler.Instance.GetCurrentState == GameState.AttackPhase)
@@ -95,10 +99,13 @@ public class Tower : AggressiveEntity
 
         _enemiesInRange.Remove(other);
     }
+
     #endregion
 
-    #region Methods 
+    #region Methods
+
     #region Upgrades
+
     public void SetRange(int increase)
     {
         GetRange += increase;
@@ -113,6 +120,7 @@ public class Tower : AggressiveEntity
     {
         GetAttackCooldown -= decrease;
     }
+
     #endregion
 
     public override void Attack()
@@ -122,23 +130,30 @@ public class Tower : AggressiveEntity
 
     private IEnumerator Shoot()
     {
-        foreach (Collider enemy in _enemiesInRange)
+        while (_enemiesInRange.Count > 0)
         {
-            //shoot a projectile from top of tower and onto target
+            foreach (Collider enemy in _enemiesInRange)
+            {
+                //shoot a projectile from top of tower and onto target
 
-            #region code for actually shooting a projectile, but due to time constraints, won't
+                #region code for actually shooting a projectile, but due to time constraints, won't
 
-            //Vector3 shootPoint = _shootFrom.position;
-            //GameObject newBullet = Instantiate(_projectile, shootPoint, Quaternion.identity, transform);
-            //Vector3 direction = shootPoint - enemy.transform.position;
-            //newBullet.transform.position += direction * (Time.deltaTime * _projectileSpeed);
+                //Vector3 shootPoint = _shootFrom.position;
+                //GameObject newBullet = Instantiate(_projectile, shootPoint, Quaternion.identity, transform);
+                //Vector3 direction = shootPoint - enemy.transform.position;
+                //newBullet.transform.position += direction * (Time.deltaTime * _projectileSpeed);
 
-            #endregion
+                #endregion
 
-            enemy.GetComponent<Enemy>().DecreaseHealth(5);
+                Enemy e = enemy.GetComponent<Enemy>();
+                e.DecreaseHealth(5);
+
+                if (e.GetHealth <= 4) _enemiesInRange.Remove(enemy);
+            }
+
+            yield return new WaitForSeconds(GetAttackCooldown);
         }
-
-        yield return new WaitForSeconds(GetAttackCooldown);
     }
+
     #endregion
 }

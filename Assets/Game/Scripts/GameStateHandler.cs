@@ -47,6 +47,7 @@ public class GameStateHandler : MonoBehaviour
             
             _towerSelection.interactable = false;
             _towerSelection.blocksRaycasts = false;
+            
             _navMeshSurface.BuildNavMesh(); //rebuilds the navmesh map to include tower areas (high cost areas which enemies will try to avoid)
             
             onAttackPhase.Invoke();

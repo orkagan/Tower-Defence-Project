@@ -14,8 +14,6 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     [SerializeField] private LayerMask _layer;
     [SerializeField] private PlayMode _playMode = PlayMode.BuildMode;
     [SerializeField] private GameObject _pcHUD, _mobileHUD;
-    
-    public UnityEvent onMouseClick;
     public PlayMode CurrentPlayMode => _playMode;
     private HUDManager PC_HUD => _pcHUD.GetComponent<HUDManager>();
     private HUDManager MOB_HUD => _mobileHUD.GetComponent<HUDManager>();
@@ -25,7 +23,10 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     {
         if (GameStateHandler.Instance.GetCurrentState == GameState.BuildPhase)
         {
-            CreateTower();
+            if (Input.GetMouseButtonDown(1))
+            {
+                CreateTower();
+            }
         }
     }
 
@@ -38,7 +39,7 @@ public class CreateTowerOnMouseClick : MonoBehaviour
             //shoots a raycast from screen center to mouse position via world space and places a tower
             //a tower is only placed if the player has enough resources/money to build one.
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit rayHit, Mathf.Infinity, _layer) && Input.GetMouseButtonDown(1))
+            if (Physics.Raycast(ray, out RaycastHit rayHit, Mathf.Infinity, _layer))
             {
                 //Check for nearby towers - if one is too close, display message saying a tower cannot be placed there for that reason.
                 if (!CheckForTowers(rayHit.point))
@@ -58,8 +59,6 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                         hud.SetResourceCount(towerCost, true);
                         Instantiate(_tower[chosenTower], rayHit.point, Quaternion.identity, transform);
                         ChatHandler.Instance.CreateNewLine($"{t.GetName} cost the player {t.GetCost} resources.");
-                        
-                        onMouseClick.Invoke();
                     }
                 }
                 else
@@ -76,8 +75,8 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     private bool CheckForTowers(Vector3 point)
     {
         Tower ts = _tower[chosenTower].GetComponentInChildren<Tower>();
-        float towerDistance = ts.GetRange;
-        
+        float towerDistance = 1f;
+
         Collider[] hitColliders = Physics.OverlapSphere(point, towerDistance);
         foreach (Collider col in hitColliders)
         {
@@ -87,6 +86,7 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                 return true;
             }
         }
+
         return false;
     }
 

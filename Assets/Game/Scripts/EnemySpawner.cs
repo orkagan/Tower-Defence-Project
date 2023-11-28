@@ -38,6 +38,10 @@ public class EnemySpawner : MonoBehaviour
 
             if (enemies.Length == 0)
             {
+                ChatHandler.Instance.CreateNewLine("The round has ended. Switching back to Build Phase.");
+        
+                yield return new WaitForSeconds(5f);
+        
                 GameStateHandler.Instance.SwitchState();
             }
 

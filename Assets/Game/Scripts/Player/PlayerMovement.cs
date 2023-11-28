@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     #region Variables
     public Player player;
-    public InputMaster controls;
+    private InputMaster controls;
     public LayerMask groundMask;
     public GameObject raycastHitpoint;
     public CameraHandler camHandler;
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform orientation; //tbh i don't even remember what this does but it's set to the capsule and it works so
     public float horizontalInput; //input system for A and D keys
-    public float verticalInput; //INput system for W and S keys
+    public float verticalInput; //input system for W and S keys
 
     public Vector3 moveDirection;
     public Vector3 wantedDir;
@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     public CapsuleCollider col;
     #endregion
     #endregion
+    
     #region Unity Methods
     private void Awake()
     {
