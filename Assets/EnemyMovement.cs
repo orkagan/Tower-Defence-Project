@@ -1,14 +1,13 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
 
-public class EnemyMovement : Enemy
+public class EnemyMovement : MonoBehaviour
 {    
     private GameObject _target, _player, _drill;
 
     private NavMeshAgent _agent => GetComponentInChildren<NavMeshAgent>();
-    private float DistanceToSearch => _attackRange;
+    private Enemy _enemy => GetComponent<Enemy>();
+    private float DistanceToSearch => _enemy.GetRange;
 
     private void Start()
     {

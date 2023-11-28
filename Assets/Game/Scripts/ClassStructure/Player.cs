@@ -4,6 +4,7 @@ using UnityEngine;
 public class Player : Entity
 {
     #region Fields
+    [Header("Player Fields")]
     [SerializeField] private float moveSpeed;
     public int currency;
     //[SerializeField] private Tower[] towers;
@@ -14,6 +15,13 @@ public class Player : Entity
     #endregion
 
     #region Methods
+
+    private void Start()
+    {
+        onDeath.AddListener(() =>
+            ChatHandler.Instance.CreateNewLine("Player has died."));
+    }
+
     public void Update()
     {
         Debug.DrawRay(this.transform.position, orientation);
@@ -40,6 +48,10 @@ public class Player : Entity
 
     public override IEnumerator Die()
     {
+        onDeath.Invoke();
+        
+        DestroyImmediate(gameObject);
+        
         return base.Die();
     }
 

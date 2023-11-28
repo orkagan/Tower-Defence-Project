@@ -5,10 +5,11 @@ using UnityEngine.Events;
 public abstract class Entity : MonoBehaviour
 {
     #region Fields
+    [Header("Entity Fields")]
     [SerializeField] protected float health;
     protected float _maximumHealth = 100f;
 
-    protected UnityEvent onDeath;
+    public UnityEvent onDeath;
     #endregion
 
     public float GetHealth

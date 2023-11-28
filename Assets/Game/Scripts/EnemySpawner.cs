@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -87,7 +85,8 @@ public class EnemySpawner : MonoBehaviour
     {
         foreach (GameObject enemy in enemies)
         {
-            DestroyImmediate(enemy);
+            Enemy e = enemy.GetComponent<Enemy>();
+            e.GetHealth = 0;
         }
     }
 }

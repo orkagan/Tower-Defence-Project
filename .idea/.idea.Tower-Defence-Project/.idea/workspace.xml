@@ -8,13 +8,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Tower-Defence-Project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/EnemyMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/EnemyMovement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Enemy.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Merged Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Merged Game.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Enemy.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Entity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Entity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/ClassStructure/Player.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/EnemySpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/EnemySpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/GameStateHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/GameStateHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ChatHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ChatHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ClickOnTowerToUpgrade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/ClickOnTowerToUpgrade.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/CreateTowerOnMouseClick.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/CreateTowerOnMouseClick.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/HUDManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/UI Scripts/HUDManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +49,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "branching-before-merge-might-break",
+    "git-widget-placeholder": "MovementNewInputSystem",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -131,6 +130,7 @@
       <workItem from="1700435270014" duration="10884000" />
       <workItem from="1701039086611" duration="12172000" />
       <workItem from="1701125249623" duration="5137000" />
+      <workItem from="1701130902207" duration="1354000" />
     </task>
     <servers />
   </component>
