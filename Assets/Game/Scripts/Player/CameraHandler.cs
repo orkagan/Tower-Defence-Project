@@ -2,9 +2,12 @@ using UnityEngine;
 public class CameraHandler : MonoBehaviour
 {
     #region Variables
+
+    public InputMaster controls;
+
     public Vector2 PMgetter;
 
-    public Transform pivot; //This name is deceptive, it goes on pivot, not cam
+    public Transform pivot;
     public Transform mouseCam;
 
     private float horizontalInput; //Input.GetAxis(horizontal)
@@ -69,11 +72,27 @@ public class CameraHandler : MonoBehaviour
 
     private void MyInput() //gathers player inputs, called every tick
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        
+
+        horizontalInput = controls.Player.Movement.ReadValue<Vector2>().x;
+        verticalInput = controls.Player.Movement.ReadValue<Vector2>().y;
     }
     #endregion
     #region Unity Methods
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+    public void Awake()
+    {
+        controls = new InputMaster();
+    }
     public void Update()
     {
         MyInput();        
