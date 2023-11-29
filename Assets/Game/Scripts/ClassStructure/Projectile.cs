@@ -25,7 +25,7 @@ public abstract class Projectile : MonoBehaviour
     public virtual void Hit(Enemy enemy) 
     {
         
-        enemy.DecreaseHealth((int)damage); //this is stupid
+        enemy.DecreaseHealth((int)damage); //int conversion is stupid
         hits++;
         if (hits >= maxHits)
         {
@@ -38,7 +38,7 @@ public abstract class Projectile : MonoBehaviour
     {
         
         
-        rb.AddForce(direction * 50f, ForceMode.VelocityChange);// i think this is applying to the prefab and not the instance somehow
+        rb.AddForce(direction * initialSpeed, ForceMode.VelocityChange);// i think this is applying to the prefab and not the instance somehow
        
         
        

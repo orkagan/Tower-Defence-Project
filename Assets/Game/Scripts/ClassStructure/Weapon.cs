@@ -40,6 +40,7 @@ public abstract class Weapon : MonoBehaviour
             spawnedProjectile = Instantiate(projectile, spawnPosition, Quaternion.identity);
             
             spawnedProjectile.damage += damage; // i wonder if this will cause the first frame of the thing to not have added wep damage. Oh well!
+            spawnedProjectile.initialSpeed += projectileSpeed; //this will be a good test for that
             spawnedProjectile.direction = aimDirection;
         }
     }

@@ -1493,7 +1493,7 @@ MonoBehaviour:
   lifespan: 0
   maxHits: 1
   hits: 0
-  initialSpeed: 10
+  initialSpeed: 50
   rb: {fileID: 1845952833}
   hitbox: {fileID: 875683207}
   damage: 5
