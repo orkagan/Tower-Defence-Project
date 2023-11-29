@@ -505,6 +505,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 675095726}
   readyToBeginWave: 0
+  attackDelay: 0
   orientation: {x: 0, y: 0, z: 0}
 --- !u!1 &245098883
 GameObject:
@@ -912,8 +913,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb06981d1abdfa4bbfd28351d7f4916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  attackCooldown: 0
+  damage: 5
+  attackCooldown: 10
   isMelee: 0
   hitbox: {fileID: 675095722}
   projectile: {fileID: 1845952839}

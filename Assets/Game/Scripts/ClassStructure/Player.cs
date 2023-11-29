@@ -13,6 +13,10 @@ public class Player : Entity
     [SerializeField] private Weapon[] weapons;
     [SerializeField] private bool readyToBeginWave;
 
+    public int attackDelay; //this is handled by the player because reasons
+
+
+
     public Vector3 orientation;
     #endregion
 
@@ -38,7 +42,7 @@ public class Player : Entity
     {
         onDeath.AddListener(() =>
             ChatHandler.Instance.CreateNewLine("Player has died."));
-	}
+    }
 
     public void Update()
     {
@@ -56,34 +60,51 @@ public class Player : Entity
         //    Attack();
         //}
     }
+
+    private void FixedUpdate()
+    {
+        if (attackDelay <= 0 == false)
+        {
+            attackDelay--;
+        }
+    }
     #endregion
 
     public void Attack(InputAction.CallbackContext value)
     {
-        weapons[0].Attack(orientation, transform.position);
+        if (attackDelay == 0)
+        {
+            weapons[0].Attack(orientation, transform.position);
+            attackDelay = weapons[0].attackCooldown;
+        }
+
     }
 
     public void Attack()
     {
-        weapons[0].Attack(orientation, transform.position);
+        if (attackDelay == 0)
+        {
+            weapons[0].Attack(orientation, transform.position);
+            attackDelay = weapons[0].attackCooldown;
+        }
     }
 
     public void ReadyUp()
-    { 
-    
+    {
+
     }
 
     public void UpgradeWeapon(Weapon weapon)
-    { 
-    
+    {
+
     }
 
     public override IEnumerator Die()
     {
         onDeath.Invoke();
-        
+
         DestroyImmediate(gameObject);
-        
+
         return base.Die();
     }
 
