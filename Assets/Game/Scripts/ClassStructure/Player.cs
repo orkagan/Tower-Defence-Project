@@ -1,10 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : Entity
 {
     #region Fields
     [Header("Player Fields")]
+    [SerializeField] private InputMaster _controls;
     [SerializeField] private float moveSpeed;
     public int currency;
     //[SerializeField] private Tower[] towers;
@@ -15,25 +17,51 @@ public class Player : Entity
     #endregion
 
     #region Methods
+    #region Unity Methods
+    private void OnEnable()
+    {
+        _controls.Enable();
+        _controls.Player.Attack.performed += Attack;
+    }
+
+    private void OnDisable()
+    {
+        _controls.Disable();
+        _controls.Player.Attack.performed -= Attack;
+    }
 
     private void Start()
     {
         onDeath.AddListener(() =>
-            Debug.Log("Player has died."));
-    }
+            ChatHandler.Instance.CreateNewLine("Player has died."));
+	}
 
     public void Update()
     {
-        Debug.DrawRay(this.transform.position, orientation);
+        float bungle = _controls.Player.Attack.ReadValue<float>();
 
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Mathf.Abs(bungle) >= 0.1f)
         {
             Attack();
         }
+        //Debug.DrawRay(this.transform.position, orientation);
+
+
+        //if (controls.Player.Attack.performed)
+        //{
+        //    Attack();
+        //}
     }
+    #endregion
+
+    public void Attack(InputAction.CallbackContext value)
+    {
+        weapons[0].Attack(orientation, transform.position);
+    }
+
     public void Attack()
-    { 
-        
+    {
+        weapons[0].Attack(orientation, transform.position);
     }
 
     public void ReadyUp()
