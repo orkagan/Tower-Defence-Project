@@ -19,7 +19,7 @@ public class Player : Entity
     private void Start()
     {
         onDeath.AddListener(() =>
-            ChatHandler.Instance.CreateNewLine("Player has died."));
+            Debug.Log("Player has died."));
     }
 
     public void Update()
