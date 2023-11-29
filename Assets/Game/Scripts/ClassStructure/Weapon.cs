@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    #region fields
+    #region Fields    
     public float damage;
     public float attackCooldown;
     public bool isMelee;
@@ -13,7 +11,7 @@ public abstract class Weapon : MonoBehaviour
     public float projectileSpeed;
     #endregion
 
-    #region methods
+    #region Methods
     public virtual void Attack(Vector3 direction, Vector3 position)
     {
         Debug.Log("Attacked");
