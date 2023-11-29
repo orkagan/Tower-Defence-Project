@@ -5,18 +5,31 @@ using UnityEngine;
 public abstract class Projectile : MonoBehaviour
 {
     #region Fields
-    public float speed;
-    public float maxSpeed;
-    public bool hasGravity;
-    public float gravityScale;
+
+    #region Not Used
+    //public float speed;
+    //public float maxSpeed; 
+    //public bool hasGravity;
+    //public float gravityScale;
+    #endregion
+
+
+
     private float lifespan;
     public float maxLifespan;
+
     public int maxHits;
     public int hits;
+    public int hitRate; //SET HIT RATE TO ZERO FOR WEAPONS WITH ONLY ONE HIT OR FOR INSTANT???
+    private int hitRateTimer;
+
     public float initialSpeed;
+
+    public float damage;
+
     public Rigidbody rb;
     public Collider hitbox;
-    public float damage;
+
     public Vector3 direction;
     #endregion
 
@@ -57,7 +70,13 @@ public abstract class Projectile : MonoBehaviour
         Debug.Log("DEBUG: projectile entered trigger");
         Enemy enemyHit = other.transform.root.GetComponent<Enemy>();
 
-        Hit(enemyHit);
+
+        if (hitRateTimer == 0)
+        {
+            Hit(enemyHit);
+            hitRateTimer = hitRate;
+        }
+        
     }
 
     public virtual void Awake()
@@ -76,6 +95,11 @@ public abstract class Projectile : MonoBehaviour
         else
         {
             lifespan++;
+        }
+
+        if (hitRateTimer <= 0 == false)
+        {
+            hitRateTimer--;
         }
     }
     public virtual void Start()

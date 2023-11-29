@@ -114,5 +114,5 @@ MonoBehaviour:
   attackCooldown: 10
   isMelee: 0
   hitbox: {fileID: 3130662355876111013}
-  projectile: {fileID: 6319099319719857447, guid: 8b340a625f2f2c64cb4f020621a6ae76, type: 3}
+  projectile: {fileID: 3886760550640014215, guid: 5aeb2cb8a8ee02d46961caf3cc59dd3e, type: 3}
   projectileSpeed: 0
