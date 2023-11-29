@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     #region fields
+    
     public float damage;
     public float attackCooldown;
     public bool isMelee;
