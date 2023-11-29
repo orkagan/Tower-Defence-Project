@@ -910,6 +910,7 @@ MonoBehaviour:
   currency: 10
   weapons: []
   readyToBeginWave: 0
+  attackDelay: 0
   orientation: {x: 0, y: 0, z: 0}
 --- !u!136 &601413336
 CapsuleCollider:
@@ -2597,7 +2598,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27172
+  m_Name: pb_Mesh29214
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7153,7 +7154,7 @@ GameObject:
   - component: {fileID: 8687569647002937804}
   - component: {fileID: 8687569647002937805}
   - component: {fileID: 8687569647002937794}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: map_ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
