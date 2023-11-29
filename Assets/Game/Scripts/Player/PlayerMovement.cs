@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -19,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     public Transform playerTransform;
     public Transform rotHandler;
 
-    private Vector2 lookInputPositionMobile;
     private Vector2 lookInputPosition;
     private Vector2 _playerScreenPos;
     #endregion
@@ -86,7 +84,6 @@ public class PlayerMovement : MonoBehaviour
     {
         MovePlayer();
         DoLookage();
-        //DoLookageMobile();
         
         player.orientation = rotHandler.forward;
     }
@@ -96,30 +93,9 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = controls.Player.Movement.ReadValue<Vector2>().x;     
         verticalInput = controls.Player.Movement.ReadValue<Vector2>().y;
-
-        lookInputPosition = controls.Player.MousePosition.ReadValue<Vector2>();
-        lookInputPositionMobile = controls.Player.Aiming.ReadValue<Vector2>();
-        
-        
-        _playerScreenPos = cam.WorldToScreenPoint(rb.position);
-
        
-    }
-
-    private void DoLookageMobile()
-    {
-
-
-        Vector2 lookDirection = lookInputPositionMobile;
-        
-
-        float tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; //-45 is the magic number that makes this work but in opposite direction
-
-        rotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
-
-        Vector2 lookDirection1 = lookInputPosition - _playerScreenPos;
-
-        camHandler.PMgetter = cam.ScreenToViewportPoint(lookDirection1);
+        lookInputPosition = controls.Player.MousePosition.ReadValue<Vector2>();
+        _playerScreenPos = cam.WorldToScreenPoint(rb.position);        
     }
 
     private (bool success, Vector3 position) GetMousePosition()
@@ -139,12 +115,9 @@ public class PlayerMovement : MonoBehaviour
         }      
     }
 
-   
-
     private void DoLookage() 
     {
         var (success, position) = GetMousePosition();
-        
         if (success)
         {
             position.y = playerTransform.position.y;
