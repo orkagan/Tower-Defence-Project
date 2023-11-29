@@ -18,6 +18,10 @@ public class Player : Entity
 
     #region Methods
     #region Unity Methods
+    private void Awake()
+    {
+        _controls = new InputMaster();
+    }
     private void OnEnable()
     {
         _controls.Enable();

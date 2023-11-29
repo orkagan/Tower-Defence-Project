@@ -18,8 +18,8 @@ TagManager:
   - HUD
   - Tower Layer
   - Ground
-  - 
-  - 
+  - Enemy Hurtbox
+  - Projectile Hurtbox
   - 
   - 
   - 

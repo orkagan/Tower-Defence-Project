@@ -20,9 +20,17 @@ public abstract class Projectile : MonoBehaviour
     #endregion
 
     #region Methods
-    public virtual void Hit() 
+
+
+    public virtual void Hit(Enemy enemy) 
     {
-    
+        
+        enemy.DecreaseHealth((int)damage); //this is stupid
+        hits++;
+        if (hits >= maxHits)
+        {
+            Die();
+        }
     }
 
     
@@ -36,16 +44,24 @@ public abstract class Projectile : MonoBehaviour
        
     }
     public virtual void Die()
-    { 
-    
+    {
+        Destroy(gameObject);
     }
     #endregion
 
     #region Unity Methods
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("DEBUG: projectile entered trigger");
+        Enemy enemyHit = other.transform.root.GetComponent<Enemy>();
+
+        Hit(enemyHit);
+    }
+
     public virtual void Awake()
     {
-        Debug.Log("bruh");
+        Debug.Log("Projectile Spawned");
         
 
     }
