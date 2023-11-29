@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = controls.Player.Movement.ReadValue<Vector2>().x;     
         verticalInput = controls.Player.Movement.ReadValue<Vector2>().y;
        
-        lookInputPosition = controls.Player.MousePosition.ReadValue<Vector2>();
+        lookInputPosition = controls.Player.AimPosition.ReadValue<Vector2>();
         _playerScreenPos = cam.WorldToScreenPoint(rb.position);        
     }
 
