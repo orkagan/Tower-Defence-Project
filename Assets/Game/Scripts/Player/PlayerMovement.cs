@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
     public CapsuleCollider col;
     #endregion
     #endregion
-
     #region Unity Methods
     private void Awake()
     {
