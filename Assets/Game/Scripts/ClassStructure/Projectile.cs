@@ -9,7 +9,8 @@ public abstract class Projectile : MonoBehaviour
     public float maxSpeed;
     public bool hasGravity;
     public float gravityScale;
-    public float lifespan;
+    private float lifespan;
+    public float maxLifespan;
     public int maxHits;
     public int hits;
     public float initialSpeed;
@@ -65,7 +66,18 @@ public abstract class Projectile : MonoBehaviour
         
 
     }
+    public virtual void FixedUpdate()
+    {
+        if (lifespan >= maxLifespan) //TODO: fix weapon inventory so bullshit like this doesnt delete orig
+        {
+            Die();
+        }
 
+        else
+        {
+            lifespan++;
+        }
+    }
     public virtual void Start()
     {
         Spawn();

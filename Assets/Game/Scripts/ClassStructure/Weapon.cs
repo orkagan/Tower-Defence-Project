@@ -13,14 +13,7 @@ public abstract class Weapon : MonoBehaviour
 
     #region Methods
 
-    /*handling attack delay
-    basically there are 2 delays
-    how often you can click, which then plays the animation, until you can click again
-    and how often "attack", which will almost always be the same number
-    but if you wanted to make something that "attacked" three times in one click, you'd make attack = click/3, so the game runs attack for as long as clicked is true
-
-
-    */
+    
 
 
     public virtual void Attack(Vector3 direction, Vector3 position)
@@ -44,7 +37,7 @@ public abstract class Weapon : MonoBehaviour
             spawnedProjectile.direction = aimDirection;
         }
     }
-    //TODO: if this Weapon has a projectile, do (that projectile).spawn in attack()
+   
 
     #endregion
 }
