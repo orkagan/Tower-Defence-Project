@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public enum PlayMode
 {
@@ -7,34 +8,61 @@ public enum PlayMode
     Other,
 }
 
-public class CreateTowerOnMouseClick : MonoBehaviour
+public class TowerCreationManager : MonoBehaviour
 {
+    #region Fields
     [SerializeField] private GameObject[] _tower;
-    [HideInInspector] public int chosenTower = 0;
+    [HideInInspector] public int chosenTower;
     [SerializeField] private LayerMask _layer;
     [SerializeField] private PlayMode _playMode = PlayMode.BuildMode;
     [SerializeField] private GameObject _hud;
-    
+
+    InputMaster _controls;
+    InputAction _click, _pos;
+    #endregion
+
+    #region Properties
     public PlayMode CurrentPlayMode => _playMode;
     private HUDManager hud => _hud.GetComponent<HUDManager>();
+    #endregion
 
-    private void Update()
+    #region Methods
+    #region Unity Methods
+    private void Awake()
     {
-        if (GameStateHandler.Instance.GetCurrentState == GameState.BuildPhase)
-        {
-            CreateTower();
-        }
+        _controls = new InputMaster();
+        _click = _controls.FindAction("PlaceTower");
+        _pos = _controls.FindAction("ClickPosition");
+    }
+
+    private void OnEnable()
+    {
+        _controls.Enable();
+        _click.performed += CreateTower;
+    }
+
+    private void OnDisable()
+    {
+        _controls.Disable();
+        _click.performed -= CreateTower;
+    }
+    #endregion
+
+    private void CreateTower(InputAction.CallbackContext action)
+    {
+        if (GameStateHandler.Instance.GetCurrentState == GameState.BuildPhase) CreateTowerHere();
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
-    private void CreateTower()
+    private void CreateTowerHere()
     {
         //the following can only be executed when the player can build towers.
-        if (_playMode == PlayMode.BuildMode && Input.GetMouseButtonDown(1))
+        if (_playMode == PlayMode.BuildMode)
         {
-            //shoots a raycast from screen center to mouse position via world space and places a tower
+            //shoots a raycast from screen center to placement position via world space and places a tower
             //a tower is only placed if the player has enough resources/money to build one.
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 placement = _pos.ReadValue<Vector2>();
+            Ray ray = Camera.main.ScreenPointToRay(placement);
             if (Physics.Raycast(ray, out RaycastHit rayHit, Mathf.Infinity, _layer))
             {
                 //Check for nearby towers - if one is too close, display message saying a tower cannot be placed there for that reason.
@@ -72,7 +100,7 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     {
         Tower ts = _tower[chosenTower].GetComponentInChildren<Tower>();
         float towerDistance = ts.GetRange;
-        
+
         Collider[] hitColliders = Physics.OverlapSphere(point, towerDistance);
         foreach (Collider col in hitColliders)
         {
@@ -88,4 +116,5 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     public void SetChosenTower(int i) => chosenTower = i;
 
     public void SwitchToBuildMode(bool mode) => _playMode = mode ? PlayMode.BuildMode : PlayMode.Other;
+    #endregion
 }

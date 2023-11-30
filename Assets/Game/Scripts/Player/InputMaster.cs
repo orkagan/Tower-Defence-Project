@@ -53,6 +53,33 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlaceTower"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""4659a37a-5281-40e1-ab2b-124cd6341b02"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InteractTower"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""28afaade-0935-4dfd-9c04-f902e2d51628"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ClickPosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""7777be49-107d-406e-a50e-5f01859a88f2"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -147,7 +174,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9aac49bf-3db4-4f94-8a7a-820cf73c323b"",
-                    ""path"": ""<Keyboard>/t"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -174,6 +201,72 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""22c73b2d-ea64-4a2d-bc52-d8f50927054c"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaceTower"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0663197-1a41-4cb1-a781-52d74765852e"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaceTower"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78095b00-9635-4f7e-9987-73ac76d3ad5e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractTower"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7922a419-4436-4fe3-93b6-0c6bf065ff71"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractTower"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""582a8cee-f163-424b-bca5-eab3b77b7cc4"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ClickPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43d03943-2b8a-4513-b2fb-6fca16050642"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ClickPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -204,6 +297,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_AimPosition = m_Player.FindAction("AimPosition", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_PlaceTower = m_Player.FindAction("PlaceTower", throwIfNotFound: true);
+        m_Player_InteractTower = m_Player.FindAction("InteractTower", throwIfNotFound: true);
+        m_Player_ClickPosition = m_Player.FindAction("ClickPosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -268,6 +364,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_AimPosition;
     private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_PlaceTower;
+    private readonly InputAction m_Player_InteractTower;
+    private readonly InputAction m_Player_ClickPosition;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -275,6 +374,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @AimPosition => m_Wrapper.m_Player_AimPosition;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @PlaceTower => m_Wrapper.m_Player_PlaceTower;
+        public InputAction @InteractTower => m_Wrapper.m_Player_InteractTower;
+        public InputAction @ClickPosition => m_Wrapper.m_Player_ClickPosition;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -293,6 +395,15 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @PlaceTower.started += instance.OnPlaceTower;
+            @PlaceTower.performed += instance.OnPlaceTower;
+            @PlaceTower.canceled += instance.OnPlaceTower;
+            @InteractTower.started += instance.OnInteractTower;
+            @InteractTower.performed += instance.OnInteractTower;
+            @InteractTower.canceled += instance.OnInteractTower;
+            @ClickPosition.started += instance.OnClickPosition;
+            @ClickPosition.performed += instance.OnClickPosition;
+            @ClickPosition.canceled += instance.OnClickPosition;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -306,6 +417,15 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @PlaceTower.started -= instance.OnPlaceTower;
+            @PlaceTower.performed -= instance.OnPlaceTower;
+            @PlaceTower.canceled -= instance.OnPlaceTower;
+            @InteractTower.started -= instance.OnInteractTower;
+            @InteractTower.performed -= instance.OnInteractTower;
+            @InteractTower.canceled -= instance.OnInteractTower;
+            @ClickPosition.started -= instance.OnClickPosition;
+            @ClickPosition.performed -= instance.OnClickPosition;
+            @ClickPosition.canceled -= instance.OnClickPosition;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -337,5 +457,8 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnAimPosition(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnPlaceTower(InputAction.CallbackContext context);
+        void OnInteractTower(InputAction.CallbackContext context);
+        void OnClickPosition(InputAction.CallbackContext context);
     }
 }
