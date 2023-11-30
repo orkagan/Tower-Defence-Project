@@ -1,58 +1,81 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Projectile : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public class Projectile : MonoBehaviour
 {
     #region Fields
-    public float speed;
+    [SerializeField] float _speed;
+
     public float maxSpeed;
     public bool hasGravity;
     public float gravityScale;
     public float lifespan;
+    private float _timeTillDeath;
     public int maxHits;
     public int hits;
     public float initialSpeed;
-    public Rigidbody rb;
-    public Collider hitbox;
-    public float damage;
     public Vector3 direction;
+    [HideInInspector] public float damage;
+
+    Rigidbody rb => GetComponent<Rigidbody>();
+    Collider hitbox => GetComponent<Collider>();
+
+    bool isSpawned = false;
     #endregion
 
     #region Methods
-    public virtual void Hit() 
+    private void OnTriggerEnter(Collider other)
     {
-    
+        if (other.CompareTag("Enemy"))
+        {
+            Enemy e = other.GetComponent<Enemy>();
+            e.DecreaseHealth((int)(damage * _speed / 5));
+        }
     }
 
-    
-    public virtual void Spawn() //this could be tonnes of things
+    public void Spawn(Vector3 direction, Vector3 position) //this could be tonnes of things
     {
-        
-        
-        rb.AddForce(direction * 50f, ForceMode.VelocityChange);// i think this is applying to the prefab and not the instance somehow
-       
-        
-       
+        Instantiate(gameObject, position, Quaternion.identity);        
+        rb.AddForce(direction * initialSpeed, ForceMode.VelocityChange);// i think this is applying to the prefab and not the instance somehow   
+
+        isSpawned = true;
     }
-    public virtual void Die()
-    { 
-    
+
+    public void Die()
+    {
+        DestroyImmediate(gameObject);
     }
     #endregion
 
     #region Unity Methods
-
-    public virtual void Awake()
+    private void Update()
     {
-        Debug.Log("bruh");
-        
+        _speed = rb.velocity.magnitude;
+
+        if (isSpawned)
+        {
+            _timeTillDeath -= Time.deltaTime;
+        }
+
+        if (_timeTillDeath <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void OnValidate()
+    {
+        rb.useGravity = hasGravity;
+    }
+
+    public void Awake()
+    {
 
     }
 
-    public virtual void Start()
+    public void Start()
     {
-        Spawn();
+        _timeTillDeath = lifespan;
     }
     #endregion 
 }

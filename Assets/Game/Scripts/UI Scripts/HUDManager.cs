@@ -35,6 +35,6 @@ public class HUDManager : MonoBehaviour
     private void UpdateHealth()
     {
         Image healthBar = _healthBar.GetComponent<Image>();
-        healthBar.fillAmount = _player.GetHealth;
+        healthBar.fillAmount = _player.GetHealth / 100;
     }
 }

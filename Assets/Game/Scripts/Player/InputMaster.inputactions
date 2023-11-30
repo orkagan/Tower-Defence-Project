@@ -15,9 +15,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "AimPosition",
+                    "name": "MousePosition",
                     "type": "Value",
                     "id": "0df9d625-ec39-45b3-b825-fe9dd3d5f2a0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Attack",
+                    "type": "PassThrough",
+                    "id": "09ccbfff-efb4-4edb-8ea6-76c07d099abe",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Aiming",
+                    "type": "Value",
+                    "id": "77a33708-80dc-4f44-a297-f489d09f743c",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -98,7 +116,40 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AimPosition",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dbaea608-d18c-4f5d-8895-b011644a9c89",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1798f2c3-6a59-44d5-81ca-ff80a714cafc",
+                    "path": "<Gamepad>/rightStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cbfc69fd-3802-40ee-a9cf-d5800cfd7f1a",
+                    "path": "<Gamepad>/rightStick/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -109,7 +160,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AimPosition",
+                    "action": "Aiming",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

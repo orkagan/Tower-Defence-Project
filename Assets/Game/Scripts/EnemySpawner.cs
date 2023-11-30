@@ -31,11 +31,6 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                KillAllEnemies(enemies);
-            }
-
             if (enemies.Length == 0)
             {
                 GameStateHandler.Instance.SwitchState();
