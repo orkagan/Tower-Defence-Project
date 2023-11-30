@@ -72,7 +72,7 @@ public class Enemy : AggressiveEntity
 
         if (GetHealth <= 0)
         {
-            StartCoroutine(nameof(Die));
+            StartCoroutine(Die());
         }
     }
 
@@ -83,7 +83,7 @@ public class Enemy : AggressiveEntity
         onDeath.Invoke();
         
         DestroyImmediate(gameObject);
-        
+
         return base.Die();
     }
 

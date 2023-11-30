@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
 public enum PlayMode
@@ -14,27 +15,41 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     [SerializeField] private LayerMask _layer;
     [SerializeField] private PlayMode _playMode = PlayMode.BuildMode;
     [SerializeField] private GameObject _hud;
-    
+    [SerializeField] private InputMaster _controls;
+
     public PlayMode CurrentPlayMode => _playMode;
     private HUDManager hud => _hud.GetComponent<HUDManager>();
 
-    private void Update()
+    private void Awake()
     {
-        if (GameStateHandler.Instance.GetCurrentState == GameState.BuildPhase)
-        {
-            CreateTower();
-        }
+        _controls = new InputMaster();
     }
-
-    // ReSharper disable Unity.PerformanceAnalysis
-    private void CreateTower()
+    private void OnEnable()
     {
+        _controls.Player.Interact.performed += ct => CreateTower(ct.ReadValue<Vector2>());
+    }
+    private void OnDisable()
+    {
+        _controls.Player.Interact.performed -= ct => CreateTower(ct.ReadValue<Vector2>());
+    }
+	private void Update()
+	{
+        /*if (GameStateHandler.Instance.GetCurrentState == GameState.BuildPhase)
+		{
+			CreateTower();
+		}*/
+	}
+
+	// ReSharper disable Unity.PerformanceAnalysis
+	private void CreateTower(Vector2 screenPoint)
+    {
+        Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         //the following can only be executed when the player can build towers.
-        if (_playMode == PlayMode.BuildMode && Input.GetMouseButtonDown(1))
+        if (_playMode == PlayMode.BuildMode)
         {
             //shoots a raycast from screen center to mouse position via world space and places a tower
             //a tower is only placed if the player has enough resources/money to build one.
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(screenPoint);
             if (Physics.Raycast(ray, out RaycastHit rayHit, Mathf.Infinity, _layer))
             {
                 //Check for nearby towers - if one is too close, display message saying a tower cannot be placed there for that reason.

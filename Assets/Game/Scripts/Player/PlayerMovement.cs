@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform playerTransform;
     public Transform rotHandler;
 
+    private Vector2 lookInputPositionMobile;
     private Vector2 lookInputPosition;
     private Vector2 _playerScreenPos;
     #endregion
@@ -46,7 +47,6 @@ public class PlayerMovement : MonoBehaviour
     public CapsuleCollider col;
     #endregion
     #endregion
-
     #region Unity Methods
     private void Awake()
     {
@@ -85,18 +85,40 @@ public class PlayerMovement : MonoBehaviour
     {
         MovePlayer();
         DoLookage();
-        
+        //DoLookageMobile();
+
         player.orientation = rotHandler.forward;
     }
     #endregion
     #region Methods   
     private void MyInput()
     {
-        horizontalInput = controls.Player.Movement.ReadValue<Vector2>().x;     
+        horizontalInput = controls.Player.Movement.ReadValue<Vector2>().x;
         verticalInput = controls.Player.Movement.ReadValue<Vector2>().y;
-       
-        lookInputPosition = controls.Player.AimPosition.ReadValue<Vector2>();
-        _playerScreenPos = cam.WorldToScreenPoint(rb.position);        
+
+        lookInputPosition = controls.Player.MousePosition.ReadValue<Vector2>();
+        lookInputPositionMobile = controls.Player.Aiming.ReadValue<Vector2>();
+
+
+        _playerScreenPos = cam.WorldToScreenPoint(rb.position);
+
+
+    }
+
+    private void DoLookageMobile()
+    {
+
+
+        Vector2 lookDirection = lookInputPositionMobile;
+
+
+        float tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; //-45 is the magic number that makes this work but in opposite direction
+
+        rotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
+
+        Vector2 lookDirection1 = lookInputPosition - _playerScreenPos;
+
+        camHandler.PMgetter = cam.ScreenToViewportPoint(lookDirection1);
     }
 
     private (bool success, Vector3 position) GetMousePosition()
@@ -106,42 +128,45 @@ public class PlayerMovement : MonoBehaviour
         if (projectilePlane.Raycast(ray, out var hitInfo))
         {
             Vector3 hitPoint = ray.GetPoint(hitInfo);
-            raycastHitpoint.transform.position = hitPoint;
+            if(raycastHitpoint != null) raycastHitpoint.transform.position = hitPoint;
             return (success: true, position: hitPoint);
         }
         else
         {
             Debug.LogWarning("Aiming Raycast failed");
             return (success: false, position: Vector3.zero);
-        }      
+        }
     }
 
-    private void DoLookage() 
+
+
+    private void DoLookage()
     {
         var (success, position) = GetMousePosition();
+
         if (success)
         {
             position.y = playerTransform.position.y;
             var direction = position - playerTransform.position;
             //Debug.DrawRay(playerTransform.position, direction, Color.black);
             //Debug.DrawRay(playerTransform.position + direction, playerTransform.up * 5f);
-            
+
             //Debug.DrawRay(playerTransform.position, direction, Color.white);
 
             rotHandler.forward = direction;
         }
 
         Vector2 lookDirection = lookInputPosition - _playerScreenPos;
-      
-        camHandler.PMgetter = cam.ScreenToViewportPoint(lookDirection); 
+
+        camHandler.PMgetter = cam.ScreenToViewportPoint(lookDirection);
     }
-    
+
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0)); //offsets the input vector by 45degrees, for iso 
-       
+
         var skewedMoveDirection = matrix.MultiplyPoint3x4(moveDirection.normalized);
 
         wantedDir = skewedMoveDirection * maxSpeed;
@@ -160,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(velocityDifference * accelRate, ForceMode.Acceleration);
 
         Vector3 singleAddVelocity = new Vector3(rb.velocity.x + (Time.fixedDeltaTime * velocityDifference.x * accelRate), rb.velocity.y, rb.velocity.z + (Time.fixedDeltaTime * velocityDifference.z * accelRate));
-        
+
         if (singleAddVelocity.magnitude > maxSpeed)
         {
             Debug.LogWarning("Speed added from accel is higher than max speed, tell James");
