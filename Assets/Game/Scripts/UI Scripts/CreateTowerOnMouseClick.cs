@@ -13,13 +13,10 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     [HideInInspector] public int chosenTower = 0;
     [SerializeField] private LayerMask _layer;
     [SerializeField] private PlayMode _playMode = PlayMode.BuildMode;
-    [SerializeField] private GameObject _pcHUD, _mobileHUD;
+    [SerializeField] private GameObject _hud;
     
-    public UnityEvent onMouseClick;
     public PlayMode CurrentPlayMode => _playMode;
-    private HUDManager PC_HUD => _pcHUD.GetComponent<HUDManager>();
-    private HUDManager MOB_HUD => _mobileHUD.GetComponent<HUDManager>();
-    private HUDManager hud => _pcHUD.activeSelf ? PC_HUD : MOB_HUD;
+    private HUDManager hud => _hud.GetComponent<HUDManager>();
 
     private void Update()
     {
@@ -33,12 +30,12 @@ public class CreateTowerOnMouseClick : MonoBehaviour
     private void CreateTower()
     {
         //the following can only be executed when the player can build towers.
-        if (_playMode == PlayMode.BuildMode)
+        if (_playMode == PlayMode.BuildMode && Input.GetMouseButtonDown(1))
         {
             //shoots a raycast from screen center to mouse position via world space and places a tower
             //a tower is only placed if the player has enough resources/money to build one.
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit rayHit, Mathf.Infinity, _layer) && Input.GetMouseButtonDown(1))
+            if (Physics.Raycast(ray, out RaycastHit rayHit, Mathf.Infinity, _layer))
             {
                 //Check for nearby towers - if one is too close, display message saying a tower cannot be placed there for that reason.
                 if (!CheckForTowers(rayHit.point))
@@ -50,22 +47,20 @@ public class CreateTowerOnMouseClick : MonoBehaviour
                     //If the player does not have enough resources, it will not place.
                     if (result < 0)
                     {
-                        ChatHandler.Instance.CreateNewLine("Player does not have enough resources.");
+                        Debug.Log("Player does not have enough resources.");
                     }
                     //If they do, remove from the player's resource count the cost of the tower to place. 
                     else
                     {
                         hud.SetResourceCount(towerCost, true);
                         Instantiate(_tower[chosenTower], rayHit.point, Quaternion.identity, transform);
-                        ChatHandler.Instance.CreateNewLine($"{t.GetName} cost the player {t.GetCost} resources.");
-                        
-                        onMouseClick.Invoke();
+                        Debug.Log($"{t.GetName} cost the player {t.GetCost} resources.");
                     }
                 }
                 else
                 {
                     // display message
-                    ChatHandler.Instance.CreateNewLine("This is too close to another tower.");
+                    Debug.Log("This is too close to another tower.");
                 }
             }
         }
