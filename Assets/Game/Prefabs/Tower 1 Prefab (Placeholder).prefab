@@ -288,9 +288,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
   _towerDisplayName: {fileID: 5768924399603775613}
   _tagName: Enemy
   _entityName: Gun Tower

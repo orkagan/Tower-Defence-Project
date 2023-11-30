@@ -6,7 +6,7 @@ public class Player : Entity
 {
     #region Fields
     [Header("Player Fields")]
-    public InputMaster controls;
+    [SerializeField] private InputMaster _controls;
     [SerializeField] private float moveSpeed;
     public int currency;
     //[SerializeField] private Tower[] towers;
@@ -18,32 +18,27 @@ public class Player : Entity
 
     #region Methods
     #region Unity Methods
-    private void Awake()
-    {
-        controls = new InputMaster();
-    }
-
     private void OnEnable()
     {
-        controls.Enable();
-        controls.Player.Attack.performed += Attack;
+        _controls.Enable();
+        _controls.Player.Attack.performed += Attack;
     }
 
     private void OnDisable()
     {
-        controls.Player.Attack.performed -= Attack;
-        controls.Disable();
+        _controls.Disable();
+        _controls.Player.Attack.performed -= Attack;
     }
 
     private void Start()
     {
         onDeath.AddListener(() =>
             ChatHandler.Instance.CreateNewLine("Player has died."));
-    }
+	}
 
     public void Update()
     {
-        float bungle = controls.Player.Attack.ReadValue<float>();
+        float bungle = _controls.Player.Attack.ReadValue<float>();
 
         if (Mathf.Abs(bungle) >= 0.1f)
         {
@@ -61,12 +56,7 @@ public class Player : Entity
 
     public void Attack(InputAction.CallbackContext value)
     {
-        Debug.Log("Pew");
-
-        if (GameStateHandler.Instance.GetCurrentState == GameState.AttackPhase)
-        {
-            weapons[0].Attack(orientation, transform.position);
-        }
+        weapons[0].Attack(orientation, transform.position);
     }
 
     public void Attack()
@@ -75,21 +65,21 @@ public class Player : Entity
     }
 
     public void ReadyUp()
-    {
-
+    { 
+    
     }
 
     public void UpgradeWeapon(Weapon weapon)
-    {
-
+    { 
+    
     }
 
     public override IEnumerator Die()
     {
         onDeath.Invoke();
-
+        
         DestroyImmediate(gameObject);
-
+        
         return base.Die();
     }
 
