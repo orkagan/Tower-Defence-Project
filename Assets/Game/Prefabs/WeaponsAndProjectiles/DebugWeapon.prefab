@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb06981d1abdfa4bbfd28351d7f4916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 10
   attackCooldown: 10
   hitbox: {fileID: 3130662355876111013}
   projectile: {fileID: 6319099319719857447, guid: 8b340a625f2f2c64cb4f020621a6ae76, type: 3}

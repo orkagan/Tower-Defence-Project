@@ -80,7 +80,7 @@ public class TowerCreationManager : MonoBehaviour
                     //If they do, remove from the player's resource count the cost of the tower to place. 
                     else
                     {
-                        hud.SetResourceCount(towerCost, true);
+                        hud.SetResourceCount(towerCost);
                         Instantiate(_tower[chosenTower], rayHit.point, Quaternion.identity, transform);
                         Debug.Log($"{t.GetName} cost the player {t.GetCost} resources.");
                     }

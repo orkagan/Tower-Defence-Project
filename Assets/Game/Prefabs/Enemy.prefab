@@ -296,7 +296,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _attackRange: 15
-  _resourceDrop: 0
+  _resourceDrop: 1
   _enemyState: 0
   _healthText: {fileID: 754697581516764346}
 --- !u!1 &7756462216819108313
