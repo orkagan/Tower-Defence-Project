@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public abstract class Projectile : MonoBehaviour
 {
     #region Fields
@@ -12,8 +13,6 @@ public abstract class Projectile : MonoBehaviour
     //public bool hasGravity;
     //public float gravityScale;
     #endregion
-
-
 
     private float lifespan;
     public float maxLifespan;
@@ -35,27 +34,19 @@ public abstract class Projectile : MonoBehaviour
 
     #region Methods
 
-
     public virtual void Hit(Enemy enemy) 
-    {
-        
-        enemy.DecreaseHealth((int)damage); //int conversion is stupid
+    {        
+        enemy?.DecreaseHealth((int)damage); //int conversion is stupid
         hits++;
         if (hits >= maxHits)
         {
             Die();
         }
     }
-
     
     public virtual void Spawn() //this could be tonnes of things
-    {
-        
-        
-        rb.AddForce(direction * initialSpeed, ForceMode.VelocityChange);// i think this is applying to the prefab and not the instance somehow
-       
-        
-       
+    {       
+        rb.AddForce(direction * initialSpeed, ForceMode.VelocityChange);// i think this is applying to the prefab and not the instance somehow       
     }
     public virtual void Die()
     {
@@ -64,26 +55,25 @@ public abstract class Projectile : MonoBehaviour
     #endregion
 
     #region Unity Methods
-
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("DEBUG: projectile entered trigger");
-        Enemy enemyHit = other.transform.root.GetComponent<Enemy>();
 
+        if (!other.CompareTag("Enemy"))
+            return;
+
+        Enemy enemyHit = other.GetComponent<Enemy>();
 
         if (hitRateTimer == 0)
         {
             Hit(enemyHit);
             hitRateTimer = hitRate;
-        }
-        
+        }        
     }
 
     public virtual void Awake()
     {
-        Debug.Log("Projectile Spawned");
-        
-
+        Debug.Log("Projectile Spawned");       
     }
     public virtual void FixedUpdate()
     {

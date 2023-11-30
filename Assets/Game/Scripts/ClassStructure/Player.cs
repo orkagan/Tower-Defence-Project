@@ -29,7 +29,7 @@ public class Player : Entity
     private void OnEnable()
     {
         _controls.Enable();
-        _controls.Player.Attack.performed += Attack;
+            _controls.Player.Attack.performed += Attack;
     }
 
     private void OnDisable()
@@ -42,7 +42,7 @@ public class Player : Entity
     {
         onDeath.AddListener(() =>
             Debug.Log("Player has died."));
-	}
+    }
 
     public void Update()
     {
