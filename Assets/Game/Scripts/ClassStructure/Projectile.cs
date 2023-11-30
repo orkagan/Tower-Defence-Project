@@ -37,6 +37,7 @@ public abstract class Projectile : MonoBehaviour
     public virtual void Hit(Enemy enemy) 
     {        
         enemy?.DecreaseHealth((int)damage); //int conversion is stupid
+
         hits++;
         if (hits >= maxHits)
         {

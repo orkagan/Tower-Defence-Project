@@ -57,7 +57,7 @@ public class Enemy : AggressiveEntity
     {
         GetHealth = GetMaxHealth;
 
-        onDeath.AddListener(() => activeHUD?.SetResourceCount(1));
+        onDeath.AddListener(() => activeHUD?.SetResourceCount(_resourceDrop, false));
     }
 
     private void Update()

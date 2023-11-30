@@ -3,27 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum GamePhases
-{
-    BuildPhase,
-    AttackPhase,
-}
 public class SwitchTexts : MonoBehaviour
 {
     [SerializeField] private Text _textObject;
-    [SerializeField] private GamePhases _phase;
 
-    public void SwitchText()
+    public void Update()
     {
-        if (_phase == GamePhases.BuildPhase)
+        if (GameStateHandler.Instance.GetCurrentState == GameState.AttackPhase)
         {
             _textObject.text = "Attack Phase";
-            _phase = GamePhases.AttackPhase;
         }
-        else if (_phase == GamePhases.AttackPhase)
+        else if (GameStateHandler.Instance.GetCurrentState == GameState.BuildPhase)
         {
             _textObject.text = "Build Phase";
-            _phase = GamePhases.BuildPhase;
         }
     }
 }
