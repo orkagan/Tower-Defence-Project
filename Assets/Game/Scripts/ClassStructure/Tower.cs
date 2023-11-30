@@ -64,12 +64,15 @@ public class Tower : AggressiveEntity
     }
     #endregion
 
+    
+
+    #region Methods 
     #region Unity Methods
     private void Update()
     {
         if (GameStateHandler.Instance.GetCurrentState == GameState.AttackPhase)
         {
-            if (_enemiesInRange.Count ! <= 0)
+            if (_enemiesInRange.Count !<= 0)
             {
                 Attack();
             }
@@ -96,8 +99,6 @@ public class Tower : AggressiveEntity
         _enemiesInRange.Remove(other);
     }
     #endregion
-
-    #region Methods 
     #region Upgrades
     public void SetRange(int increase)
     {

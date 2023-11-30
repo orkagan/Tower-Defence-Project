@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,7 @@ public class Enemy : AggressiveEntity
 
     #region Properties
 
+    SphereCollider _attackSphere => GetComponent<SphereCollider>();
     private HUDManager activeHUD
     {
         get
@@ -52,7 +54,7 @@ public class Enemy : AggressiveEntity
     #endregion
 
     #region Methods
-
+    #region Unity Methods
     private void Start()
     {
         GetHealth = GetMaxHealth;
@@ -65,6 +67,12 @@ public class Enemy : AggressiveEntity
         UpdateHealth();
     }
 
+    private void OnValidate()
+    {
+        _attackSphere.radius = _attackRange;
+    }
+    #endregion
+
     private void UpdateHealth()
     {
         string newHealth = GetHealth.ToString();
@@ -76,8 +84,6 @@ public class Enemy : AggressiveEntity
         }
     }
 
-    public void DecreaseHealth(int decrement) => GetHealth -= decrement;
-
     public override IEnumerator Die()
     {
         onDeath.Invoke();
@@ -87,15 +93,11 @@ public class Enemy : AggressiveEntity
         return base.Die();
     }
 
-    //public static void CalculateState() //i've decided i'll make these static so i don't have to redo them
-    //{
-    //    
-    //}
-
     public override void Attack()
     {
         throw new NotImplementedException();
     }
 
+    public void DecreaseHealth(int decrement) => GetHealth -= decrement;
     #endregion
 }

@@ -99,7 +99,7 @@ public class TowerCreationManager : MonoBehaviour
     private bool CheckForTowers(Vector3 point)
     {
         Tower ts = _tower[chosenTower].GetComponentInChildren<Tower>();
-        float towerDistance = ts.GetRange;
+        float towerDistance = 2f;
 
         Collider[] hitColliders = Physics.OverlapSphere(point, towerDistance);
         foreach (Collider col in hitColliders)

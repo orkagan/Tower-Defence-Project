@@ -7,7 +7,7 @@ public class EnemyMovement : MonoBehaviour
 
     private NavMeshAgent _agent => GetComponentInChildren<NavMeshAgent>();
     private Enemy _enemy => GetComponent<Enemy>();
-    private float DistanceToSearch => _enemy.GetRange;
+    private float _distanceToSearch => _enemy.GetRange;
 
     private void Start()
     {
@@ -34,7 +34,7 @@ public class EnemyMovement : MonoBehaviour
     {
         float distance = Vector3.Distance(_player.transform.position, transform.position);
 
-        if (distance < DistanceToSearch)
+        if (distance < _distanceToSearch)
         {
             return true;
         }
