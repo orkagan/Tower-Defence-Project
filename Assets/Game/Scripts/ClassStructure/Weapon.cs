@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Netcode;
 
 public class Weapon : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class Weapon : MonoBehaviour
             spawnedProjectile.damage += damage; // i wonder if this will cause the first frame of the thing to not have added wep damage. Oh well!
             spawnedProjectile.initialSpeed += projectileSpeed; //this will be a good test for that
             spawnedProjectile.direction = aimDirection;
+
+            spawnedProjectile.GetComponent<NetworkObject>().Spawn();
         }
     }
     #endregion
