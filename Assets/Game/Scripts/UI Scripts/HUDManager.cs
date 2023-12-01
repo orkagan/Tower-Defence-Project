@@ -14,8 +14,8 @@ public class HUDManager : MonoBehaviour
 
     public int GetResourceCount
     {
-        get => _player.currency;
-        private set => _player.currency = value;
+        get => _player.Currency;
+        private set => _player.Currency = value;
     }
 
     public void SetResourceCount(int value, bool decrement = true)

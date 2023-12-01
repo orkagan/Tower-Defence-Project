@@ -17,7 +17,7 @@ public class Player : Entity
     [Header("Player Fields")]
     [SerializeField] private InputMaster _controls;
     [SerializeField] private float moveSpeed;
-    public int currency;
+    [SerializeField] private int _currency;
     //[SerializeField] private Tower[] towers;
     [SerializeField] private WeaponStash[] weapons;
     [SerializeField] private bool readyToBeginWave;
@@ -25,6 +25,18 @@ public class Player : Entity
     public int attackDelay; //this is handled by the player because reasons
 
     public Vector3 orientation;
+    #endregion
+
+    #region Properties
+    public int Currency
+    {
+        get => _currency;
+        set
+        {
+            _currency = value;
+            _currency = Mathf.Clamp(Currency, 0, int.MaxValue);
+        }
+    }
     #endregion
 
     #region Methods

@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "AimPositionMobile",
+                    "type": "PassThrough",
+                    "id": "eed98846-7e5f-4b17-9192-ca7c8ba8ab58",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -131,17 +140,6 @@
                     "name": "",
                     "id": "28353740-510b-4e87-af98-eb5a155b8dca",
                     "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AimPosition",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b543cd72-1763-42c5-92c2-69afbb7d5935",
-                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -245,6 +243,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ClickPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2315ae9b-1f6c-4edd-ac69-0e35ab56a292",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimPositionMobile",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

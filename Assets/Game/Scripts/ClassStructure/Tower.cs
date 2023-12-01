@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Tower : AggressiveEntity
@@ -11,16 +13,15 @@ public class Tower : AggressiveEntity
     [SerializeField] private string _tagName;
     [SerializeField] private string _entityName;
 
+    [SerializeField, Space(10)] private Weapon _weapon;
+    [SerializeField] private Transform _shootPoint;
+
     [SerializeField, Space(10)] private float _range;
     [SerializeField] private float _attackCooldown;
+    float cooldown;
     [SerializeField] private float _damage;
 
     [SerializeField, Space(10)] private int _cost;
-
-    //[SerializeField] private Projectile _projectile;
-    //[SerializeField] private GameObject _projectile;
-    //[SerializeField] private float _projectileSpeed;
-    //[SerializeField] private Transform _shootFrom;
 
     [SerializeField] private List<Collider> _enemiesInRange = new List<Collider>();
     #endregion
@@ -41,7 +42,7 @@ public class Tower : AggressiveEntity
     /// </summary>
     public float GetDamage
     {
-        get => _damage;
+        get => _damage * 10;
         private set => _damage = value;
     }
 
@@ -50,8 +51,12 @@ public class Tower : AggressiveEntity
     /// </summary>
     public float GetAttackCooldown
     {
-        get => _attackCooldown;
-        private set => _attackCooldown = value;
+        get => _attackCooldown * 10;
+        private set
+        {
+            _attackCooldown = value;
+            _attackCooldown = Mathf.Clamp(_attackCooldown, 0.1f, int.MaxValue);
+        }
     }
 
     /// <summary>
@@ -59,22 +64,31 @@ public class Tower : AggressiveEntity
     /// </summary>
     public float GetRange
     {
-        get => _range;
+        get => _range * 10;
         private set => _range = value;
     }
-    #endregion
 
-    
+    private BoxCollider Box => GetComponent<BoxCollider>();
+    #endregion   
 
     #region Methods 
     #region Unity Methods
+    private void Start()
+    {
+        cooldown = GetAttackCooldown;
+    }
+
     private void Update()
     {
         if (GameStateHandler.Instance.GetCurrentState == GameState.AttackPhase)
         {
-            if (_enemiesInRange.Count !<= 0)
+            cooldown -= Time.deltaTime;
+
+            if (_enemiesInRange.Count > 0 && cooldown <= 0)
             {
                 Attack();
+
+                cooldown = GetAttackCooldown;
             }
         }
     }
@@ -90,6 +104,9 @@ public class Tower : AggressiveEntity
         if (!other.gameObject.CompareTag(_tagName)) return;
 
         _enemiesInRange.Add(other);
+
+        Enemy e = other.GetComponent<Enemy>();
+        e.onDeath.AddListener(() => _enemiesInRange.Remove(other));
     }
 
     private void OnTriggerExit(Collider other)
@@ -100,17 +117,21 @@ public class Tower : AggressiveEntity
     }
     #endregion
     #region Upgrades
-    public void SetRange(int increase)
+    public void IncreaseRange(float increase)
     {
         GetRange += increase;
+
+        Vector3 bs = Box.size;
+        bs.z = bs.x = GetRange;
+        Box.size = bs;
     }
 
-    public void SetDamage(int increase)
+    public void IncreaseDamage(float increase)
     {
         GetDamage += increase;
     }
 
-    public void SetAttackCooldown(int decrease)
+    public void DecreaseAttackCooldown(float decrease)
     {
         GetAttackCooldown -= decrease;
     }
@@ -125,18 +146,8 @@ public class Tower : AggressiveEntity
     {
         foreach (Collider enemy in _enemiesInRange)
         {
-            //shoot a projectile from top of tower and onto target
-
-            #region code for actually shooting a projectile, but due to time constraints, won't
-
-            //Vector3 shootPoint = _shootFrom.position;
-            //GameObject newBullet = Instantiate(_projectile, shootPoint, Quaternion.identity, transform);
-            //Vector3 direction = shootPoint - enemy.transform.position;
-            //newBullet.transform.position += direction * (Time.deltaTime * _projectileSpeed);
-
-            #endregion
-
-            enemy.GetComponent<Enemy>().DecreaseHealth(5);
+            Vector3 direction = enemy.transform.forward - _shootPoint.position;
+            _weapon.Attack(direction, _shootPoint.position);
         }
 
         yield return new WaitForSeconds(GetAttackCooldown);

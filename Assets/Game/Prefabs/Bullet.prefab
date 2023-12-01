@@ -131,6 +131,6 @@ MonoBehaviour:
   maxHits: 1
   hits: 0
   hitRate: 0
-  initialSpeed: 50
+  initialSpeed: 0
   damage: 5
   direction: {x: 0, y: 0, z: 0}
