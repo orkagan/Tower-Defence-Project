@@ -17,7 +17,7 @@ public class Player : Entity
     [Header("Player Fields")]
     [SerializeField] private InputMaster _controls;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private int _currency;
+    [SerializeField] private int _currency = 10;
     //[SerializeField] private Tower[] towers;
     [SerializeField] private WeaponStash[] weapons;
     [SerializeField] private bool readyToBeginWave;

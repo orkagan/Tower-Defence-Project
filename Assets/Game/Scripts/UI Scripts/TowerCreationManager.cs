@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public enum PlayMode
@@ -56,39 +56,42 @@ public class TowerCreationManager : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private void CreateTowerHere()
     {
-        //the following can only be executed when the player can build towers.
-        if (_playMode == PlayMode.BuildMode)
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            //shoots a raycast from screen center to placement position via world space and places a tower
-            //a tower is only placed if the player has enough resources/money to build one.
-            Vector3 placement = _pos.ReadValue<Vector2>();
-            Ray ray = Camera.main.ScreenPointToRay(placement);
-            if (Physics.Raycast(ray, out RaycastHit rayHit, Mathf.Infinity, _layer))
+            //the following can only be executed when the player can build towers.
+            if (_playMode == PlayMode.BuildMode)
             {
-                //Check for nearby towers - if one is too close, display message saying a tower cannot be placed there for that reason.
-                if (!CheckForTowers(rayHit.point))
+                //shoots a raycast from screen center to placement position via world space and places a tower
+                //a tower is only placed if the player has enough resources/money to build one.
+                Vector3 placement = _pos.ReadValue<Vector2>();
+                Ray ray = Camera.main.ScreenPointToRay(placement);
+                if (Physics.Raycast(ray, out RaycastHit rayHit, Mathf.Infinity, _layer))
                 {
-                    Tower t = _tower[chosenTower].GetComponentInChildren<Tower>();
-                    int towerCost = t.GetCost;
-                    int result = hud.GetResourceCount - towerCost;
-                    //If a tower can be placed, refer to its attached ScriptableObject and the player HUD UI
-                    //If the player does not have enough resources, it will not place.
-                    if (result < 0)
+                    //Check for nearby towers - if one is too close, display message saying a tower cannot be placed there for that reason.
+                    if (!CheckForTowers(rayHit.point))
                     {
-                        Debug.Log("Player does not have enough resources.");
+                        Tower t = _tower[chosenTower].GetComponentInChildren<Tower>();
+                        int towerCost = t.GetCost;
+                        int result = hud.GetResourceCount - towerCost;
+                        //If a tower can be placed, refer to its attached ScriptableObject and the player HUD UI
+                        //If the player does not have enough resources, it will not place.
+                        if (result < 0)
+                        {
+                            Debug.Log("Player does not have enough resources.");
+                        }
+                        //If they do, remove from the player's resource count the cost of the tower to place. 
+                        else
+                        {
+                            hud.SetResourceCount(towerCost);
+                            Instantiate(_tower[chosenTower], rayHit.point, Quaternion.identity, transform);
+                            Debug.Log($"{t.GetName} cost the player {t.GetCost} resources.");
+                        }
                     }
-                    //If they do, remove from the player's resource count the cost of the tower to place. 
                     else
                     {
-                        hud.SetResourceCount(towerCost);
-                        Instantiate(_tower[chosenTower], rayHit.point, Quaternion.identity, transform);
-                        Debug.Log($"{t.GetName} cost the player {t.GetCost} resources.");
+                        // display message
+                        Debug.Log("This is too close to another tower.");
                     }
-                }
-                else
-                {
-                    // display message
-                    Debug.Log("This is too close to another tower.");
                 }
             }
         }
