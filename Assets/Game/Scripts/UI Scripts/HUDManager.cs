@@ -35,6 +35,11 @@ public class HUDManager : MonoBehaviour
     private void UpdateHealth()
     {
         Image healthBar = _healthBar.GetComponent<Image>();
-        healthBar.fillAmount = _player.GetHealth;
+        healthBar.fillAmount = _player.GetHealth / 100;
+
+        if (_player.GetHealth <= 0)
+        {
+            StartCoroutine(nameof(_player.Die));
+        }
     }
 }

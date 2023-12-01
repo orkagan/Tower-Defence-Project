@@ -15,7 +15,7 @@ public abstract class Projectile : MonoBehaviour
     #endregion
 
     private float lifespan;
-    public float maxLifespan;
+    [Tooltip("How many seconds the projectile will live.\n50 = 1 sec")] public float maxLifespan;
 
     public int maxHits;
     public int hits;
@@ -26,12 +26,13 @@ public abstract class Projectile : MonoBehaviour
 
     public float damage;
 
-    public Rigidbody rb;
-    public Collider hitbox;
 
     public Vector3 direction;
     #endregion
-
+    #region Properties
+    Rigidbody rb => GetComponent<Rigidbody>();
+    Collider hitbox => GetComponent<Collider>();
+    #endregion
     #region Methods
 
     public virtual void Hit(Enemy enemy) 
@@ -74,7 +75,7 @@ public abstract class Projectile : MonoBehaviour
 
     public virtual void Awake()
     {
-        Debug.Log("Projectile Spawned");       
+        Debug.Log("Projectile Spawned");   
     }
     public virtual void FixedUpdate()
     {

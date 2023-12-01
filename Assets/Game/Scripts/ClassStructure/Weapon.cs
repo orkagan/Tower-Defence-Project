@@ -9,17 +9,26 @@ public class Weapon : MonoBehaviour
     public Collider hitbox;
     public Projectile projectile;
     public float projectileSpeed;
+    public float fireRate;
+    private float _fireRate;
     #endregion
 
     #region Methods  
+    private void Awake()
+    {
+        _fireRate = fireRate;
+    }
+
     public void Attack(Vector3 aimDirection, Vector3 position)
     {
         if (GameStateHandler.Instance.GetCurrentState != GameState.AttackPhase)
             return;
 
+        _fireRate--;
+
         Debug.Log("Attacked");
 
-        if (projectile != null)
+        if (projectile != null && _fireRate <= 0)
         {
             //projectile.Spawn(direction, position);
             Vector3 spawnPosition = position + aimDirection.normalized;
@@ -31,6 +40,8 @@ public class Weapon : MonoBehaviour
             spawnedProjectile.damage += damage; // i wonder if this will cause the first frame of the thing to not have added wep damage. Oh well!
             spawnedProjectile.initialSpeed += projectileSpeed; //this will be a good test for that
             spawnedProjectile.direction = aimDirection;
+
+            _fireRate = fireRate;
         }
     }
     #endregion

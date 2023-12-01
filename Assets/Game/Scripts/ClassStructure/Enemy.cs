@@ -22,12 +22,10 @@ public class Enemy : AggressiveEntity
     [SerializeField] protected int _resourceDrop;
     [SerializeField] protected EnemyState _enemyState;
 
-    [SerializeField] private Text _healthText;
+    [SerializeField] private Image _healthBar;
     #endregion
 
     #region Properties
-
-    SphereCollider _attackSphere => GetComponent<SphereCollider>();
     private HUDManager activeHUD
     {
         get
@@ -46,9 +44,9 @@ public class Enemy : AggressiveEntity
     /// </summary>
     public float GetRange => _attackRange;
 
-    private string HealthText
+    private float HealthBar
     {
-        set => _healthText.text = value;
+        set => _healthBar.fillAmount = value / 100;
     }
 
     #endregion
@@ -66,17 +64,11 @@ public class Enemy : AggressiveEntity
     {
         UpdateHealth();
     }
-
-    private void OnValidate()
-    {
-        _attackSphere.radius = _attackRange;
-    }
     #endregion
 
     private void UpdateHealth()
     {
-        string newHealth = GetHealth.ToString();
-        HealthText = $"{newHealth}/{GetMaxHealth}";
+        HealthBar = GetHealth;
 
         if (GetHealth <= 0)
         {

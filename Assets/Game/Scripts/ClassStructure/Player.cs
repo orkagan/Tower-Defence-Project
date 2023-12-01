@@ -1,6 +1,15 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+[Serializable]
+public struct WeaponStash
+{
+    public Weapon weapon;
+    public Projectile projectile;
+    [Tooltip("Rate of fire per second")] public float fireRate;
+}
 
 public class Player : Entity
 {
@@ -10,12 +19,10 @@ public class Player : Entity
     [SerializeField] private float moveSpeed;
     public int currency;
     //[SerializeField] private Tower[] towers;
-    [SerializeField] private Weapon[] weapons;
+    [SerializeField] private WeaponStash[] weapons;
     [SerializeField] private bool readyToBeginWave;
 
     public int attackDelay; //this is handled by the player because reasons
-
-
 
     public Vector3 orientation;
     #endregion
@@ -68,24 +75,38 @@ public class Player : Entity
             attackDelay--;
         }
     }
+
+    private void OnValidate()
+    {
+        foreach (WeaponStash ws in weapons)
+        {
+            Weapon w = ws.weapon;
+
+            w.fireRate = ws.fireRate;
+            w.projectile = ws.projectile;
+        }
+    }
     #endregion
 
     public void Attack(InputAction.CallbackContext value)
     {
         if (attackDelay == 0)
         {
-            weapons[0].Attack(orientation, transform.position);
-            attackDelay = weapons[0].attackCooldown;
-        }
+            Weapon w = weapons[0].weapon;
 
+            w.Attack(orientation, transform.position);
+            attackDelay = w.attackCooldown;
+        }
     }
 
     public void Attack()
     {
         if (attackDelay == 0)
         {
-            weapons[0].Attack(orientation, transform.position);
-            attackDelay = weapons[0].attackCooldown;
+            Weapon w = weapons[0].weapon;
+
+            w.Attack(orientation, transform.position);
+            attackDelay = w.attackCooldown;
         }
     }
 
@@ -106,6 +127,11 @@ public class Player : Entity
         DestroyImmediate(gameObject);
 
         return base.Die();
+    }
+
+    public void LoseHealth(int decrement)
+    {
+        GetHealth -= decrement;
     }
 
     //public void UpgradeTower(Tower tower)

@@ -113,5 +113,6 @@ MonoBehaviour:
   damage: 10
   attackCooldown: 10
   hitbox: {fileID: 3130662355876111013}
-  projectile: {fileID: 6319099319719857447, guid: 8b340a625f2f2c64cb4f020621a6ae76, type: 3}
+  projectile: {fileID: -4203000840619127857, guid: 226bfa396b3b6c9499382a5bc73a9d58, type: 3}
   projectileSpeed: 0
+  fireRate: 1
