@@ -31,11 +31,6 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                KillAllEnemies(enemies);
-            }
-
             if (enemies.Length == 0)
             {
                 GameStateHandler.Instance.SwitchState();
@@ -79,14 +74,5 @@ public class EnemySpawner : MonoBehaviour
     public void IncreaseEnemySpawnCount()
     {
         _enemySpawnCountPerTurn += _countIncreasePerFollowingTurn;
-    }
-
-    public void KillAllEnemies(GameObject[] enemies)
-    {
-        foreach (GameObject enemy in enemies)
-        {
-            Enemy e = enemy.GetComponent<Enemy>();
-            e.GetHealth = 0;
-        }
     }
 }

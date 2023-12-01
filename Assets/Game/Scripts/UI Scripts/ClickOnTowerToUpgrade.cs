@@ -67,20 +67,16 @@ public class ClickOnTowerToUpgrade : MonoBehaviour
             _damageBtn.onClick.RemoveAllListeners();
 
             _rangeBtn.onClick.AddListener(() => hud.SetResourceCount(1));
+            _rangeBtn.onClick.AddListener(() => t.IncreaseRange(.2f));
+            _rangeBtn.onClick.AddListener(() => UpdateDisplay(t));
+
             _cooldownBtn.onClick.AddListener(() => hud.SetResourceCount(1));
+            _cooldownBtn.onClick.AddListener(() => t.DecreaseAttackCooldown(.2f));
+            _cooldownBtn.onClick.AddListener(() => UpdateDisplay(t));
+
             _damageBtn.onClick.AddListener(() => hud.SetResourceCount(1));
-
-            if (hud.GetResourceCount != 0)
-            {
-                _damageBtn.onClick.AddListener(() => t.IncreaseDamage(2));
-                _damageBtn.onClick.AddListener(() => UpdateDisplay(t));
-
-                _cooldownBtn.onClick.AddListener(() => t.DecreaseAttackCooldown(2));
-                _cooldownBtn.onClick.AddListener(() => UpdateDisplay(t));
-
-                _rangeBtn.onClick.AddListener(() => t.IncreaseRange(2));
-                _rangeBtn.onClick.AddListener(() => UpdateDisplay(t));
-            }
+            _damageBtn.onClick.AddListener(() => t.IncreaseDamage(.2f));
+            _damageBtn.onClick.AddListener(() => UpdateDisplay(t));
 
             upgradePanel.SetActive(true);
             UpdateDisplay(t);
@@ -89,9 +85,9 @@ public class ClickOnTowerToUpgrade : MonoBehaviour
 
     private void UpdateDisplay(Tower t)
     {
-        _rangeText.text = t.GetRange.ToString();
+        _rangeText.text = $"{t.GetRange:0.0}";
         _cooldownText.text = $"{t.GetAttackCooldown:0.0}";
-        _damageText.text = t.GetDamage.ToString();
+        _damageText.text = $"{t.GetDamage:0.0}";
     }
     #endregion
 }
