@@ -42,7 +42,7 @@ public class Tower : AggressiveEntity
     /// </summary>
     public float GetDamage
     {
-        get => _damage * 10;
+        get => _damage;
         private set => _damage = value;
     }
 
@@ -51,7 +51,7 @@ public class Tower : AggressiveEntity
     /// </summary>
     public float GetAttackCooldown
     {
-        get => _attackCooldown * 10;
+        get => _attackCooldown;
         private set
         {
             _attackCooldown = value;
@@ -64,11 +64,12 @@ public class Tower : AggressiveEntity
     /// </summary>
     public float GetRange
     {
-        get => _range * 10;
+        get => _range;
         private set => _range = value;
     }
 
     private BoxCollider Box => GetComponent<BoxCollider>();
+    private HUDManager hud => FindAnyObjectByType<HUDManager>();
     #endregion   
 
     #region Methods 
@@ -119,21 +120,26 @@ public class Tower : AggressiveEntity
     #region Upgrades
     public void IncreaseRange(float increase)
     {
-        GetRange += increase;
+        if (hud.GetResourceCount > 0)
+        {
+            GetRange += increase;
 
-        Vector3 bs = Box.size;
-        bs.z = bs.x = GetRange;
-        Box.size = bs;
+            Vector3 bs = Box.size;
+            bs.z = bs.x = GetRange;
+            Box.size = bs;
+        }
     }
 
     public void IncreaseDamage(float increase)
     {
-        GetDamage += increase;
+        if (hud.GetResourceCount > 0)
+            GetDamage += increase;
     }
 
     public void DecreaseAttackCooldown(float decrease)
     {
-        GetAttackCooldown -= decrease;
+        if (hud.GetResourceCount > 0)
+            GetAttackCooldown -= decrease;
     }
     #endregion
 
