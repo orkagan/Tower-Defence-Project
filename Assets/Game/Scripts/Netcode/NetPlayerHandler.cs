@@ -9,10 +9,15 @@ public class NetPlayerHandler : NetworkBehaviour
     {
         if (!IsOwner)
         {
+            GetComponent<PlayerMovement>().enabled = false;
+            GetComponent<Player>().enabled = false;
             GetComponentInChildren<CameraHandler>().enabled = false;
             GetComponentInChildren<Camera>().gameObject.SetActive(false);
-            GetComponent<PlayerMovement>().enabled = false;
         }
-        NetCameraManager.ChooseCamera();
+        GameObject.FindObjectOfType<NetCameraManager>().ChooseCamera();
+    }
+    public override void OnNetworkDespawn()
+    {
+        GameObject.FindObjectOfType<NetCameraManager>().ChooseCamera();
     }
 }
