@@ -124,7 +124,7 @@ public class Player : Entity
 
     public void ReadyUp()
     {
-
+        readyToBeginWave = true;
     }
 
     public void UpgradeWeapon(Weapon weapon)

@@ -5,7 +5,19 @@ public class NetCameraHandler : NetworkBehaviour
 {
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner) GetComponent<CameraHandler>().enabled = false;
+        if (!IsOwner)
+        {
+            GetComponent<CameraHandler>().enabled = false;
+            gameObject.SetActive(false);
+            return;
+        }
+        GameObject.FindObjectOfType<NetCameraManager>().playerCamera = gameObject;
+        GameObject.FindObjectOfType<NetCameraManager>().ChooseCamera();
+    }
+
+	public override void OnNetworkDespawn()
+	{
+        GameObject.FindObjectOfType<NetCameraManager>().playerCamera = null;
         GameObject.FindObjectOfType<NetCameraManager>().ChooseCamera();
     }
 }

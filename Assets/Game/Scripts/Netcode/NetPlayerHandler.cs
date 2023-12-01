@@ -15,6 +15,8 @@ public class NetPlayerHandler : NetworkBehaviour
             GetComponentInChildren<Camera>().gameObject.SetActive(false);
         }
         GameObject.FindObjectOfType<NetCameraManager>().ChooseCamera();
+
+        GameObject.FindObjectOfType<HUDManager>()._player = this.GetComponent<Player>();
     }
     public override void OnNetworkDespawn()
     {

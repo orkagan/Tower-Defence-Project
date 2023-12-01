@@ -3,13 +3,17 @@ using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+    [SerializeField] public Player _player;
     [SerializeField] private GameObject _healthBar, _resources, _phaseText;
+
 
     private void FixedUpdate()
     {
-        UpdateResources();
-        UpdateHealth();
+        if (_player != null)
+        {
+            UpdateResources();
+            UpdateHealth();
+        }
     }
 
     public int GetResourceCount

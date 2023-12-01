@@ -17,25 +17,15 @@ public class NetCameraManager : NetworkBehaviour
     [ContextMenu("ChooseCamera()")]
     public void ChooseCamera()
     {
-        if (NetworkManager.Singleton.ConnectedClientsList.Count == 0)
-        {
-            defaultCamera.gameObject.SetActive(true);
+		if (playerCamera != null)
+		{
+            playerCamera.SetActive(true);
+            defaultCamera.SetActive(false);
         }
-
-        foreach (NetworkClient client in NetworkManager.Singleton.ConnectedClients.Values)
-        {
-            GameObject cameraGO = client.PlayerObject.GetComponentInChildren<Camera>().gameObject;
-            if (client.PlayerObject.IsLocalPlayer)
-            {
-                cameraGO.SetActive(true);
-                playerCamera = cameraGO;
-                defaultCamera.SetActive(false);
-            }
-            else
-            {
-                cameraGO.SetActive(false);
-            }
-        }
+        else
+		{
+            defaultCamera.SetActive(true);
+		}
     }
 
 }
