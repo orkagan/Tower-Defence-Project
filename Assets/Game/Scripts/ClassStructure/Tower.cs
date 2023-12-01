@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Tower : AggressiveEntity
@@ -40,7 +42,7 @@ public class Tower : AggressiveEntity
     /// </summary>
     public float GetDamage
     {
-        get => _damage;
+        get => _damage * 10;
         private set => _damage = value;
     }
 
@@ -49,8 +51,12 @@ public class Tower : AggressiveEntity
     /// </summary>
     public float GetAttackCooldown
     {
-        get => _attackCooldown;
-        private set => _attackCooldown = value;
+        get => _attackCooldown * 10;
+        private set
+        {
+            _attackCooldown = value;
+            _attackCooldown = Mathf.Clamp(_attackCooldown, 0.1f, int.MaxValue);
+        }
     }
 
     /// <summary>
@@ -58,9 +64,11 @@ public class Tower : AggressiveEntity
     /// </summary>
     public float GetRange
     {
-        get => _range;
+        get => _range * 10;
         private set => _range = value;
     }
+
+    private BoxCollider Box => GetComponent<BoxCollider>();
     #endregion   
 
     #region Methods 
@@ -109,17 +117,21 @@ public class Tower : AggressiveEntity
     }
     #endregion
     #region Upgrades
-    public void SetRange(int increase)
+    public void IncreaseRange(float increase)
     {
         GetRange += increase;
+
+        Vector3 bs = Box.size;
+        bs.z = bs.x = GetRange;
+        Box.size = bs;
     }
 
-    public void SetDamage(int increase)
+    public void IncreaseDamage(float increase)
     {
         GetDamage += increase;
     }
 
-    public void SetAttackCooldown(int decrease)
+    public void DecreaseAttackCooldown(float decrease)
     {
         GetAttackCooldown -= decrease;
     }
@@ -134,7 +146,7 @@ public class Tower : AggressiveEntity
     {
         foreach (Collider enemy in _enemiesInRange)
         {
-            Vector3 direction = enemy.transform.position - _shootPoint.position;
+            Vector3 direction = enemy.transform.forward - _shootPoint.position;
             _weapon.Attack(direction, _shootPoint.position);
         }
 
