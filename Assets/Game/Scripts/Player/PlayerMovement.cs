@@ -3,6 +3,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     #region Variables
+
+    public bool mobileMovement;
     public Player player;
     public InputMaster controls;
     public LayerMask groundMask;
@@ -19,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform rotHandler;
 
     private Vector2 lookInputPosition;
+    private Vector2 lookInputPositionMobile;
     private Vector2 _playerScreenPos;
     #endregion
     #region Moving
@@ -84,7 +87,18 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-        DoLookage();
+
+        if (mobileMovement == false)
+        {
+            DoLookage();
+        }
+
+        else 
+        {
+            DoLookageMobile();
+        }
+        
+
         
         player.orientation = rotHandler.forward;
     }
@@ -96,7 +110,24 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = controls.Player.Movement.ReadValue<Vector2>().y;
        
         lookInputPosition = controls.Player.AimPosition.ReadValue<Vector2>();
+        lookInputPositionMobile = controls.Player.AimPositionMobile.ReadValue<Vector2>();
         _playerScreenPos = cam.WorldToScreenPoint(rb.position);        
+    }
+
+    private void DoLookageMobile()
+    {
+
+
+        Vector2 lookDirection = lookInputPositionMobile;
+
+
+        float tempAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 135; //-45 is the magic number that makes this work but in opposite direction
+
+        rotHandler.rotation = Quaternion.AngleAxis(-tempAngle, orientation.up);
+
+        Vector2 lookDirection1 = lookInputPosition - _playerScreenPos;
+
+        camHandler.PMgetter = cam.ScreenToViewportPoint(lookDirection1);
     }
 
     private (bool success, Vector3 position) GetMousePosition()
