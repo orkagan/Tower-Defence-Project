@@ -11,16 +11,15 @@ public class Tower : AggressiveEntity
     [SerializeField] private string _tagName;
     [SerializeField] private string _entityName;
 
+    [SerializeField, Space(10)] private Weapon _weapon;
+    [SerializeField] private Transform _shootPoint;
+
     [SerializeField, Space(10)] private float _range;
     [SerializeField] private float _attackCooldown;
+    float cooldown;
     [SerializeField] private float _damage;
 
     [SerializeField, Space(10)] private int _cost;
-
-    //[SerializeField] private Projectile _projectile;
-    //[SerializeField] private GameObject _projectile;
-    //[SerializeField] private float _projectileSpeed;
-    //[SerializeField] private Transform _shootFrom;
 
     [SerializeField] private List<Collider> _enemiesInRange = new List<Collider>();
     #endregion
@@ -62,19 +61,26 @@ public class Tower : AggressiveEntity
         get => _range;
         private set => _range = value;
     }
-    #endregion
-
-    
+    #endregion   
 
     #region Methods 
     #region Unity Methods
+    private void Start()
+    {
+        cooldown = GetAttackCooldown;
+    }
+
     private void Update()
     {
         if (GameStateHandler.Instance.GetCurrentState == GameState.AttackPhase)
         {
-            if (_enemiesInRange.Count !<= 0)
+            cooldown -= Time.deltaTime;
+
+            if (_enemiesInRange.Count > 0 && cooldown <= 0)
             {
                 Attack();
+
+                cooldown = GetAttackCooldown;
             }
         }
     }
@@ -90,6 +96,9 @@ public class Tower : AggressiveEntity
         if (!other.gameObject.CompareTag(_tagName)) return;
 
         _enemiesInRange.Add(other);
+
+        Enemy e = other.GetComponent<Enemy>();
+        e.onDeath.AddListener(() => _enemiesInRange.Remove(other));
     }
 
     private void OnTriggerExit(Collider other)
@@ -125,18 +134,8 @@ public class Tower : AggressiveEntity
     {
         foreach (Collider enemy in _enemiesInRange)
         {
-            //shoot a projectile from top of tower and onto target
-
-            #region code for actually shooting a projectile, but due to time constraints, won't
-
-            //Vector3 shootPoint = _shootFrom.position;
-            //GameObject newBullet = Instantiate(_projectile, shootPoint, Quaternion.identity, transform);
-            //Vector3 direction = shootPoint - enemy.transform.position;
-            //newBullet.transform.position += direction * (Time.deltaTime * _projectileSpeed);
-
-            #endregion
-
-            enemy.GetComponent<Enemy>().DecreaseHealth(5);
+            Vector3 direction = enemy.transform.position - _shootPoint.position;
+            _weapon.Attack(direction, _shootPoint.position);
         }
 
         yield return new WaitForSeconds(GetAttackCooldown);

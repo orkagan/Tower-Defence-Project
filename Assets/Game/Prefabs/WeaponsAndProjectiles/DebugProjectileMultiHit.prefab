@@ -132,10 +132,8 @@ MonoBehaviour:
   maxHits: 4
   hits: 0
   hitRate: 0
-  initialSpeed: 50
+  initialSpeed: 0
   damage: 5
-  rb: {fileID: 3886760550640014209}
-  hitbox: {fileID: 3886760551276121927}
   direction: {x: 0, y: 0, z: 0}
 --- !u!1 &3886760551276121925
 GameObject:

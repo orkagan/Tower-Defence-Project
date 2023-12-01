@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject newEnemy = Instantiate(_enemyPrefab, _gameMap);
             newEnemy.transform.position = GetRandomPointInBoxCollider(_spawnPoints[randomSpawn]);
             newEnemy.name = $"Enemy #{i + 1}";
-            Debug.Log($"Spawned enemy #{i + 1}");
+            Debug.Log($"Spawned {newEnemy.name}");
             
             yield return new WaitForSeconds(0.5f);
         }
