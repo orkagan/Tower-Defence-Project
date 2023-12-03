@@ -11,13 +11,19 @@ public class NetCameraHandler : NetworkBehaviour
             gameObject.SetActive(false);
             return;
         }
-        GameObject.FindObjectOfType<NetCameraManager>().playerCamera = gameObject;
-        GameObject.FindObjectOfType<NetCameraManager>().ChooseCamera();
+        if (IsOwner)
+        {
+            GameObject.FindObjectOfType<NetCameraManager>().playerCamera = gameObject;
+            GameObject.FindObjectOfType<NetCameraManager>().ChooseCamera();
+        }
     }
 
 	public override void OnNetworkDespawn()
 	{
-        GameObject.FindObjectOfType<NetCameraManager>().playerCamera = null;
-        GameObject.FindObjectOfType<NetCameraManager>().ChooseCamera();
+        if (IsOwner)
+        {
+            GameObject.FindObjectOfType<NetCameraManager>().playerCamera = null;
+            GameObject.FindObjectOfType<NetCameraManager>().ChooseCamera();
+        }
     }
 }

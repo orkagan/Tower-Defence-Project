@@ -16,21 +16,13 @@ public class NetworkUIManager : MonoBehaviour
     [SerializeField] private Button _joinButton;
     [SerializeField] private Button _disconnectButton;
 
-    //[SerializeField] private string defaultIP = "127.0.0.1";
     [SerializeField] private string defaultIP;
     [SerializeField] private int defaultPort = 7777;
-    
-    public event Action<ulong, ConnectionStatus> OnClientConnectionNotification;
-    public event Action<bool> OnServerStoppedNotification;
-    public enum ConnectionStatus
-    {
-        Connected,
-        Disconnected
-    }
     
     
     private void Awake()
     {
+        //sets default ip to local IPv4 (used if blank)
         defaultIP = GetLocalIPv4();
         
         //_serverButton.onClick.AddListener(()=>{NetworkManager.Singleton.StartServer();});
@@ -41,18 +33,13 @@ public class NetworkUIManager : MonoBehaviour
 
     private void Start()
     {
+        //Listener functions
+        NetworkManager.Singleton.OnClientStarted += OnClientStarted;
+        NetworkManager.Singleton.OnClientStopped += OnClientStopped;
+        NetworkManager.Singleton.OnServerStopped += OnServerStopped;
         NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
-        NetworkManager.Singleton.OnServerStopped += OnServerStopped;
     }
-
-    /*private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tilde))
-        {
-            Debug.developerConsoleVisible = !Debug.developerConsoleVisible;
-        }
-    }*/
 
     public string GetLocalIPv4()
     {
@@ -61,14 +48,16 @@ public class NetworkUIManager : MonoBehaviour
                 f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
             .ToString();
     }
-    public void SetConnectionData(string ip = "127.0.0.1", string port = "7777")
+    public void SetConnectionData(string ip, string port = "7777")
     {
+        //Port checking
         int.TryParse(port, out var portNum);
         if (portNum <= 0 || string.IsNullOrEmpty(port))
         {
             portNum = defaultPort;
         }
 
+        //IP checking
         ip = string.IsNullOrEmpty(ip) ? defaultIP : ip;
         IPAddress address;
         if (IPAddress.TryParse(ip, out address))
@@ -82,7 +71,7 @@ public class NetworkUIManager : MonoBehaviour
                     // we have IPv6
                     break;
                 default:
-                    // umm... yeah... I'm going to need to take your red packet and...
+                    // grabbing IPv4 address 
                     ip = GetLocalIPv4();
                     break;
             }
@@ -91,8 +80,7 @@ public class NetworkUIManager : MonoBehaviour
         Debug.Log($"Connection Data Set as {ip}:{portNum}");
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(
             ip,
-            (ushort)portNum
-            );
+            (ushort)portNum);
     }
     public void HostWithIP()
     {
@@ -111,11 +99,27 @@ public class NetworkUIManager : MonoBehaviour
         NetworkManager.Singleton.Shutdown();
     }
     
-    private void OnClientConnectedCallback(ulong clientId)
+    //I was hoping to just get funtions to listen to network events like connected, disconnected, etc.
+    #region Listener Functions
+    private void OnClientStarted()
     {
-        OnClientConnectionNotification?.Invoke(clientId, ConnectionStatus.Connected);
         _ipField.text = NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address;
         _portField.text = NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Port.ToString();
+        _ipField.interactable = false;
+        _portField.interactable = false;
+
+        //set interactivity of buttons
+        _disconnectButton.interactable = true;
+        _joinButton.interactable = false;
+        _hostButton.interactable = false;
+    }
+
+    private void OnClientConnectedCallback(ulong clientId)
+    {
+        _ipField.interactable = false;
+        _portField.interactable = false;
+
+        //set interactivity of buttons
         _disconnectButton.interactable = true;
         _joinButton.interactable = false;
         _hostButton.interactable = false;
@@ -123,16 +127,33 @@ public class NetworkUIManager : MonoBehaviour
 
     private void OnClientDisconnectCallback(ulong clientId)
     {
-        OnClientConnectionNotification?.Invoke(clientId, ConnectionStatus.Disconnected);
+        _ipField.interactable = true;
+        _portField.interactable = true;
+
+        //set interactivity of buttons
+        _disconnectButton.interactable = false;
+        _joinButton.interactable = true;
+        _hostButton.interactable = true;
+    }
+    private void OnClientStopped(bool dced)
+    {
+        _ipField.interactable = true;
+        _portField.interactable = true;
+
+        //set interactivity of buttons
         _disconnectButton.interactable = false;
         _joinButton.interactable = true;
         _hostButton.interactable = true;
     }
     private void OnServerStopped(bool dced)
     {
-        OnServerStoppedNotification?.Invoke(dced);
+        _ipField.interactable = true;
+        _portField.interactable = true;
+
+        //set interactivity of buttons
         _disconnectButton.interactable = false;
         _joinButton.interactable = true;
         _hostButton.interactable = true;
     }
+    #endregion
 }

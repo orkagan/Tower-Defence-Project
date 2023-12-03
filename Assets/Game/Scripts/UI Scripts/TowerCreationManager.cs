@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using Unity.Netcode;
 
 public enum PlayMode
 {
@@ -8,7 +9,7 @@ public enum PlayMode
     Other,
 }
 
-public class TowerCreationManager : MonoBehaviour
+public class TowerCreationManager : NetworkBehaviour
 {
     #region Fields
     [SerializeField] private GameObject[] _tower;
@@ -83,7 +84,17 @@ public class TowerCreationManager : MonoBehaviour
                         else
                         {
                             hud.SetResourceCount(towerCost);
-                            Instantiate(_tower[chosenTower], rayHit.point, Quaternion.identity, transform);
+                            /*GameObject go = Instantiate(_tower[chosenTower], rayHit.point, Quaternion.identity, transform);
+                            go.GetComponentInParent<NetworkObject>().Spawn();*/
+                            //Debug.Log($"IsServer: {IsServer}\nIsClient: {IsClient}");
+                            if (IsServer)
+                            {
+                                SpawnTower(chosenTower, rayHit.point);
+                            }
+                            else if (IsClient)
+                            {
+                                SpawnTowerServerRpc(chosenTower, rayHit.point);
+                            }
                             Debug.Log($"{t.GetName} cost the player {t.GetCost} resources.");
                         }
                     }
@@ -114,6 +125,18 @@ public class TowerCreationManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void SpawnTower(int chosenTower, Vector3 position)
+    {
+        GameObject go = Instantiate(_tower[chosenTower], position, Quaternion.identity, transform);
+        go.GetComponentInParent<NetworkObject>().Spawn();
+    }
+
+    [ServerRpc]
+    public void SpawnTowerServerRpc(int chosenTower, Vector3 position)
+    {
+        SpawnTower(chosenTower, position);
     }
 
     public void SetChosenTower(int i) => chosenTower = i;
