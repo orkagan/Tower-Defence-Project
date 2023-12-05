@@ -1,6 +1,7 @@
 using UnityEngine;
+using Unity.Netcode;
 
-public class Weapon : MonoBehaviour
+public class Weapon : NetworkBehaviour
 {
     #region Fields    
     public float damage;
@@ -23,6 +24,11 @@ public class Weapon : MonoBehaviour
     {
         if (GameStateHandler.Instance.GetCurrentState != GameState.AttackPhase)
             return;
+        if (!IsServer)
+        {
+            AttackServerRpc(aimDirection, position);
+            return;
+        }
 
         _fireRate--;
 
@@ -34,15 +40,21 @@ public class Weapon : MonoBehaviour
             Vector3 spawnPosition = position + aimDirection.normalized;
             Debug.DrawRay(spawnPosition, aimDirection, Color.black, 3f);
 
-            Projectile spawnedProjectile;
-            spawnedProjectile = Instantiate(projectile, spawnPosition, Quaternion.identity);
-
+            Projectile spawnedProjectile = Instantiate(projectile, spawnPosition, Quaternion.identity);
             spawnedProjectile.damage += damage; // i wonder if this will cause the first frame of the thing to not have added wep damage. Oh well!
             spawnedProjectile.initialSpeed += projectileSpeed; //this will be a good test for that
             spawnedProjectile.direction = aimDirection;
 
+            spawnedProjectile.GetComponent<NetworkObject>().Spawn();
+
             _fireRate = fireRate;
         }
+    }
+
+    [ServerRpc]
+    public void AttackServerRpc(Vector3 aimDirection, Vector3 position)
+    {
+        Attack(aimDirection, position);
     }
     #endregion
 }

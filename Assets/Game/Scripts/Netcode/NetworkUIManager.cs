@@ -33,10 +33,9 @@ public class NetworkUIManager : MonoBehaviour
 
     private void Start()
     {
-        //Listener functions
+        //Network Event Listener functions
         NetworkManager.Singleton.OnClientStarted += OnClientStarted;
         NetworkManager.Singleton.OnClientStopped += OnClientStopped;
-        NetworkManager.Singleton.OnServerStopped += OnServerStopped;
         NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
     }
@@ -99,8 +98,7 @@ public class NetworkUIManager : MonoBehaviour
         NetworkManager.Singleton.Shutdown();
     }
     
-    //I was hoping to just get funtions to listen to network events like connected, disconnected, etc.
-    #region Listener Functions
+    #region Network Event Listener Functions
     private void OnClientStarted()
     {
         _ipField.text = NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address;
@@ -114,8 +112,20 @@ public class NetworkUIManager : MonoBehaviour
         _hostButton.interactable = false;
     }
 
+    private void OnClientStopped(bool dced)
+    {
+        _ipField.interactable = true;
+        _portField.interactable = true;
+
+        //set interactivity of buttons
+        _disconnectButton.interactable = false;
+        _joinButton.interactable = true;
+        _hostButton.interactable = true;
+    }
+
     private void OnClientConnectedCallback(ulong clientId)
     {
+        if (NetworkManager.Singleton.LocalClientId != clientId) return;
         _ipField.interactable = false;
         _portField.interactable = false;
 
@@ -127,26 +137,7 @@ public class NetworkUIManager : MonoBehaviour
 
     private void OnClientDisconnectCallback(ulong clientId)
     {
-        _ipField.interactable = true;
-        _portField.interactable = true;
-
-        //set interactivity of buttons
-        _disconnectButton.interactable = false;
-        _joinButton.interactable = true;
-        _hostButton.interactable = true;
-    }
-    private void OnClientStopped(bool dced)
-    {
-        _ipField.interactable = true;
-        _portField.interactable = true;
-
-        //set interactivity of buttons
-        _disconnectButton.interactable = false;
-        _joinButton.interactable = true;
-        _hostButton.interactable = true;
-    }
-    private void OnServerStopped(bool dced)
-    {
+        if (NetworkManager.Singleton.LocalClientId != clientId) return;
         _ipField.interactable = true;
         _portField.interactable = true;
 

@@ -1,11 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using Unity.Netcode;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : NetworkBehaviour
 {
     [SerializeField] GameObject _enemyPrefab;
-    [SerializeField] Transform _gameMap;
+    [SerializeField] Transform _gameMap => GameObject.FindGameObjectWithTag("GameMap").transform;
 
     [SerializeField, Tooltip("The amount of enemies which spawn every turn.")]
     int _enemySpawnCountPerTurn = 15;
@@ -46,9 +47,9 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < _enemySpawnCountPerTurn; i++)
         {
             int randomSpawn = Random.Range(0, _spawnPoints.Length);
-            GameObject newEnemy = Instantiate(_enemyPrefab, _gameMap);
-            newEnemy.transform.position = GetRandomPointInBoxCollider(_spawnPoints[randomSpawn]);
+            GameObject newEnemy = Instantiate(_enemyPrefab, GetRandomPointInBoxCollider(_spawnPoints[randomSpawn]), Quaternion.identity, _gameMap);
             newEnemy.name = $"Enemy #{i + 1}";
+            newEnemy.GetComponent<NetworkObject>().Spawn();
             Debug.Log($"Spawned {newEnemy.name}");
             
             yield return new WaitForSeconds(0.5f);

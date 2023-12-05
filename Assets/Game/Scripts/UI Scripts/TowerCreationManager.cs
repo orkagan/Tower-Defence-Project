@@ -13,7 +13,7 @@ public class TowerCreationManager : NetworkBehaviour
 {
     #region Fields
     [SerializeField] private GameObject[] _tower;
-    [HideInInspector] public int chosenTower;
+    public int chosenTower;
     [SerializeField] private LayerMask _layer;
     [SerializeField] private PlayMode _playMode = PlayMode.BuildMode;
     [SerializeField] private GameObject _hud;
@@ -24,7 +24,7 @@ public class TowerCreationManager : NetworkBehaviour
 
     #region Properties
     public PlayMode CurrentPlayMode => _playMode;
-    private HUDManager hud => _hud.GetComponent<HUDManager>();
+    private HUDManager hud => GameObject.FindAnyObjectByType<HUDManager>();
     #endregion
 
     #region Methods
@@ -48,7 +48,7 @@ public class TowerCreationManager : NetworkBehaviour
         _click.performed -= CreateTower;
     }
     #endregion
-
+    
     private void CreateTower(InputAction.CallbackContext action)
     {
         if (GameStateHandler.Instance.GetCurrentState == GameState.BuildPhase) CreateTowerHere();
@@ -86,7 +86,7 @@ public class TowerCreationManager : NetworkBehaviour
                             hud.SetResourceCount(towerCost);
                             /*GameObject go = Instantiate(_tower[chosenTower], rayHit.point, Quaternion.identity, transform);
                             go.GetComponentInParent<NetworkObject>().Spawn();*/
-                            //Debug.Log($"IsServer: {IsServer}\nIsClient: {IsClient}");
+                            Debug.Log($"IsServer: {IsServer}, IsHost: {IsHost}, IsClient: {IsClient}");
                             if (IsServer)
                             {
                                 SpawnTower(chosenTower, rayHit.point);
@@ -129,6 +129,7 @@ public class TowerCreationManager : NetworkBehaviour
 
     public void SpawnTower(int chosenTower, Vector3 position)
     {
+        Debug.Log("SpawnTower() called");
         GameObject go = Instantiate(_tower[chosenTower], position, Quaternion.identity, transform);
         go.GetComponentInParent<NetworkObject>().Spawn();
     }
@@ -136,6 +137,7 @@ public class TowerCreationManager : NetworkBehaviour
     [ServerRpc]
     public void SpawnTowerServerRpc(int chosenTower, Vector3 position)
     {
+        Debug.Log("SpawnTowerServerRpc() called");
         SpawnTower(chosenTower, position);
     }
 

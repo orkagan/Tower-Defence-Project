@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 [RequireComponent(typeof(Rigidbody))]
-public abstract class Projectile : MonoBehaviour
+public abstract class Projectile : NetworkBehaviour
 {
     #region Fields
 

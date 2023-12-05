@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class NetCameraManager : NetworkBehaviour
+public class NetCameraManager : MonoBehaviour
 {
     public GameObject defaultCamera;
     public GameObject playerCamera;
