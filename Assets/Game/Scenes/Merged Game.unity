@@ -1818,7 +1818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6942cf093522dc4dae4ad20b7abd9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mobileMovement: 1
+  mobileMovement: 0
   player: {fileID: 601413335}
   groundMask:
     serializedVersion: 2
