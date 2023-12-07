@@ -24,7 +24,7 @@ public class TowerCreationManager : NetworkBehaviour
 
     #region Properties
     public PlayMode CurrentPlayMode => _playMode;
-    private HUDManager hud => GameObject.FindAnyObjectByType<HUDManager>();
+    private HUDManager hud => _hud.GetComponent<HUDManager>();
     #endregion
 
     #region Methods
@@ -57,7 +57,7 @@ public class TowerCreationManager : NetworkBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private void CreateTowerHere()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!EventSystem.current.IsPointerOverGameObject() && IsLocalPlayer)
         {
             //the following can only be executed when the player can build towers.
             if (_playMode == PlayMode.BuildMode)
@@ -91,7 +91,7 @@ public class TowerCreationManager : NetworkBehaviour
                             {
                                 SpawnTower(chosenTower, rayHit.point);
                             }
-                            else if (IsClient)
+                            else
                             {
                                 SpawnTowerServerRpc(chosenTower, rayHit.point);
                             }

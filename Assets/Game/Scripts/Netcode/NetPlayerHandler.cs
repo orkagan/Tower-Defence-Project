@@ -7,6 +7,16 @@ public class NetPlayerHandler : NetworkBehaviour
 {
     public override void OnNetworkSpawn()
     {
+        HUDManager hud = GetComponentInChildren<HUDManager>();
+        if (IsLocalPlayer)
+        {
+            hud.gameObject.SetActive(true);
+        }
+        else
+        {
+            hud.gameObject.SetActive(false);
+        }
+        
         if (!IsOwner)
         {
             GetComponent<PlayerMovement>().enabled = false;
@@ -15,8 +25,6 @@ public class NetPlayerHandler : NetworkBehaviour
             GetComponentInChildren<Camera>().gameObject.SetActive(false);
         }
         GameObject.FindObjectOfType<NetCameraManager>().ChooseCamera();
-
-        GameObject.FindObjectOfType<HUDManager>()._player = this.GetComponent<Player>();
     }
     public override void OnNetworkDespawn()
     {

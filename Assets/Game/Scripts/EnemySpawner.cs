@@ -15,17 +15,23 @@ public class EnemySpawner : NetworkBehaviour
     int _countIncreasePerFollowingTurn = 3;
 
     [SerializeField, Space(20), Tooltip("The areas where the enemies spawn.")]
-    Transform[] _spawnPoints;
+    GameObject[] _spawnPoints;
 
     public UnityEvent onFinishSpawning;
 
     private void Start()
     {
         onFinishSpawning.AddListener(() => StartCoroutine(nameof(CountEnemies)));
+        _spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoint");
     }
 
-    public void BeginSpawning() => StartCoroutine(nameof(SpawnEnemies));
-
+    public void BeginSpawning()
+    {
+        if (IsServer)
+        {
+            StartCoroutine(nameof(SpawnEnemies));
+        }
+    }
     private IEnumerator CountEnemies()
     {
         while (GameStateHandler.Instance.GetCurrentState == GameState.AttackPhase)
@@ -47,7 +53,7 @@ public class EnemySpawner : NetworkBehaviour
         for (int i = 0; i < _enemySpawnCountPerTurn; i++)
         {
             int randomSpawn = Random.Range(0, _spawnPoints.Length);
-            GameObject newEnemy = Instantiate(_enemyPrefab, GetRandomPointInBoxCollider(_spawnPoints[randomSpawn]), Quaternion.identity, _gameMap);
+            GameObject newEnemy = Instantiate(_enemyPrefab, GetRandomPointInBoxCollider(_spawnPoints[randomSpawn].transform), Quaternion.identity, _gameMap);
             newEnemy.name = $"Enemy #{i + 1}";
             newEnemy.GetComponent<NetworkObject>().Spawn();
             Debug.Log($"Spawned {newEnemy.name}");

@@ -29,12 +29,18 @@ public class GameStateHandler : MonoBehaviour
 
     #endregion
 
+
     [SerializeField] GameState state;
     [SerializeField] private NavMeshSurface _navMeshSurface;
     [SerializeField] private CanvasGroup _towerSelection;
     public UnityEvent onAttackPhase, onBuildPhase;
-
     public GameState GetCurrentState => state;
+    
+    private void Start()
+    {
+        _navMeshSurface = GameObject.FindObjectOfType<NavMeshSurface>();
+    }
+
 
     /// <summary>
     /// Changes game state from Attack to Build, or Build to Attack.
