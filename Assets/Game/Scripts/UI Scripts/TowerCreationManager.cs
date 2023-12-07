@@ -24,6 +24,7 @@ public class TowerCreationManager : MonoBehaviour
     #region Properties
     public PlayMode CurrentPlayMode => _playMode;
     private HUDManager hud => _hud.GetComponent<HUDManager>();
+    public GameObject GetChosenTower => _tower[chosenTower];
     #endregion
 
     #region Methods

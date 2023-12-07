@@ -6,6 +6,11 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private GameObject _healthBar, _resources, _phaseText;
 
+    public Player MakePlayer
+    {
+        set => _player = value;
+    }
+
     private void FixedUpdate()
     {
         UpdateResources();

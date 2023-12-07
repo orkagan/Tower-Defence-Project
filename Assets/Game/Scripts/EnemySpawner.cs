@@ -18,6 +18,8 @@ public class EnemySpawner : MonoBehaviour
 
     public UnityEvent onFinishSpawning;
 
+    /*[HideInInspector]*/ public GameObject[] enemiesInScene;
+
     private void Start()
     {
         onFinishSpawning.AddListener(() => StartCoroutine(nameof(CountEnemies)));
@@ -25,13 +27,13 @@ public class EnemySpawner : MonoBehaviour
 
     public void BeginSpawning() => StartCoroutine(nameof(SpawnEnemies));
 
-    private IEnumerator CountEnemies()
+    public IEnumerator CountEnemies()
     {
         while (GameStateHandler.Instance.GetCurrentState == GameState.AttackPhase)
         {
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            enemiesInScene = GameObject.FindGameObjectsWithTag("Enemy");
 
-            if (enemies.Length == 0)
+            if (enemiesInScene.Length == 0)
             {
                 GameStateHandler.Instance.SwitchState();
             }
@@ -74,5 +76,13 @@ public class EnemySpawner : MonoBehaviour
     public void IncreaseEnemySpawnCount()
     {
         _enemySpawnCountPerTurn += _countIncreasePerFollowingTurn;
+    }
+
+    public void KillAllEnemies()
+    {
+        foreach (GameObject enemy in enemiesInScene)
+        {
+            DestroyImmediate(enemy);
+        }
     }
 }
