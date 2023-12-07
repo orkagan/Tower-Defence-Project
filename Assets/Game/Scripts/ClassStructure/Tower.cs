@@ -152,7 +152,7 @@ public class Tower : AggressiveEntity
     {
         foreach (Collider enemy in _enemiesInRange)
         {
-            Vector3 direction = enemy.transform.forward - _shootPoint.position;
+            Vector3 direction = enemy.transform.position - _shootPoint.position;
             _weapon.Attack(direction, _shootPoint.position);
         }
 
